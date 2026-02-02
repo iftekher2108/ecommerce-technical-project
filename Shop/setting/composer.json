@@ -1,0 +1,23 @@
+{
+	"name": "shop/setting",
+	"description": "",
+	"type": "library",
+	"version": "1.0",
+	"license": "proprietary",
+	"require": {},
+	"autoload": {
+		"psr-4": {
+			"Shop\\Setting\\": "src/",
+			"Shop\\Setting\\Database\\Factories\\": "database/factories/",
+			"Shop\\Setting\\Database\\Seeders\\": "database/seeders/"
+		}
+	},
+	"minimum-stability": "stable",
+	"extra": {
+		"laravel": {
+			"providers": [
+				"Shop\\Setting\\Providers\\SettingServiceProvider"
+			]
+		}
+	}
+}

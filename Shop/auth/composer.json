@@ -1,0 +1,23 @@
+{
+	"name": "shop/auth",
+	"description": "",
+	"type": "library",
+	"version": "1.0",
+	"license": "proprietary",
+	"require": {},
+	"autoload": {
+		"psr-4": {
+			"Shop\\Auth\\": "src/",
+			"Shop\\Auth\\Database\\Factories\\": "database/factories/",
+			"Shop\\Auth\\Database\\Seeders\\": "database/seeders/"
+		}
+	},
+	"minimum-stability": "stable",
+	"extra": {
+		"laravel": {
+			"providers": [
+				"Shop\\Auth\\Providers\\AuthServiceProvider"
+			]
+		}
+	}
+}

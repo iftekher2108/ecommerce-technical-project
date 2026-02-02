@@ -1,0 +1,23 @@
+{
+	"name": "shop/appearance",
+	"description": "",
+	"type": "library",
+	"version": "1.0",
+	"license": "proprietary",
+	"require": {},
+	"autoload": {
+		"psr-4": {
+			"Shop\\Appearance\\": "src/",
+			"Shop\\Appearance\\Database\\Factories\\": "database/factories/",
+			"Shop\\Appearance\\Database\\Seeders\\": "database/seeders/"
+		}
+	},
+	"minimum-stability": "stable",
+	"extra": {
+		"laravel": {
+			"providers": [
+				"Shop\\Appearance\\Providers\\AppearanceServiceProvider"
+			]
+		}
+	}
+}
