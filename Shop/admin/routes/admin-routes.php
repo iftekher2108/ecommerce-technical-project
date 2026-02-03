@@ -1,11 +1,22 @@
 <?php
 
-// use Shop\Admin\Http\Controllers\AdminController;
+use Illuminate\Support\Facades\Route;
+use Shop\Admin\Http\Controllers\AdminController;
+use Shop\Admin\Http\Controllers\RoleController;
 
-// Route::get('/admins', [AdminController::class, 'index'])->name('admins.index');
-// Route::get('/admins/create', [AdminController::class, 'create'])->name('admins.create');
-// Route::post('/admins', [AdminController::class, 'store'])->name('admins.store');
-// Route::get('/admins/{admin}', [AdminController::class, 'show'])->name('admins.show');
-// Route::get('/admins/{admin}/edit', [AdminController::class, 'edit'])->name('admins.edit');
-// Route::put('/admins/{admin}', [AdminController::class, 'update'])->name('admins.update');
-// Route::delete('/admins/{admin}', [AdminController::class, 'destroy'])->name('admins.destroy');
+Route::prefix('admin')->middleware(['web', 'auth:admin'])->group(function () {
+
+    Route::controller(AdminController::class)->group(function () {
+        Route::get('/dashboard', 'dashboard')->name('admin.dashboard');
+    });
+
+    Route::controller(RoleController::class)->group(function () {
+        Route::get('/role','index')->name('admin.role.index');
+        Route::get('/role/create','create')->name('admin.role.create');
+        Route::get('/role/{id}/edit','edit')->name('admin.role.edit');
+        Route::get('/role/{id}/delete','delete')->name('admin.role.delete');
+
+
+    });
+
+});

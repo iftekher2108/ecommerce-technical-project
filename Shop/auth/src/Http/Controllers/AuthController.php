@@ -4,23 +4,31 @@ namespace Shop\Auth\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Shop\Auth\Services\AuthService;
 
 class AuthController extends Controller
 {
+
+    public function __construct(protected AuthService $authService) {}
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function login_form()
     {
-        //
+        return view("auth::login");
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function login(Request $request)
     {
-        //
+        $request->validate([
+            'email' => ['required', 'email'],
+            'password' => ['required', 'string'],
+        ]);
+        $data = $this->authService->login($request);
+        return $data;
     }
 
     /**

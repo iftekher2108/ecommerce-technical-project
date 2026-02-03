@@ -5,12 +5,12 @@ use Shop\Auth\Http\Controllers\AuthController;
 
 
 
-Route::prefix('auth')->middleware(['web'])->controller(AuthController::class)->group(function () {
+Route::prefix('auth')->middleware(['web','guest:admin'])->controller(AuthController::class)->group(function () {
     Route::get('/login','login_form')->name('auth.login.form');
     Route::post('/login','login')->name('auth.login');
 });
 
-Route::prefix('auth')->middleware(['web','auth'])->controller(AuthController::class)->group(function () {
+Route::prefix('auth')->middleware(['web','auth:admin'])->controller(AuthController::class)->group(function () {
     Route::post('/logout','logout')->name('auth.logout');
 });
 

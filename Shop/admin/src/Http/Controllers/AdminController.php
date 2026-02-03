@@ -2,17 +2,18 @@
 
 namespace Shop\Admin\Http\Controllers;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Shop\Admin\Models\Admin;
 
-class AdminController
+class AdminController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function dashboard()
     {
-        //
+        return view('admin::dashboard');
     }
 
     /**
