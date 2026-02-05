@@ -17,23 +17,42 @@
             </thead>
             <tbody>
 
-                <tr class="align-middle">
-                    <td>1.</td>
-                    <td>
+                @foreach ($roles as $key => $item)
+                    <tr class="align-middle">
+                        <td>{{ $key + 1 }}</td>
+                        <td>
+                            {{ $item->name }}
+                        </td>
+                        <td>{{ $item->permissions }}</td>
+                        <td>
+                            @php
+                                $data = [
+                                    [
+                                        'type' => 'edit',
+                                        'url' => route('admin.role.edit', $item->id),
+                                        'color' => 'btn-primary',
+                                        'label' => '<i class="bi bi-pencil-square"></i>',
+                                    ],
+                                    [
+                                        'type' => 'delete',
+                                        'url' => route('admin.role.delete', $item->id),
+                                        'color' => 'btn-danger',
+                                        'label' => '<i class="bi bi-trash"></i>',
+                                    ],
+                                ];
+                            @endphp
+                            <x-admin::action-btn title='role' :data="$data" />
+                        </td>
+                    </tr>
+                @endforeach
 
-                    </td>
-                    <td>Update software</td>
-                    <td>
-                        <a href="{{ route('admin.role.edit', 1) }}" class="btn btn-sm btn-primary">Edit</a>
-                        <a href="{{ route('admin.role.delete', 1) }}" class="btn btn-sm btn-danger">Delete</a>
-                    </td>
-                </tr>
-            
-             
+
+
             </tbody>
         </table>
-
     </div>
+
+    {{ $roles->links() }}
 
 
 @endsection

@@ -32,30 +32,63 @@
                 'children' => [
                     [
                         'title' => 'Product',
+                        'icon' => null,
                         'route' => 'admin.products.index',
-                        'url' => '/admin/products',
+                        'url' => '',
                         'active' => ['admin.products.*'],
                         'permission' => 'product-index',
                     ],
                     [
                         'title' => 'Category',
+                        'icon' => null,
                         'route' => 'admin.categories.index',
-                        'url' => '/admin/categories',
+                        'url' => '',
                         'active' => ['admin.categories.*'],
                         'permission' => 'category-index',
                     ],
                     [
                         'title' => 'Brand',
+                        'icon' => null,
                         'route' => 'admin.brands.index',
-                        'url' => '/admin/brands',
+                        'url' => '',
                         'active' => ['admin.brands.*'],
                         'permission' => 'brand-index',
                     ],
                 ],
             ],
+            [
+                'title' => 'User Management',
+                'icon' => 'bi bi-person-bounding-box',
+                'children' => [
+                    [
+                        'title' => 'User',
+                        'icon' => null,
+                        'route' => 'admin.products.index',
+                        'url' => '',
+                        'active' => ['admin.user.*'],
+                        'permission' => 'user-index',
+                    ],
+                    [
+                        'title' => 'Role',
+                        'icon' => null,
+                        'route' => 'admin.role.index',
+                        'url' => '',
+                        'active' => ['admin.categories.*'],
+                        'permission' => 'role-index',
+                    ],
+                    [
+                        'title' => 'Permission',
+                        'icon' => null,
+                        'route' => 'admin.permission.index',
+                        'url' => '',
+                        'active' => ['admin.permission.*'],
+                        'permission' => 'permission-index',
+                    ],
+                ],
+            ],
         ];
 
-        $resolveUrl = static function (array $item): string {
+        $resolveUrl = static function (array $item) {
             if (!empty($item['route']) && \Illuminate\Support\Facades\Route::has($item['route'])) {
                 return route($item['route']);
             }
@@ -63,7 +96,7 @@
             return $item['url'] ?? '#';
         };
 
-        $isActive = static function (array $patterns, ?string $fallbackRoute = null): bool {
+        $isActive = static function (array $patterns, ?string $fallbackRoute = null) {
             foreach ($patterns as $pattern) {
                 if (request()->routeIs($pattern)) {
                     return true;
@@ -119,7 +152,7 @@
                                             @endphp
                                             <li class="nav-item">
                                                 <a href="{{ $resolveUrl($child) }}" class="nav-link {{ $childIsActive ? 'active' : '' }}">
-                                                    <i class="nav-icon bi bi-circle"></i>
+                                                    <i class="nav-icon {{ $child['icon'] ?? 'bi bi-arrow-right' }}"></i>
                                                     <p>{{ $child['title'] }}</p>
                                                 </a>
                                             </li>

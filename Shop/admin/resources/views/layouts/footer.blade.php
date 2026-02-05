@@ -5,8 +5,8 @@
         <!--end::To the end-->
         <!--begin::Copyright-->
         <strong>
-          Copyright &copy; 2014-2025&nbsp;
-          <a href="#" class="text-decoration-none">AdminLTE.io</a>.
+          Copyright &copy; {{ date('Y') }} 
+          <a href="#" class="text-decoration-none"></a>.
         </strong>
         All rights reserved.
         <!--end::Copyright-->

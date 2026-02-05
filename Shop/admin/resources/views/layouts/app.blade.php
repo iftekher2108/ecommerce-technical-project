@@ -28,6 +28,16 @@
     <div class="app-content">
         <!--begin::Container-->
         <div class="container-fluid">
+            @session('success')
+                <x-admin::alert class="alert-success">
+                    {{ session('success') }}
+                </x-admin::alert>
+            @endsession
+            @session('error')
+                <x-admin::alert class="alert-danger">
+                    {{ session('error') }}
+                </x-admin::alert>
+            @endsession
 
             @yield('content')
 

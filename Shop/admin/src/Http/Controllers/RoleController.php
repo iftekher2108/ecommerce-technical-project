@@ -4,15 +4,17 @@ namespace Shop\Admin\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Shop\Admin\Services\RoleService;
 
 class RoleController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    public function __construct(protected RoleService $roleService)
+    {
+    }
     public function index(Request $request)
     {
-        return view('admin::role.index');
+        $data = $this->roleService->roleAll($request);
+        return view('admin::role.index',$data);
     }
 
     /**
@@ -20,7 +22,7 @@ class RoleController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin::role.create');
     }
 
     /**
@@ -28,7 +30,11 @@ class RoleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+        ]);
+        $this->roleService->roleStore($request);
+        return to_route($this->roleService->redirect)->with('success','Role Create Successfully');
     }
 
     /**
@@ -58,8 +64,8 @@ class RoleController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy($id)
     {
-        //
+        
     }
 }
