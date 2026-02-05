@@ -16,6 +16,8 @@ class PermissionService
         $permissions = $query->paginate(15);
         return ['permissions' => $permissions];
     }
+
+   
     public function permissionStore($request)
     {
         Permission::create([
@@ -39,5 +41,10 @@ class PermissionService
     public function permissionDelete($id) {
         $permission = Permission::findById($id);
         $permission->delete();
+    }
+    
+     public function permissions() {
+        $permissions = Permission::get(['id','name']);
+        return $permissions;
     }
 }

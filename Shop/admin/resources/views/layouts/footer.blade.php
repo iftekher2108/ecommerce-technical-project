@@ -15,6 +15,7 @@
     </div>
     <!--end::App Wrapper-->
     <!--begin::Script-->
+    <script src="{{ asset('backend/js/jquery.min.js') }}"></script>
     <!--begin::Third Party Plugin(OverlayScrollbars)-->
     <script src="{{ asset('backend/plugins/overlayscrollbars/overlayscrollbars.browser.es6.min.js') }}"></script>
     <!--end::Third Party Plugin(OverlayScrollbars)--><!--begin::Required Plugin(popperjs for Bootstrap 5)-->

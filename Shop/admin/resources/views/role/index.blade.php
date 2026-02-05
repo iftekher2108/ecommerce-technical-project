@@ -23,7 +23,11 @@
                         <td>
                             {{ $item->name }}
                         </td>
-                        <td>{{ $item->permissions }}</td>
+                        <td>
+                            @foreach ($item->permissions as $permission )
+                                {{ $permission->name }} @if (!$loop->last) | @endif
+                            @endforeach
+                        </td>
                         <td>
                             @php
                                 $data = [

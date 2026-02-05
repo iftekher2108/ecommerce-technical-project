@@ -3,7 +3,7 @@
     'data'
 ])
 
-<div class="d-flex flex-wrap gap-2">
+<div class="d-flex gap-1">
     @foreach ( $data as $item )
     @if ($item['type'] == 'delete')
         @can('{{ $title }}-delete')

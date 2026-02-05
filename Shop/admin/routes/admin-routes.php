@@ -16,6 +16,7 @@ Route::prefix('admin')->middleware(['web', 'auth:admin'])->group(function () {
         Route::get('/role/create','create')->name('admin.role.create');
         Route::post('/role/store','store')->name('admin.role.store');
         Route::get('/role/{id}/edit','edit')->name('admin.role.edit');
+        Route::put('/role/{id}/update','update')->name('admin.role.update');
         Route::delete('/role/{id}/delete','destroy')->name('admin.role.delete');
 
     });
