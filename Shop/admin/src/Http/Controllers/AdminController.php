@@ -5,15 +5,22 @@ namespace Shop\Admin\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Shop\Admin\Models\Admin;
+use Shop\Admin\Services\AdminService;
 
 class AdminController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    public function __construct(protected AdminService $adminService)
+    {
+    }
     public function dashboard()
     {
         return view('admin::dashboard');
+    }
+
+
+    public function index(Request $request) {
+        $data = $this->adminService->adminAll($request);
+        return view('admin::user.index', $data);
     }
 
     /**
@@ -21,7 +28,8 @@ class AdminController extends Controller
      */
     public function create()
     {
-        //
+        $data = $this->adminService->adminCreate();
+        return view('admin::user.create');
     }
 
     /**
@@ -29,29 +37,23 @@ class AdminController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->adminService->adminStore($request);
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Admin $admin)
-    {
-        //
-    }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Admin $admin)
+    public function edit($id)
     {
-        //
+        $data = $this->adminService->adminById($id);
+        return view('admin::user.edit', $data);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Admin $admin)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -59,7 +61,7 @@ class AdminController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Admin $admin)
+    public function destroy($id)
     {
         //
     }
