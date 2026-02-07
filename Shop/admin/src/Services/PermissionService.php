@@ -10,11 +10,12 @@ class PermissionService
     public function permissionAll($request)
     {
         $query = Permission::query();
-        if ($request->has('search')) {
-            $query->where('name', "%{$request->input('search')}%");
+        $search = $request->input('search');
+        if ($search) {
+            $query->where('name','like',"%$search%");
         }
         $permissions = $query->paginate(15);
-        return ['permissions' => $permissions];
+        return ['permissions' => $permissions, 'search' => $search ];
     }
 
    

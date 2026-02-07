@@ -63,7 +63,7 @@
                     [
                         'title' => 'User',
                         'icon' => null,
-                        'route' => 'admin.products.index',
+                        'route' => 'admin.user.index',
                         'url' => '',
                         'active' => ['admin.user.*'],
                         'permission' => 'user-index',

@@ -30,7 +30,7 @@
         <small class="form-text text-warning">{{ $help }}</small>
     @endif
 
-    <div id="{{ $previewId }}" class="mt-2 d-flex flex-wrap">
+    <div id="{{ $previewId }}" class="mt-2 d-flex flex-wrap gap-1">
         @if ($preview)
             @php
                 $previews = is_array($preview) ? $preview : [$preview];

@@ -1,8 +1,15 @@
 @extends('admin::layouts.app')
 @section('title', 'Role Management')
 @section('content')
-    <div class="d-flex justify-content-end mb-3">
-        <a href="{{ route('admin.role.create') }}" class="btn btn-primary">Create Role</a>
+    <div class="d-flex justify-content-between mb-3">
+        <form action="{{ route('admin.role.index') }}" class="d-flex gap-2" method="GET">
+            <x-admin::form.input name="search" :value="$search" />
+            <x-admin::form.button type="submit" class="btn-primary mb-2">
+                Search
+            </x-admin::form.button>
+        </form>
+
+        <a href="{{ route('admin.role.create') }}" class="btn btn-primary mb-2">Create Role</a>
     </div>
 
     <div class="table-responsive">
@@ -24,8 +31,10 @@
                             {{ $item->name }}
                         </td>
                         <td>
-                            @foreach ($item->permissions as $permission )
-                                {{ $permission->name }} @if (!$loop->last) | @endif
+                            @foreach ($item->permissions as $permission)
+                                {{ $permission->name }} @if (!$loop->last)
+                                    |
+                                @endif
                             @endforeach
                         </td>
                         <td>

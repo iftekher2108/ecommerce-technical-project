@@ -1,8 +1,14 @@
 @extends('admin::layouts.app')
 @section('title', 'User Management')
 @section('content')
-    <div class="d-flex justify-content-end mb-3">
-        <a href="{{ route('admin.user.create') }}" class="btn btn-primary">Create User</a>
+    <div class="d-flex justify-content-between mb-3">
+        <form action="{{ route('admin.user.index') }}" class="d-flex gap-2" method="GET">
+            <x-admin::form.input name="search" :value="$search" />
+            <x-admin::form.button type="submit" class="btn-primary mb-2">
+                Search
+            </x-admin::form.button>
+        </form>
+        <a href="{{ route('admin.user.create') }}" class="btn btn-primary mb-2">Create User</a>
     </div>
 
     <div class="table-responsive">
@@ -10,16 +16,17 @@
             <thead>
                 <tr>
                     <th style="width: 10px">#</th>
-                    <th>Name</th>
                     <th>Picture</th>
+                    <th>Name</th>
                     <th>Username</th>
                     <th>Email</th>
+                    <th>Roles</th>
                     <th>action</th>
                 </tr>
             </thead>
             <tbody>
 
-                @foreach ($roles as $key => $item)
+                @foreach ($admins as $key => $item)
                     <tr class="align-middle">
                         <td>{{ $key + 1 }}</td>
                         <td><img src="" class="img-thumbnail" width="40" height="40" alt="avater"></td>
@@ -30,8 +37,13 @@
                             {{ $item->username }}
                         </td>
                         <td>
-                            @foreach ($item->permissions as $permission )
-                                {{ $permission->name }} @if (!$loop->last) | @endif
+                            {{ $item->email }}
+                        </td>
+                        <td>
+                            @foreach ($item->roles as $item)
+                                {{ $item->name }} @if (!$loop->last)
+                                    |
+                                @endif
                             @endforeach
                         </td>
                         <td>
@@ -62,7 +74,7 @@
         </table>
     </div>
 
-    {{ $roles->links() }}
+    {{ $admins->links() }}
 
 
 @endsection

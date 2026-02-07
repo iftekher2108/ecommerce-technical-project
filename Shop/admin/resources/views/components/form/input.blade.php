@@ -15,27 +15,31 @@
 
 @php
     $inputId = $id ?? $name;
-    $labelText = $title ?? $name;
+    $labelText = $title ?? null;
 @endphp
 
 <div class="mb-2">
-    <label {{ $attributes->merge([
-        'for' => $name,
-        "class" => $label_class,
-    ]) }}>{{ $labelText }}</label>
+    @if ($labelText)
+        <label
+            {{ $attributes->merge([
+                'for' => $name,
+                'class' => $label_class,
+            ]) }}>{{ $labelText }}</label>
+    @endif
     <div class="input-group">
         @if ($prefix)
             <div class="input-group-text bg-primary">{!! $prefix !!}</div>
         @endif
-        <input {{ $attributes->merge([
-            'type' => $type,
-            "class" => "form-control " . $class,
-            "name" => $name,
-            "id" => $inputId,
-            'placeholder' => $placeholder,
-            'value' => $value,
-            'onChange' => $onChange,
-    ]) }} />
+        <input
+            {{ $attributes->merge([
+                'type' => $type,
+                'class' => 'form-control ' . $class,
+                'name' => $name,
+                'id' => $inputId,
+                'placeholder' => $placeholder,
+                'value' => $value,
+                'onChange' => $onChange,
+            ]) }} />
         @if ($suffix)
             <div class="input-group-text bg-primary">{!! $suffix !!}</div>
         @endif

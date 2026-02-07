@@ -65,5 +65,8 @@ class RoleController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy($id) {}
+    public function destroy($id) {
+        $this->roleService->roleDelete($id);
+        return to_route($this->roleService->redirect)->with('success', 'Role Delete Successfully');
+    }
 }

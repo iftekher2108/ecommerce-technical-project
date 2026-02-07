@@ -9,16 +9,15 @@ use Shop\Admin\Services\AdminService;
 
 class AdminController extends Controller
 {
-    public function __construct(protected AdminService $adminService)
-    {
-    }
+    public function __construct(protected AdminService $adminService) {}
     public function dashboard()
     {
         return view('admin::dashboard');
     }
 
 
-    public function index(Request $request) {
+    public function index(Request $request)
+    {
         $data = $this->adminService->adminAll($request);
         return view('admin::user.index', $data);
     }
@@ -29,7 +28,7 @@ class AdminController extends Controller
     public function create()
     {
         $data = $this->adminService->adminCreate();
-        return view('admin::user.create');
+        return view('admin::user.create',$data);
     }
 
     /**
@@ -37,7 +36,16 @@ class AdminController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'picture' => 'nullable|max:2048|mimes:png,jpg',
+            'name' => 'required|string',
+            'username' => 'required',
+            'email' => 'email|required',
+            'password' => 'required|min:8',
+        ]);
+        dd($request->all());
         $this->adminService->adminStore($request);
+        return to_route($this->adminService->redirect)->with('success', 'User Create Successfully');
     }
 
 
@@ -63,6 +71,8 @@ class AdminController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $admin = Admin::findById($id);
+        $admin->delete();
+        return to_route($this->adminService->redirect)->with('success', 'Admin Delete Successfully');
     }
 }

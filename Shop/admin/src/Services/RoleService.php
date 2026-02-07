@@ -10,11 +10,12 @@ class RoleService
     public function roleAll($request)
     {
         $query = Role::query();
-        if ($request->has('search')) {
-            $query->where('name', "%{$request->input('search')}%");
+        $search = $request->input('search');
+        if ($search) {
+            $query->where('name','like',"%$search%");
         }
         $roles = $query->whereNot('name', 'Super Admin')->with('permissions:name')->paginate(15);
-        return ['roles' => $roles];
+        return ['roles' => $roles,'search' => $search];
     }
 
     public function roleStore($request)
@@ -43,5 +44,8 @@ class RoleService
         $role->syncPermissions($request->permissions);
     }
 
-    public function roleDelete($id) {}
+    public function roleDelete($id) {
+        $role = Role::findById($id);
+        $role->delete();
+    }
 }

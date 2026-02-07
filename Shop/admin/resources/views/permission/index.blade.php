@@ -1,8 +1,15 @@
 @extends('admin::layouts.app')
 @section('title', 'Permission Management')
 @section('content')
-    <div class="d-flex justify-content-end mb-3">
-        <a href="{{ route('admin.permission.create') }}" class="btn btn-primary">Create Permission</a>
+    <div class="d-flex justify-content-between mb-3">
+            <form action="{{ route('admin.permission.index') }}" class="d-flex gap-2" method="GET">
+                <x-admin::form.input name="search" :value="$search" />
+                <x-admin::form.button type="submit" class="btn-primary mb-2">
+                    Search
+                </x-admin::form.button>
+            </form>
+
+        <a href="{{ route('admin.permission.create') }}" class="btn btn-primary mb-2">Create Permission</a>
     </div>
 
     <div class="table-responsive">
@@ -50,7 +57,7 @@
         </table>
     </div>
 
-        {{ $permissions->links() }}
+    {{ $permissions->links() }}
 
 
 @endsection
