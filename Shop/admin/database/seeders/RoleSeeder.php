@@ -23,5 +23,20 @@ class RoleSeeder extends Seeder
 
         $admin->assignRole($role->name);
 
+        // Role::create([
+        //     'name' => 'Admin',
+        //     'guard_name'=>'admin'
+        //     ]);
+
+        //     Role::create([
+        //     'name' => 'Editor',
+        //     'guard_name'=>'admin'
+        //     ]);
+
+        //     Role::create([
+        //     'name' => 'Manager',
+        //     'guard_name'=>'admin'
+        //     ]);
+
     }
 }
