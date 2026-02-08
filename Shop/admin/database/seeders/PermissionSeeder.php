@@ -18,6 +18,31 @@ class PermissionSeeder extends Seeder
             'dashboard-index',
 
 
+            //product
+            'product-index',
+            'product-create',
+            'product-store',
+            'product-edit',
+            'product-update',
+            'product-delete',
+
+            // category
+            'category-index',
+            'category-create',
+            'category-store',
+            'category-edit',
+            'category-update',
+            'category-delete',
+
+            // brand
+            'brand-index',
+            'brand-create',
+            'brand-store',
+            'brand-edit',
+            'brand-update',
+            'brand-delete',
+
+
             //user
             'user-index',
             'user-create',

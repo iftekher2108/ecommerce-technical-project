@@ -17,18 +17,18 @@
                     </x-admin::form.button>
                 </div>
 
-                <div class="row justify-content-center align-items-center g-2">
-                    <div class="table-responsive">
+                <div class="row justify-content-center align-items-center g-2 mb-3">
+                    <div class="table-responsive" >
                         <table class="table table-bordered">
                             <Thead>
                                 <th>Label</th>
                                 <th>Action</th>
                             </Thead>
-                            <tbody>
+                            <tbody >
                                 @foreach ($permissions as $item)
                                     <tr>
                                         <td>{{ $item->name }}</td>
-                                        <td>
+                                        <td align="center">
                                             <input type="checkbox" name="permissions[]" value="{{ $item->name }}" class="btn-check"
                                                 id="{{ $item->name }}-{{ $item->id }}" autocomplete="off">
                                             <label class="btn btn-outline-primary"
