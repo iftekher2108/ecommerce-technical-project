@@ -6,7 +6,7 @@
 <div class="d-flex gap-1">
     @foreach ( $data as $item )
     @if ($item['type'] == 'delete')
-        @can('{{ $title }}-delete')
+        @can($title . '-delete')
            <form action="{{ $item['url'] }}" method="POST">
              @csrf
                 @method('delete')    
@@ -15,11 +15,11 @@
         @endcan
                
     @elseif ($item['type'] == 'edit')
-        @can('{{ $title }}-edit')
+        @can($title . '-edit')
             <a href="{{ $item['url'] }}" class="btn btn-sm {{ $item['color'] }}">{!! $item['label'] !!}</a>
         @endcan
     @elseif ($item['type'] == 'view')
-        @can('{{ $title }}-view')
+        @can($title . '-view')
             <a href="{{ $item['url'] }}" class="btn btn-sm {{ $item['color'] }}">{!! $item['label'] !!}</a>
         @endcan
     

@@ -2,6 +2,8 @@
 
 namespace Shop\Admin\Services;
 
+use Illuminate\Container\Attributes\Storage;
+use Shop\Admin\Classes\Helper;
 use Shop\Admin\Models\Admin;
 use Spatie\Permission\Models\Role;
 
@@ -21,18 +23,53 @@ class AdminService
         return ['admins' => $admins, 'search' => $search];
     }
 
-    public function adminCreate() {
-        $roles = Role::whereNot('name','Super Admin')->get(['id','name']);
+    public function adminCreate()
+    {
+        $roles = Role::whereNot('name', 'Super Admin')->get(['id', 'name']);
         return ['roles' => $roles];
     }
 
-    public function adminStore($request) {}
+    public function adminStore($request)
+    {
+        $picture = null;
+        if (isset($request->picture)) {
+            $picture = Helper::fileUpload('admin', 'admin', $request->picture);
+        }
+        $admin = Admin::create([
+            'picture' => $picture,
+            'name' => $request->name,
+            'username' => $request->username,
+            'email' => $request->email,
+            'password' => $request->password,
+        ]);
+        $admin->assignRole($request->role);
+    }
 
-    public function adminById($id) {}
+    public function adminById($id)
+    {
+        return ['admin' => Admin::findOrFail($id)];
+    }
 
-    public function adminUpdate($id) {}
+    public function adminUpdate($request, $id)
+    {
+        $admin = Admin::findOrFail($id);
+        $picture = $admin->picture;
+        if (isset($request->picture)) {
+            Helper::fileDelete($admin->picture);
+            $picture = Helper::fileUpload('admin', 'admin', $request->picture);
+        }
+        $admin->update([
+            'picture' => $picture,
+            'name' => $request->name,
+            // 'username' => $request->username,
+            // 'email' => $request->email,
+            // 'password' => $request->password,
+        ]);
+        $admin->syncRoles($request->role);
+    }
 
-    public function adminDelete($id) {
+    public function adminDelete($id)
+    {
         $admin = Admin::findById($id);
         $admin->delete();
     }

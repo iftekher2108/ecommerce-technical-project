@@ -6,6 +6,9 @@
 	"license": "proprietary",
 	"require": {},
 	"autoload": {
+		"files": [
+			"src/Helper/Helper.php"
+		],
 		"psr-4": {
 			"Shop\\Admin\\": "src/",
 			"Shop\\Admin\\Database\\Factories\\": "database/factories/",

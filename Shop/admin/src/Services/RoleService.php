@@ -18,6 +18,9 @@ class RoleService
         return ['roles' => $roles,'search' => $search];
     }
 
+    public function getRoles() {
+        return Role::whereNot('name','Super Admin')->get(['id','name']);
+    }
     public function roleStore($request)
     {
         $role = Role::create([

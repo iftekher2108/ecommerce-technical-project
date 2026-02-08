@@ -20,7 +20,7 @@
 <div class="mb-2">
     <label for="{{ $inputId }}" class="{{ $label_class }}">{{ $labelText }}</label>
     <select {{ $attributes->merge([
-        'class' => 'form-control form-select select2bs5 ' . $class,
+        'class' => 'form-control form-select select2bs5' . $class,
         'name' => $name,
         'id' => $inputId,
     ]) }} @if ($multiple) multiple @endif>

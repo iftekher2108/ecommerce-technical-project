@@ -6,10 +6,11 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Shop\Admin\Models\Admin;
 use Shop\Admin\Services\AdminService;
+use Shop\Admin\Services\RoleService;
 
 class AdminController extends Controller
 {
-    public function __construct(protected AdminService $adminService) {}
+    public function __construct(protected AdminService $adminService, protected RoleService $roleService) {}
     public function dashboard()
     {
         return view('admin::dashboard');
@@ -41,9 +42,10 @@ class AdminController extends Controller
             'name' => 'required|string',
             'username' => 'required',
             'email' => 'email|required',
+            'roles' => 'nullable',
             'password' => 'required|min:8',
         ]);
-        dd($request->all());
+        // dd($request->all());
         $this->adminService->adminStore($request);
         return to_route($this->adminService->redirect)->with('success', 'User Create Successfully');
     }
@@ -55,6 +57,7 @@ class AdminController extends Controller
     public function edit($id)
     {
         $data = $this->adminService->adminById($id);
+        $data['roles'] = $this->roleService->getRoles();
         return view('admin::user.edit', $data);
     }
 
@@ -63,7 +66,16 @@ class AdminController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'picture' => 'nullable|max:2048|mimes:png,jpg',
+            'name' => 'required|string',
+            // 'username' => 'required',
+            // 'email' => 'email|required',
+            'roles' => 'nullable',
+            // 'password' => 'required|min:8',
+        ]);
+        $this->adminService->adminUpdate($request, $id);
+        return to_route($this->adminService->redirect)->with('success', 'User Update Successfully');
     }
 
     /**

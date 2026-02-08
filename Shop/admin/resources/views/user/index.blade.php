@@ -8,7 +8,9 @@
                 Search
             </x-admin::form.button>
         </form>
-        <a href="{{ route('admin.user.create') }}" class="btn btn-primary mb-2">Create User</a>
+        @can('user-create')
+            <a href="{{ route('admin.user.create') }}" class="btn btn-primary mb-2"><i class="bi bi-plus-lg"></i> Create User</a>
+        @endcan
     </div>
 
     <div class="table-responsive">
@@ -29,7 +31,8 @@
                 @foreach ($admins as $key => $item)
                     <tr class="align-middle">
                         <td>{{ $key + 1 }}</td>
-                        <td><img src="" class="img-thumbnail" width="40" height="40" alt="avater"></td>
+                        <td><img src="{{ asset('storage/' . $item->picture) }}" class="img-thumbnail" width="50"
+                                height="50" alt="avater"></td>
                         <td>
                             {{ $item->name }}
                         </td>
@@ -40,8 +43,8 @@
                             {{ $item->email }}
                         </td>
                         <td>
-                            @foreach ($item->roles as $item)
-                                {{ $item->name }} @if (!$loop->last)
+                            @foreach ($item->roles as $role)
+                                {{ $role->name }} @if (!$loop->last)
                                     |
                                 @endif
                             @endforeach
@@ -51,19 +54,19 @@
                                 $data = [
                                     [
                                         'type' => 'edit',
-                                        'url' => route('admin.role.edit', $item->id),
+                                        'url' => route('admin.user.edit', $item->id),
                                         'color' => 'btn-primary',
                                         'label' => '<i class="bi bi-pencil-square"></i>',
                                     ],
                                     [
                                         'type' => 'delete',
-                                        'url' => route('admin.role.delete', $item->id),
+                                        'url' => route('admin.user.delete', $item->id),
                                         'color' => 'btn-danger',
                                         'label' => '<i class="bi bi-trash"></i>',
                                     ],
                                 ];
                             @endphp
-                            <x-admin::action-btn title='role' :data="$data" />
+                            <x-admin::action-btn title='user' :data="$data" />
                         </td>
                     </tr>
                 @endforeach

@@ -10,6 +10,7 @@
     'value' => '',
     'placeholder' => '',
     'help' => '',
+    'readonly' => false,
     'onChange' => '',
 ])
 
@@ -38,6 +39,7 @@
                 'id' => $inputId,
                 'placeholder' => $placeholder,
                 'value' => $value,
+                'readonly' => $readonly,
                 'onChange' => $onChange,
             ]) }} />
         @if ($suffix)

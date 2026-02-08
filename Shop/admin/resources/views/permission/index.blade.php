@@ -2,14 +2,16 @@
 @section('title', 'Permission Management')
 @section('content')
     <div class="d-flex justify-content-between mb-3">
-            <form action="{{ route('admin.permission.index') }}" class="d-flex gap-2" method="GET">
-                <x-admin::form.input name="search" :value="$search" />
-                <x-admin::form.button type="submit" class="btn-primary mb-2">
-                    Search
-                </x-admin::form.button>
-            </form>
-
-        <a href="{{ route('admin.permission.create') }}" class="btn btn-primary mb-2">Create Permission</a>
+        <form action="{{ route('admin.permission.index') }}" class="d-flex gap-2" method="GET">
+            <x-admin::form.input name="search" :value="$search" />
+            <x-admin::form.button type="submit" class="btn-primary mb-2">
+                Search
+            </x-admin::form.button>
+        </form>
+        @can('permission-create')
+            <a href="{{ route('admin.permission.create') }}" class="btn btn-primary mb-2"><i class="bi bi-plus-lg"></i> Create
+                Permission</a>
+        @endcan
     </div>
 
     <div class="table-responsive">
@@ -46,7 +48,7 @@
                                     ],
                                 ];
                             @endphp
-                            <x-admin::action-btn title='role' :data="$data" />
+                            <x-admin::action-btn title='permission' :data="$data" />
                         </td>
                     </tr>
                 @endforeach

@@ -8,8 +8,9 @@
                 Search
             </x-admin::form.button>
         </form>
-
-        <a href="{{ route('admin.role.create') }}" class="btn btn-primary mb-2">Create Role</a>
+        @can('role-create')
+            <a href="{{ route('admin.role.create') }}" class="btn btn-primary mb-2"><i class="bi bi-plus-lg"></i> Create Role</a>
+        @endcan
     </div>
 
     <div class="table-responsive">
