@@ -38,6 +38,10 @@
     <link rel="stylesheet" href="{{ asset('backend/plugins/apexcharts/apexcharts.css') }}" />
     <!-- jsvectormap -->
     <link rel="stylesheet" href="{{ asset('backend/plugins/jsvectormap/jsvectormap.min.css') }}" />
+
+    {{-- Select 2 --}}
+    <link rel="stylesheet" href="{{ asset('backend/plugins/select2/dist/css/select2.css') }}">
+
 </head>
 <!--end::Head-->
 <!--begin::Body-->

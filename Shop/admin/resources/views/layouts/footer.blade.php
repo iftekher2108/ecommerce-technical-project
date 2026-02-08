@@ -25,6 +25,9 @@
       <!--end::Required Plugin(Bootstrap 5)--><!--begin::Required Plugin(AdminLTE)-->
       <script src="{{ asset('backend/js/adminlte.min.js') }}"></script>
       <!--end::Required Plugin(AdminLTE)--><!--begin::OverlayScrollbars Configure-->
+
+      {{-- Select 2 --}}
+      <script src="{{ asset('backend/plugins/select2/dist/js/select2.js') }}"></script>
       <script>
           const SELECTOR_SIDEBAR_WRAPPER = '.sidebar-wrapper';
           const Default = {
@@ -58,7 +61,12 @@
       <script src="{{ asset('backend/plugins/jsvectormap/jsvectormap.min.js') }}"></script>
       <script src="{{ asset('backend/plugins/jsvectormap/world.js') }}"></script>
       <!-- jsvectormap -->
-      @include('admin::layouts.script')
+
+      {{-- @include('admin::layouts.script') --}}
+      <script>
+          $('.select2bs5').select2({});
+          console.log('iftekher')
+      </script>
 
       @stack('script')
 
