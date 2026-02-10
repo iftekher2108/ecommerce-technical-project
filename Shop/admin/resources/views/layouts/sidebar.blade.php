@@ -57,6 +57,36 @@
                 ],
             ],
             [
+                'title' => 'Appearance',
+                'icon' => 'bi bi-person-bounding-box',
+                'children' => [
+                    [
+                        'title' => 'Slider',
+                        'icon' => null,
+                        'route' => 'admin.slider.index',
+                        'url' => '',
+                        'active' => ['admin.slider.*'],
+                        'permission' => 'slider-index',
+                    ],
+                    // [
+                    //     'title' => 'Role',
+                    //     'icon' => null,
+                    //     'route' => 'admin.role.index',
+                    //     'url' => '',
+                    //     'active' => ['admin.role.*'],
+                    //     'permission' => 'role-index',
+                    // ],
+                    // [
+                    //     'title' => 'Permission',
+                    //     'icon' => null,
+                    //     'route' => 'admin.permission.index',
+                    //     'url' => '',
+                    //     'active' => ['admin.permission.*'],
+                    //     'permission' => 'permission-index',
+                    // ],
+                ],
+            ],
+            [
                 'title' => 'User Management',
                 'icon' => 'bi bi-person-bounding-box',
                 'children' => [

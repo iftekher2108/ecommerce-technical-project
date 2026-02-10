@@ -1,20 +1,18 @@
 <?php
 
-namespace Shop\Catelog\Http\Controllers;
+namespace Shop\Appearance\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Shop\Catelog\Models\Category;
-use Shop\Catelog\Services\CategoryService;
+use Shop\Appearance\Models\Slider;
 
-class CategoryController
+class SliderController
 {
-    public function __construct(protected CategoryService $categoryService)
+    /**
+     * Display a listing of the resource.
+     */
+    public function index()
     {
-    }
-    public function index(Request $request)
-    {
-        $data = $this->categoryService->categoryAll($request);
-        return view('catelog::category.index', $data);
+        //
     }
 
     /**
@@ -22,7 +20,7 @@ class CategoryController
      */
     public function create()
     {
-        return view('catelog::category.create');
+        //
     }
 
     /**
@@ -36,7 +34,7 @@ class CategoryController
     /**
      * Display the specified resource.
      */
-    public function show(Category $category)
+    public function show(Slider $slider)
     {
         //
     }
@@ -44,7 +42,7 @@ class CategoryController
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Category $category)
+    public function edit(Slider $slider)
     {
         //
     }
@@ -52,7 +50,7 @@ class CategoryController
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Category $category)
+    public function update(Request $request, Slider $slider)
     {
         //
     }
@@ -60,7 +58,7 @@ class CategoryController
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Category $category)
+    public function destroy(Slider $slider)
     {
         //
     }

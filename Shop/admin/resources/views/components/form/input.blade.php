@@ -10,6 +10,7 @@
     'value' => '',
     'placeholder' => '',
     'help' => '',
+    'required' => false,
     'readonly' => false,
     'onChange' => '',
 ])
@@ -25,7 +26,9 @@
             {{ $attributes->merge([
                 'for' => $name,
                 'class' => $label_class,
-            ]) }}>{{ $labelText }}</label>
+            ]) }}>{{ $labelText }} @if($required)
+                <span class="text-danger">*</span>
+            @endif</label>
     @endif
     <div class="input-group">
         @if ($prefix)
@@ -41,6 +44,7 @@
                 'value' => $value,
                 'readonly' => $readonly,
                 'onChange' => $onChange,
+                'required' => $required
             ]) }} />
         @if ($suffix)
             <div class="input-group-text bg-primary">{!! $suffix !!}</div>

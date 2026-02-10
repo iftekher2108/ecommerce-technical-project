@@ -4,15 +4,17 @@ namespace Shop\Catelog\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Shop\Catelog\Models\Brand;
+use Shop\Catelog\Services\BrandService;
 
 class BrandController
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    public function __construct(protected BrandService $brandService)
     {
-        //
+    }
+    public function index(Request $request)
+    {
+        $data = $this->brandService->brandAll($request);
+        return view('catelog::brand.index', $data);
     }
 
     /**
@@ -20,7 +22,7 @@ class BrandController
      */
     public function create()
     {
-        //
+        return view('catelog::brand.create');
     }
 
     /**
@@ -28,7 +30,20 @@ class BrandController
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'icon' => 'nullable',
+            'banner' => 'nullable',
+            'picture' => 'nullable',
+            'name' => 'required',
+            'description' => 'nullable',
+            'order_id'=> 'nullable',
+            'meta_title' => 'nullable',
+            'meta_description' => 'nullable',
+            'meta_keywords' => 'nullable',
+            'status' => 'required',
+        ]);
+        $this->brandService->brandStore($request);
+        return to_route($this->brandService->redirect)->with('success','Brand Create Successfully');
     }
 
     /**

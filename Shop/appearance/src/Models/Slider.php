@@ -1,10 +1,10 @@
 <?php
 
-namespace Shop\Catelog\Models;
+namespace Shop\Appearance\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Brand extends Model
+class Slider extends Model
 {
     protected $guarded = [];
 }

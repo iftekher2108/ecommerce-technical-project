@@ -13,15 +13,28 @@ return new class extends Migration
     {
         Schema::create('categories', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('name')->unique();
+            $table->string('slug')->unique();
+            $table->text('description')->nullable();
+
+            $table->string('icon')->nullable();
             $table->string('picture')->nullable();
             $table->string('banner')->nullable();
-            $table->string('slug')->unique();
+
+            // SEO
+            $table->string('meta_title')->nullable();
+            $table->text('meta_description')->nullable();
+            $table->string('meta_keywords')->nullable();
+
             $table->unsignedBigInteger('Parent_id')->nullable();
             $table->unsignedBigInteger('order_id')->nullable();
             $table->boolean('status')->default(1);
+
+            $table->index(['status']);
             $table->timestamps();
         });
+
+
     }
 
     /**
