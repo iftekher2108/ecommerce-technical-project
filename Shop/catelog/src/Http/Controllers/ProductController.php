@@ -12,7 +12,7 @@ class ProductController
      */
     public function index()
     {
-        //
+        return view('catelog::product.index');
     }
 
     /**

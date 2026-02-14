@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use Shop\Catelog\Http\Controllers\BrandController;
 use Shop\Catelog\Http\Controllers\CategoryController;
+use Shop\Catelog\Http\Controllers\CouponController;
 use Shop\Catelog\Http\Controllers\ProductController;
 
 Route::prefix('admin')->middleware(['web', 'auth:admin'])->group(function () {
@@ -39,6 +40,14 @@ Route::prefix('admin')->middleware(['web', 'auth:admin'])->group(function () {
         Route::delete('/product/{id}/delete', 'destroy')->name('admin.product.delete')->middleware('permission:product-delete');
     });
 
-    
 
+    Route::controller(CouponController::class)->group(function () {
+        // brand management
+        Route::get('/coupon', 'index')->name('admin.coupon.index')->middleware('permission:coupon-index');
+        Route::get('/coupon/create', 'create')->name('admin.coupon.create')->middleware('permission:coupon-create');
+        Route::post('/coupon/store', 'store')->name('admin.coupon.store')->middleware('permission:coupon-store');
+        Route::get('/coupon/{id}/edit', 'edit')->name('admin.coupon.edit')->middleware('permission:coupon-edit');
+        Route::put('/coupon/{id}/update', 'update')->name('admin.coupon.update')->middleware('permission:coupon-update');
+        Route::delete('/coupon/{id}/delete', 'destroy')->name('admin.coupon.delete')->middleware('permission:coupon-delete');
+    });
 });

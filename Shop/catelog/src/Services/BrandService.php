@@ -95,4 +95,13 @@ class BrandService
             'status' => $request->status
         ]);
     }
+
+    public function brandDelete($id) {
+        $brand = Brand::findOrFail($id);
+        Helper::fileDelete($brand->icon);
+        Helper::fileDelete($brand->banner);
+        Helper::fileDelete($brand->picture);
+        $brand->delete();
+    }
+
 }

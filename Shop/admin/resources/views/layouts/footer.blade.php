@@ -62,11 +62,8 @@
       <script src="{{ asset('backend/plugins/jsvectormap/world.js') }}"></script>
       <!-- jsvectormap -->
 
-      {{-- @include('admin::layouts.script') --}}
-      <script>
-          $('.select2bs5').select2({});
-      </script>
-
+      @include('admin::layouts.script')
+   
       @stack('script')
 
       </body>

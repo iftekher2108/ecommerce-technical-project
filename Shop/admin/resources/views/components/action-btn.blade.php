@@ -4,7 +4,7 @@
     @foreach ($data as $item)
         @if ($item['type'] == 'delete')
             @can($title . '-delete')
-                <form action="{{ $item['url'] }}" method="POST">
+                <form action="{{ $item['url'] }}" class="delete-item" method="POST">
                     @csrf
                     @method('delete')
                     <button type="submit" class="btn btn-sm {{ $item['color'] }}"

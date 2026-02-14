@@ -4,15 +4,17 @@ namespace Shop\Catelog\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Shop\Catelog\Models\Coupon;
+use Shop\Catelog\Services\CouponService;
 
 class CouponController
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    public function __construct(protected CouponService $couponService)
     {
-        //
+    }
+    public function index(Request $request)
+    {
+        $data = $this->couponService->couponAll($request);
+        return view('catelog::coupon.index',$data);
     }
 
     /**

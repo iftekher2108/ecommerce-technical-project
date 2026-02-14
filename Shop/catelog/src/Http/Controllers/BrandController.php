@@ -78,8 +78,9 @@ class BrandController
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Brand $brand)
+    public function destroy($id)
     {
-        //
+        $this->brandService->brandDelete($id);
+        return to_route($this->brandService->redirect)->with('success', 'Brand Delete Successfully');
     }
 }

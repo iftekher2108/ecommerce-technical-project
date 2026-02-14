@@ -26,7 +26,7 @@ return new class extends Migration
             $table->text('meta_description')->nullable();
             $table->string('meta_keywords')->nullable();
 
-            $table->unsignedBigInteger('Parent_id')->nullable();
+            $table->unsignedBigInteger('parent_id')->nullable();
             $table->unsignedBigInteger('order_id')->nullable();
             $table->boolean('status')->default(1);
 

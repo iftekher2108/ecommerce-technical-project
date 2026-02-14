@@ -8,9 +8,7 @@ use Shop\Catelog\Services\CategoryService;
 
 class CategoryController
 {
-    public function __construct(protected CategoryService $categoryService)
-    {
-    }
+    public function __construct(protected CategoryService $categoryService) {}
     public function index(Request $request)
     {
         $data = $this->categoryService->categoryAll($request);
@@ -22,7 +20,8 @@ class CategoryController
      */
     public function create()
     {
-        return view('catelog::category.create');
+        $data = $this->categoryService->getCategories();
+        return view('catelog::category.create', ['categories' => $data]);
     }
 
     /**
@@ -30,38 +29,65 @@ class CategoryController
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'icon' => 'nullable',
+            'banner' => 'nullable',
+            'picture' => 'nullable',
+            'category' => 'nullable',
+            'name' => 'required',
+            'description' => 'nullable',
+            'order_id' => 'nullable',
+            'meta_title' => 'nullable',
+            'meta_description' => 'nullable',
+            'meta_keywords' => 'nullable',
+            'status' => 'required',
+        ]);
+        $this->categoryService->categoryStore($request);
+        return to_route($this->categoryService->redirect)->with('success', 'Category Create Successfully');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Category $category)
-    {
-        //
-    }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Category $category)
+    public function edit($id)
     {
-        //
+        $categories = $this->categoryService->getCategories();
+        $category = $this->categoryService->categoryById($id);
+        return view('catelog::category.edit', [
+            'categories' => $categories,
+            'category' => $category
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Category $category)
+    public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'icon' => 'nullable',
+            'banner' => 'nullable',
+            'picture' => 'nullable',
+            'category' => 'nullable',
+            'name' => 'required',
+            'description' => 'nullable',
+            'order_id' => 'nullable',
+            'meta_title' => 'nullable',
+            'meta_description' => 'nullable',
+            'meta_keywords' => 'nullable',
+            'status' => 'required',
+        ]);
+        $this->categoryService->categoryUpdate($request, $id);
+        return to_route($this->categoryService->redirect)->with('success', 'Category Update Successfully');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Category $category)
+    public function destroy($id)
     {
-        //
+        $this->categoryService->categoryDelete($id);
+        return to_route($this->categoryService->redirect)->with('success', 'Category Delete Successfully');
     }
 }

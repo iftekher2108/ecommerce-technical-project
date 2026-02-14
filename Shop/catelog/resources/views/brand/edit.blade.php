@@ -5,7 +5,7 @@
         <div class="card-body">
             <form action="{{ route('admin.brand.update', $brand->id) }}" method="post" enctype="multipart/form-data">
                 @csrf
-
+                @method('put')
                 <h5 class="p-2 bg-primary rounded mt-3">General Information</h5>
 
                 <div class="row g-2">
@@ -71,7 +71,7 @@
 
                     <x-admin::form.button class="btn-primary" type='submit'>
                         <i class="bi bi-floppy-fill me-1"></i>
-                        Submit
+                        Update
                     </x-admin::form.button>
                 </div>
 
@@ -88,8 +88,8 @@
                 $("input[name='meta_title']").val($("input[name='name']").val());
                 $("textarea[name='meta_description']").val($("textarea[name='description']").val());
             } else {
-                $("input[name='meta_title']").val('');
-                $("textarea[name='meta_description']").val('');
+                $("input[name='meta_title']").val("{{ old('meta_title', $brand->meta_title) }}");
+                $("textarea[name='meta_description']").val("{{ old('meta_description', $brand->meta_description) }}");
             }
         });
     </script>

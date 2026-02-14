@@ -1,8 +1,8 @@
 @extends('admin::layouts.app')
-@section('title', 'Category Management')
+@section('title', 'Coupon Management')
 @section('content')
     <div class="d-flex justify-content-between mb-3">
-        <form action="{{ route('admin.category.index') }}" class="d-flex gap-2" method="GET">
+        <form action="{{ route('admin.coupon.index') }}" class="d-flex gap-2" method="GET">
             <x-admin::form.input name="search" :value="$search" />
             <x-admin::form.button type="submit" class="btn-primary mb-2">
                 Search
@@ -18,10 +18,7 @@
             <thead>
                 <tr>
                     <th style="width: 10px">#</th>
-                    <th>icon</th>
-                    <th>banner</th>
                     <th>Picture</th>
-                    <th>Parent</th>
                     <th>Name</th>
                     <th>status</th>
                     <th>action</th>
@@ -29,23 +26,12 @@
             </thead>
             <tbody>
 
-                @foreach ($categories as $key => $item)
+                @foreach ($coupons as $key => $item)
                     <tr class="align-middle">
                         <td>{{ $key + 1 }}</td>
                         <td>
-                            <img src="{{ asset('storage/' . $item->icon) }}" class="img-thumbnail" width="50"
-                                height="50" alt="icon">
-                        </td>
-                        <td>
-                            <img src="{{ asset('storage/' . $item->banner) }}" class="img-thumbnail" width="50"
-                                height="50" alt="banner">
-                        </td>
-                        <td>
                             <img src="{{ asset('storage/' . $item->picture) }}" class="img-thumbnail" width="50"
                                 height="50" alt="picture">
-                        </td>
-                        <td>
-                            {{ $item->parent?->name ?? 'N/a' }}
                         </td>
                         <td>
                             {{ $item->name }}
@@ -79,7 +65,7 @@
         </table>
     </div>
 
-    {{ $categories->links() }}
+    {{ $coupons->links() }}
 
 
 @endsection

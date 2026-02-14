@@ -51,14 +51,22 @@
                         'icon' => null,
                         'route' => 'admin.brand.index',
                         'url' => '',
-                        'active' => ['admin.brands.*'],
+                        'active' => ['admin.brand.*'],
                         'permission' => 'brand-index',
+                    ],
+                    [
+                        'title' => 'Coupon',
+                        'icon' => null,
+                        'route' => 'admin.coupon.index',
+                        'url' => '',
+                        'active' => ['admin.coupon.*'],
+                        'permission' => 'coupon-index',
                     ],
                 ],
             ],
             [
                 'title' => 'Appearance',
-                'icon' => 'bi bi-person-bounding-box',
+                'icon' => 'bi bi-sunrise-fill',
                 'children' => [
                     [
                         'title' => 'Slider',
