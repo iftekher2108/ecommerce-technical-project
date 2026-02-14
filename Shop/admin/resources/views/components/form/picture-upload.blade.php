@@ -18,13 +18,15 @@
 
 <div class="mb-2">
     <label for="{{ $inputId }}" class="{{ $label_class }}">{{ $labelText }}</label>
-    <input {{ $attributes->merge([
-        'type' => 'file',
-        'class' => 'form-control p-1 ' . $class,
-        'name' => $name,
-        'id' => $inputId,
-        'accept' => $accept,
-    ]) }} @if ($multiple) multiple @endif />
+    <input
+        {{ $attributes->merge([
+            'type' => 'file',
+            'class' => 'form-control p-1 ' . $class,
+            'name' => $name,
+            'id' => $inputId,
+            'accept' => $accept,
+        ]) }}
+        @if ($multiple) multiple @endif />
 
     @if ($help)
         <small class="form-text text-warning">{{ $help }}</small>
@@ -38,7 +40,8 @@
             @foreach ($previews as $url)
                 @if ($url)
                     <div class="border rounded p-1 mr-2 mb-2 bg-light">
-                        <img src="{{ $url }}" alt="Preview" class="img-thumbnail" style="max-width: 120px; max-height: 120px; object-fit: cover;">
+                        <img src="{{ $url }}" alt="Preview" class="img-thumbnail"
+                            style="max-width: 120px; max-height: 120px; object-fit: cover;">
                     </div>
                 @endif
             @endforeach
@@ -51,7 +54,7 @@
 </div>
 
 <script>
-    (function () {
+    (function() {
         var input = document.getElementById(@json($inputId));
         var preview = document.getElementById(@json($previewId));
         if (!input || !preview) return;
@@ -64,11 +67,11 @@
             clearPreview();
             if (!files || !files.length) return;
 
-            Array.prototype.forEach.call(files, function (file) {
+            Array.prototype.forEach.call(files, function(file) {
                 if (!file.type || file.type.indexOf('image/') !== 0) return;
 
                 var reader = new FileReader();
-                reader.onload = function (e) {
+                reader.onload = function(e) {
                     var wrapper = document.createElement('div');
                     wrapper.className = 'border rounded p-1 mr-2 mb-2 bg-light';
 
@@ -87,7 +90,7 @@
             });
         }
 
-        input.addEventListener('change', function (e) {
+        input.addEventListener('change', function(e) {
             renderPreview(e.target.files);
         });
     })();

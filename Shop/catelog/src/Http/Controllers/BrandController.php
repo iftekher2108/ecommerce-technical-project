@@ -8,9 +8,7 @@ use Shop\Catelog\Services\BrandService;
 
 class BrandController
 {
-    public function __construct(protected BrandService $brandService)
-    {
-    }
+    public function __construct(protected BrandService $brandService) {}
     public function index(Request $request)
     {
         $data = $this->brandService->brandAll($request);
@@ -36,38 +34,45 @@ class BrandController
             'picture' => 'nullable',
             'name' => 'required',
             'description' => 'nullable',
-            'order_id'=> 'nullable',
+            'order_id' => 'nullable',
             'meta_title' => 'nullable',
             'meta_description' => 'nullable',
             'meta_keywords' => 'nullable',
             'status' => 'required',
         ]);
         $this->brandService->brandStore($request);
-        return to_route($this->brandService->redirect)->with('success','Brand Create Successfully');
+        return to_route($this->brandService->redirect)->with('success', 'Brand Create Successfully');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Brand $brand)
-    {
-        //
-    }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Brand $brand)
+    public function edit($id)
     {
-        //
+        $data = $this->brandService->brandById($id);
+        return view('catelog::brand.edit', ['brand' => $data]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Brand $brand)
+    public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'icon' => 'nullable',
+            'banner' => 'nullable',
+            'picture' => 'nullable',
+            'name' => 'required',
+            'description' => 'nullable',
+            'order_id' => 'nullable',
+            'meta_title' => 'nullable',
+            'meta_description' => 'nullable',
+            'meta_keywords' => 'nullable',
+            'status' => 'required',
+        ]);
+        $this->brandService->brandUpdate($request, $id);
+        return to_route($this->brandService->redirect)->with('success', 'Brand Update Successfully');
     }
 
     /**

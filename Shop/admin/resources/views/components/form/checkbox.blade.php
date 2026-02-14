@@ -10,11 +10,13 @@
 
 <div class="mb-2">
     <div class="form-check">
-        <input class="form-check-input {{ $class }}" type="checkbox" @if($checked) checked @endif name="{{ $name }}" value="{{ $value }}" id="{{ $id }}">
+        <input class="form-check-input {{ $class }}" type="checkbox"
+            @if ($checked) checked @endif name="{{ $name }}" value="{{ $value }}"
+            id="{{ $id }}">
         @if ($title)
-         <label class="form-check-label {{ $label_class }}" for="{{ $id }}">
-            {{ $title }}
-        </label>   
-        @endif  
+            <label class="form-check-label {{ $label_class }}" for="{{ $id }}">
+                {{ $title }}
+            </label>
+        @endif
     </div>
 </div>

@@ -18,19 +18,20 @@
                 </div>
 
                 <div class="row justify-content-center align-items-center g-2 mb-3">
-                    <div class="table-responsive" >
+                    <div class="table-responsive">
                         <table class="table table-bordered">
                             <Thead>
                                 <th>Label</th>
                                 <th>Action</th>
                             </Thead>
-                            <tbody >
+                            <tbody>
                                 @foreach ($permissions as $item)
                                     <tr>
                                         <td>{{ $item->name }}</td>
                                         <td align="center">
-                                            <input type="checkbox" name="permissions[]" value="{{ $item->name }}" class="btn-check"
-                                                id="{{ $item->name }}-{{ $item->id }}" autocomplete="off">
+                                            <input type="checkbox" name="permissions[]" value="{{ $item->name }}"
+                                                class="btn-check" id="{{ $item->name }}-{{ $item->id }}"
+                                                autocomplete="off">
                                             <label class="btn btn-outline-primary"
                                                 for="{{ $item->name }}-{{ $item->id }}">{{ $item->name }}</label>
                                         </td>
@@ -62,12 +63,12 @@
 @endsection
 
 @push('script')
-<script>
-    $('.select-all').click(function() {
-        $('input[type="checkbox"]').prop('checked', true)
-    })
-    $('.deselect-all').click(function() {
-        $('input[type="checkbox"]').prop('checked', false)
-    })
-</script>
+    <script>
+        $('.select-all').click(function() {
+            $('input[type="checkbox"]').prop('checked', true)
+        })
+        $('.deselect-all').click(function() {
+            $('input[type="checkbox"]').prop('checked', false)
+        })
+    </script>
 @endpush

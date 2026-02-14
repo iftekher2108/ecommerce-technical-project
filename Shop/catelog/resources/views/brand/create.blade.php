@@ -78,16 +78,15 @@
 @endsection
 
 @push('script')
-<script>
-    $('#sameAs').change(function() {
-       if($(this).prop('checked')) {
-           $("input[name='meta_title']").val($("input[name='name']").val());
-           $("textarea[name='meta_description']").val($("textarea[name='description']").val());
-        } else {
-           $("input[name='meta_title']").val('');
-           $("textarea[name='meta_description']").val('');
-        }
-    });
-
-</script>
+    <script>
+        $('#sameAs').change(function() {
+            if ($(this).prop('checked')) {
+                $("input[name='meta_title']").val($("input[name='name']").val());
+                $("textarea[name='meta_description']").val($("textarea[name='description']").val());
+            } else {
+                $("input[name='meta_title']").val('');
+                $("textarea[name='meta_description']").val('');
+            }
+        });
+    </script>
 @endpush

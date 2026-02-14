@@ -12,13 +12,13 @@ class PermissionService
         $query = Permission::query();
         $search = $request->input('search');
         if ($search) {
-            $query->where('name','like',"%$search%");
+            $query->where('name', 'like', "%$search%");
         }
         $permissions = $query->paginate(15);
-        return ['permissions' => $permissions, 'search' => $search ];
+        return ['permissions' => $permissions, 'search' => $search];
     }
 
-   
+
     public function permissionStore($request)
     {
         Permission::create([
@@ -27,25 +27,29 @@ class PermissionService
         ]);
     }
 
-    public function permissionById($id) {
+    public function permissionById($id)
+    {
         return ['permission' => Permission::findById($id)];
     }
 
-    public function permissionUpdate($request, $id) {
+    public function permissionUpdate($request, $id)
+    {
         $permission = Permission::findById($id);
-           $permission->update([
+        $permission->update([
             'name' => $request->name,
             'guard_name' => 'admin'
         ]);
     }
 
-    public function permissionDelete($id) {
+    public function permissionDelete($id)
+    {
         $permission = Permission::findById($id);
         $permission->delete();
     }
-    
-     public function permissions() {
-        $permissions = Permission::get(['id','name']);
+
+    public function permissions()
+    {
+        $permissions = Permission::get(['id', 'name']);
         return $permissions;
     }
 }

@@ -65,7 +65,6 @@
       {{-- @include('admin::layouts.script') --}}
       <script>
           $('.select2bs5').select2({});
-          console.log('iftekher')
       </script>
 
       @stack('script')

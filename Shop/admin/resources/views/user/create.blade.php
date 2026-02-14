@@ -21,7 +21,7 @@
                 <x-admin::form.input type="password" name='password' title="Password" />
 
                 <x-admin::form.select title="Role" multiple='true' name='role[]'>
-                    @foreach ($roles as $item )  
+                    @foreach ($roles as $item)
                         <x-admin::form.select.item :value="$item->name" :label="$item->name" />
                     @endforeach
                 </x-admin::form.select>

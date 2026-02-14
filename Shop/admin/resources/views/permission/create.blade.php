@@ -5,11 +5,12 @@
         <div class="card-body">
             <form action="{{ route('admin.permission.store') }}" method="post">
                 @csrf
-                
-                <x-admin::form.input name='name' title="Name" placeholder="example-[index, create, store, edit, update, delete, print, view ]" />
+
+                <x-admin::form.input name='name' title="Name"
+                    placeholder="example-[index, create, store, edit, update, delete, print, view ]" />
 
                 <div class="d-flex justify-content-between">
-                    <x-admin::form.button class="btn-danger" type='reset' >
+                    <x-admin::form.button class="btn-danger" type='reset'>
                         <i class="bi bi-arrow-clockwise"></i>
                         Reset
                     </x-admin::form.button>

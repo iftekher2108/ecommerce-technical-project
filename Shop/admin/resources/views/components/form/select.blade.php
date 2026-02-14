@@ -8,7 +8,7 @@
     'placeholder' => '',
     'value' => null,
     'choose_text' => null,
-    'multiple' => false,
+    'multiple' => null,
     'help' => '',
 ])
 
@@ -19,11 +19,13 @@
 
 <div class="mb-2">
     <label for="{{ $inputId }}" class="{{ $label_class }}">{{ $labelText }}</label>
-    <select {{ $attributes->merge([
-        'class' => "form-control form-select @if($multiple == true) select2bs5 @endif" . $class,
-        'name' => $name,
-        'id' => $inputId,
-    ]) }} @if ($multiple== true) multiple @endif>
+    <select
+        {{ $attributes->merge([
+            'class' => 'form-control form-select ' . ($multiple ? 'select2bs5 ' : ' ') . $class,
+            'name' => $name,
+            'id' => $inputId,
+            'multiple' => $multiple ? true : false,
+        ]) }}>
         @if ($choose_text)
             <option value="">{{ $choose_text }}</option>
         @endif
@@ -52,12 +54,7 @@
                         $isSelected = (string) $optionValue === (string) $value;
                     }
                 @endphp
-                <x-admin::form.select.item
-                    :value="$optionValue"
-                    :label="$optionLabel"
-                    :selected="$isSelected"
-                    :disabled="$optionDisabled"
-                />
+                <x-admin::form.select.item :value="$optionValue" :label="$optionLabel" :selected="$isSelected" :disabled="$optionDisabled" />
             @endforeach
         @endif
     </select>

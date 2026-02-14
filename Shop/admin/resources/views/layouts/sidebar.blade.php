@@ -150,10 +150,9 @@
 
                     @if (!empty($children))
                         @php
-                            $childPermissions = array_values(array_filter(array_map(
-                                fn($child) => $child['permission'] ?? null,
-                                $children
-                            )));
+                            $childPermissions = array_values(
+                                array_filter(array_map(fn($child) => $child['permission'] ?? null, $children)),
+                            );
 
                             $parentIsActive = false;
                             foreach ($children as $child) {
@@ -178,10 +177,14 @@
                                     @foreach ($children as $child)
                                         @can($child['permission'])
                                             @php
-                                                $childIsActive = $isActive($child['active'] ?? [], $child['route'] ?? null);
+                                                $childIsActive = $isActive(
+                                                    $child['active'] ?? [],
+                                                    $child['route'] ?? null,
+                                                );
                                             @endphp
                                             <li class="nav-item">
-                                                <a href="{{ $resolveUrl($child) }}" class="nav-link {{ $childIsActive ? 'active' : '' }}">
+                                                <a href="{{ $resolveUrl($child) }}"
+                                                    class="nav-link {{ $childIsActive ? 'active' : '' }}">
                                                     <i class="nav-icon {{ $child['icon'] ?? 'bi bi-arrow-right' }}"></i>
                                                     <p>{{ $child['title'] }}</p>
                                                 </a>

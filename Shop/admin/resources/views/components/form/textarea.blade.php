@@ -33,7 +33,7 @@
                 'placeholder' => $placeholder,
                 'readonly' => $readonly,
                 'onChange' => $onChange,
-            ]) }}> {{$value}}</textarea>
+            ]) }}> {{ $value }}</textarea>
     </div>
 
     @if ($help)

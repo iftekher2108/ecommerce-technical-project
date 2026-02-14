@@ -1,5 +1,5 @@
 @extends('admin::layouts.app')
-@section('title',"Dashboard")
+@section('title', 'Dashboard')
 @section('content')
     <!--begin::Row-->
     <div class="row">

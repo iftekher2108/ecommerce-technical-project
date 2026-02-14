@@ -29,8 +29,9 @@
                                     <tr>
                                         <td>{{ $item->name }}</td>
                                         <td align="center">
-                                            <input type="checkbox" name="permissions[]" value="{{ $item->name }}" class="btn-check"
-                                                id="{{ $item->name }}-{{ $item->id }}" autocomplete="off" @checked($role->permissions->contains('name', $item->name)) >
+                                            <input type="checkbox" name="permissions[]" value="{{ $item->name }}"
+                                                class="btn-check" id="{{ $item->name }}-{{ $item->id }}"
+                                                autocomplete="off" @checked($role->permissions->contains('name', $item->name))>
                                             <label class="btn btn-outline-primary"
                                                 for="{{ $item->name }}-{{ $item->id }}">{{ $item->name }}</label>
                                         </td>
@@ -62,12 +63,12 @@
 @endsection
 
 @push('script')
-<script>
-    $('.select-all').click(function() {
-        $('input[type="checkbox"]').prop('checked', true)
-    })
-    $('.deselect-all').click(function() {
-        $('input[type="checkbox"]').prop('checked', false)
-    })
-</script>
+    <script>
+        $('.select-all').click(function() {
+            $('input[type="checkbox"]').prop('checked', true)
+        })
+        $('.deselect-all').click(function() {
+            $('input[type="checkbox"]').prop('checked', false)
+        })
+    </script>
 @endpush

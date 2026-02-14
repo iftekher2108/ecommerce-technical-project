@@ -10,7 +10,7 @@
     <meta name="theme-color" content="#007bff" media="(prefers-color-scheme: light)" />
     <meta name="theme-color" content="#1a1a1a" media="(prefers-color-scheme: dark)" />
     <!--end::Accessibility Meta Tags-->
-    
+
     <title>@yield('title')</title>
 
     <!--end::Primary Meta Tags-->
@@ -144,7 +144,7 @@
                         </div>
                     </li>
                     <!--end::Messages Dropdown Menu-->
-                    
+
                     <!--begin::Fullscreen Toggle-->
                     <li class="nav-item">
                         <a class="nav-link" href="#" data-lte-toggle="fullscreen">
@@ -156,19 +156,19 @@
                     <!--begin::User Menu Dropdown-->
                     <li class="nav-item dropdown user-menu">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
-                            <img src="{{ asset('backend/assets/img/user2-160x160.jpg') }}" class="user-image rounded-circle shadow"
-                                alt="User Image" />
+                            <img src="{{ asset('backend/assets/img/user2-160x160.jpg') }}"
+                                class="user-image rounded-circle shadow" alt="User Image" />
                             <span class="d-none d-md-inline">{{ Auth::guard('admin')->user()->name }}</span>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-end">
                             <!--begin::User Image-->
                             <li class="user-header text-bg-primary">
-                                <img src="{{ asset('backend/assets/img/user2-160x160.jpg') }}" class="rounded-circle shadow"
-                                    alt="User Image" />
+                                <img src="{{ asset('backend/assets/img/user2-160x160.jpg') }}"
+                                    class="rounded-circle shadow" alt="User Image" />
                                 <p>
                                     {{ Auth::guard('admin')->user()->name }}
 
-                                    <small>Web Developer</small> 
+                                    <small>Web Developer</small>
                                     {{-- <small>Member since Nov. 2023</small> --}}
                                 </p>
                             </li>

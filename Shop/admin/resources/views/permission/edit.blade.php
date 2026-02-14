@@ -6,7 +6,8 @@
             <form action="{{ route('admin.permission.update', $permission->id) }}" method="post">
                 @csrf
                 @method('put')
-                <x-admin::form.input name='name' title="Name" value="{{ $permission->name }}" placeholder="example-[index, create, store, edit, update, delete, print, view ]" />
+                <x-admin::form.input name='name' title="Name" value="{{ $permission->name }}"
+                    placeholder="example-[index, create, store, edit, update, delete, print, view ]" />
 
                 <div class="d-flex justify-content-between">
                     <x-admin::link class="btn-info" href="{{ route('admin.permission.index') }}">
