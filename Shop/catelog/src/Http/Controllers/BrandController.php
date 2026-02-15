@@ -75,9 +75,11 @@ class BrandController
         return to_route($this->brandService->redirect)->with('success', 'Brand Update Successfully');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+    public function status($id) {
+        $this->brandService->brandStatus($id);
+        return to_route($this->brandService->redirect)->with('success', 'Brand Status Change Successfully');
+    }
+
     public function destroy($id)
     {
         $this->brandService->brandDelete($id);

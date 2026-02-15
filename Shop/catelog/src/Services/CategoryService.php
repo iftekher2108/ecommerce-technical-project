@@ -23,7 +23,7 @@ class CategoryService
 
     public function getCategories()
     {
-        return Category::whereNull('parent_id')->get(['id', 'name']);
+        return Category::whereNull('parent_id')->where('status',1)->get(['id', 'name']);
     }
 
     public function categoryById($id)
@@ -48,20 +48,20 @@ class CategoryService
         }
 
         Category::create([
-            'icon' => $icon,
-            'banner' => $banner,
-            'picture' => $picture,
-            'parent_id' => $request->category,
-            'name' => $request->name,
-            'slug' => Str::of($request->name)->slug('-'),
-            'description' => $request->description,
-            'order_id' => $request->order_id,
+            'icon'                  => $icon,
+            'banner'                => $banner,
+            'picture'               => $picture,
+            'parent_id'             => $request->category,
+            'name'                  => $request->name,
+            'slug'                  => Str::of($request->name)->slug('-'),
+            'description'           => $request->description,
+            'order_id'              => $request->order_id,
 
-            'meta_title' => $request->meta_title,
-            'meta_description' => $request->meta_description,
-            'meta_keywords' => $request->meta_keywords,
+            'meta_title'            => $request->meta_title,
+            'meta_description'      => $request->meta_description,
+            'meta_keywords'         => $request->meta_keywords,
 
-            'status' => $request->status
+            'status'                => $request->status
         ]);
     }
 
@@ -86,24 +86,33 @@ class CategoryService
         }
 
         $category->update([
-            'icon' => $icon,
-            'banner' => $banner,
-            'picture' => $picture,
-            'parent_id' => $request->category,
-            'name' => $request->name,
-            'slug' => Str::of($request->name)->slug('-'),
-            'description' => $request->description,
-            'order_id' => $request->order_id,
+            'icon'              => $icon,
+            'banner'            => $banner,
+            'picture'           => $picture,
+            'parent_id'         => $request->category,
+            'name'              => $request->name,
+            'slug'              => Str::of($request->name)->slug('-'),
+            'description'       => $request->description,
+            'order_id'          => $request->order_id,
 
-            'meta_title' => $request->meta_title,
-            'meta_description' => $request->meta_description,
-            'meta_keywords' => $request->meta_keywords,
+            'meta_title'        => $request->meta_title,
+            'meta_description'  => $request->meta_description,
+            'meta_keywords'     => $request->meta_keywords,
 
-            'status' => $request->status
+            'status'            => $request->status
         ]);
     }
 
-    public function categoryDelete($id) {
+    public function categoryStatus($id)
+    {
+        $category = Category::findOrFail($id);
+        $category->update([
+            'status' => $category->status ^ 1
+        ]);
+    }
+
+    public function categoryDelete($id)
+    {
         $category = Category::findOrFail($id);
         Helper::fileDelete($category->icon);
         Helper::fileDelete($category->banner);

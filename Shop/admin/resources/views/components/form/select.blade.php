@@ -9,6 +9,7 @@
     'value' => null,
     'choose_text' => null,
     'multiple' => null,
+    'required' => false,
     'help' => '',
 ])
 
@@ -18,13 +19,16 @@
 @endphp
 
 <div class="mb-2">
-    <label for="{{ $inputId }}" class="{{ $label_class }}">{{ $labelText }}</label>
+    <label for="{{ $inputId }}" class="{{ $label_class }}">{{ $labelText }} @if ($required)
+                <span class="text-danger">*</span>
+            @endif</label>
     <select
         {{ $attributes->merge([
             'class' => 'form-control form-select ' . ($multiple ? 'select2bs5 ' : ' ') . $class,
             'name' => $name,
             'id' => $inputId,
             'multiple' => $multiple ? true : false,
+            'required' => $required,
         ]) }}>
         @if ($choose_text)
             <option value="">{{ $choose_text }}</option>

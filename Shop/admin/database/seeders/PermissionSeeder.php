@@ -18,12 +18,14 @@ class PermissionSeeder extends Seeder
             'dashboard-index',
 
 
+
             //product
             'product-index',
             'product-create',
             'product-store',
             'product-edit',
             'product-update',
+            'product-status',
             'product-delete',
 
             // category
@@ -32,6 +34,7 @@ class PermissionSeeder extends Seeder
             'category-store',
             'category-edit',
             'category-update',
+            'category-status',
             'category-delete',
 
             // brand
@@ -40,8 +43,17 @@ class PermissionSeeder extends Seeder
             'brand-store',
             'brand-edit',
             'brand-update',
+            'brand-status',
             'brand-delete',
 
+            //coupon
+            'coupon-index',
+            'coupon-create',
+            'coupon-store',
+            'coupon-edit',
+            'coupon-update',
+            'coupon-status',
+            'coupon-delete',
 
             //user
             'user-index',
@@ -74,12 +86,12 @@ class PermissionSeeder extends Seeder
             if ($permission) {
                 $permission->update([
                     'name' => $item,
-                    'guard_name'=>'admin'
+                    'guard_name' => 'admin'
                 ]);
             } else {
                 Permission::create([
                     'name' => $item,
-                    'guard_name'=>'admin'
+                    'guard_name' => 'admin'
                 ]);
             }
         }

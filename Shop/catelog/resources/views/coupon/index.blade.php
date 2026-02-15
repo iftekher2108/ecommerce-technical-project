@@ -8,8 +8,8 @@
                 Search
             </x-admin::form.button>
         </form>
-        @can('category-create')
-            <a href="{{ route('admin.category.create') }}" class="btn btn-primary mb-2"><i class="bi bi-plus-lg"></i> Create Category</a>
+        @can('coupon-create')
+            <a href="{{ route('admin.coupon.create') }}" class="btn btn-primary mb-2"><i class="bi bi-plus-lg"></i> Create Coupon</a>
         @endcan
     </div>
 
@@ -18,8 +18,11 @@
             <thead>
                 <tr>
                     <th style="width: 10px">#</th>
-                    <th>Picture</th>
                     <th>Name</th>
+                    <th>Code</th>
+                    <th>Minimum Price</th>
+                    <th>Duration</th>
+                    <th>Total Used</th>
                     <th>status</th>
                     <th>action</th>
                 </tr>
@@ -30,11 +33,19 @@
                     <tr class="align-middle">
                         <td>{{ $key + 1 }}</td>
                         <td>
-                            <img src="{{ asset('storage/' . $item->picture) }}" class="img-thumbnail" width="50"
-                                height="50" alt="picture">
+                            {{ $item->name }}
                         </td>
                         <td>
-                            {{ $item->name }}
+                            {{ $item->code }}
+                        </td>
+                        <td>
+                            {{ $item->minimum_price }}
+                        </td>
+                        <td>
+                            {{ $item->date_start->format('d-M-Y') }} --- {{ $item->date_end->format('d-M-Y') }}
+                        </td>
+                        <td>
+                            {{ $item->used_total }}
                         </td>
                         <td>
                             <x-admin::table.badge :status="$item->status" />
@@ -44,19 +55,25 @@
                                 $data = [
                                     [
                                         'type' => 'edit',
-                                        'url' => route('admin.category.edit', $item->id),
+                                        'url' => route('admin.coupon.edit', $item->id),
                                         'color' => 'btn-primary',
                                         'label' => '<i class="bi bi-pencil-square"></i>',
                                     ],
+                                     [
+                                        'type' => 'status',
+                                        'url' => route('admin.coupon.status', $item->id),
+                                        'color' => ($item->status == 1) ? 'btn-success' :'btn-danger',
+                                        'label' => ($item->status == 1) ? '<i class="bi bi-check-lg"></i>' : '<i class="bi bi-x-lg"></i>',
+                                    ],
                                     [
                                         'type' => 'delete',
-                                        'url' => route('admin.category.delete', $item->id),
+                                        'url' => route('admin.coupon.delete', $item->id),
                                         'color' => 'btn-danger',
                                         'label' => '<i class="bi bi-trash"></i>',
                                     ],
                                 ];
                             @endphp
-                            <x-admin::action-btn title='user' :data="$data" />
+                            <x-admin::action-btn title='coupon' :data="$data" />
                         </td>
                     </tr>
                 @endforeach

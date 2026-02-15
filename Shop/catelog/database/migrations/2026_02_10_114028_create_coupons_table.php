@@ -15,10 +15,13 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('code')->unique();
+            $table->enum('dis_type',['fixed','parcent']);
             $table->unsignedBigInteger('discount');
+            $table->unsignedBigInteger('minimum_price')->nullable();
             $table->date('date_start');
             $table->date('date_end');
             $table->unsignedBigInteger('used_total')->default(0);
+            $table->boolean('status')->default(1);
             $table->timestamps();
         });
     }

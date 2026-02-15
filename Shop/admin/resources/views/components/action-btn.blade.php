@@ -19,6 +19,10 @@
             @can($title . '-view')
                 <a href="{{ $item['url'] }}" class="btn btn-sm {{ $item['color'] }}">{!! $item['label'] !!}</a>
             @endcan
+        @elseif ($item['type'] == 'status')
+            @can($title . '-status')
+                <a href="{{ $item['url'] }}" class="btn btn-sm {{ $item['color'] }}">{!! $item['label'] !!}</a>
+            @endcan
         @else
             <a href="{{ $item['url'] }}" class="btn btn-sm {{ $item['color'] }}">{!! $item['label'] !!}</a>
         @endif

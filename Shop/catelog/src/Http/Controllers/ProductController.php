@@ -4,15 +4,19 @@ namespace Shop\Catelog\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Shop\Catelog\Models\Product;
+use Shop\Catelog\Services\BrandService;
+use Shop\Catelog\Services\CategoryService;
+use Shop\Catelog\Services\ProductService;
 
 class ProductController
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    public function __construct(protected ProductService $productService, protected BrandService $brandService, protected CategoryService $categoryService)
     {
-        return view('catelog::product.index');
+    }
+    public function index(Request $request)
+    {
+        $data = $this->productService->productAll($request);
+        return view('catelog::product.index', $data);
     }
 
     /**
@@ -20,7 +24,12 @@ class ProductController
      */
     public function create()
     {
-        //
+        $brands = $this->brandService->getBrands();
+        $categories = $this->categoryService->getCategories();
+        return view('catelog::product.create',[
+            'brands' => $brands,
+            'categories' => $categories
+        ]);
     }
 
     /**

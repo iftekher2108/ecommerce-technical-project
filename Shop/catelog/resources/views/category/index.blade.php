@@ -63,6 +63,12 @@
                                         'label' => '<i class="bi bi-pencil-square"></i>',
                                     ],
                                     [
+                                        'type' => 'status',
+                                        'url' => route('admin.category.status', $item->id),
+                                        'color' => ($item->status == 1) ? 'btn-success' :'btn-danger',
+                                        'label' => ($item->status == 1) ? '<i class="bi bi-check-lg"></i>' : '<i class="bi bi-x-lg"></i>',
+                                    ],
+                                    [
                                         'type' => 'delete',
                                         'url' => route('admin.category.delete', $item->id),
                                         'color' => 'btn-danger',
@@ -70,7 +76,7 @@
                                     ],
                                 ];
                             @endphp
-                            <x-admin::action-btn title='user' :data="$data" />
+                            <x-admin::action-btn title='category' :data="$data" />
                         </td>
                     </tr>
                 @endforeach

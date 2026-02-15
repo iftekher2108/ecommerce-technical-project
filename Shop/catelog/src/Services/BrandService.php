@@ -20,6 +20,11 @@ class BrandService
         return ['brands' => $brands, 'search' => $search];
     }
 
+    public function getBrands() {
+        $brands = Brand::where('status',1)->get(['id', 'name']);
+        return $brands;
+    }
+
     public function brandStore($request)
     {
         $icon = null;
@@ -36,19 +41,19 @@ class BrandService
         }
 
         Brand::create([
-            'icon' => $icon,
-            'banner' => $banner,
-            'picture' => $picture,
-            'name' => $request->name,
-            'slug' => Str::of($request->name)->slug('-'),
-            'description' => $request->description,
-            'order_id' => $request->order_id,
+            'icon'              => $icon,
+            'banner'            => $banner,
+            'picture'           => $picture,
+            'name'              => $request->name,
+            'slug'              => Str::of($request->name)->slug('-'),
+            'description'       => $request->description,
+            'order_id'          => $request->order_id,
 
-            'meta_title' => $request->meta_title,
-            'meta_description' => $request->meta_description,
-            'meta_keywords' => $request->meta_keywords,
+            'meta_title'        => $request->meta_title,
+            'meta_description'  => $request->meta_description,
+            'meta_keywords'     => $request->meta_keywords,
 
-            'status' => $request->status
+            'status'            => $request->status
         ]);
     }
 
@@ -80,19 +85,26 @@ class BrandService
         }
 
         $brand->update([
-            'icon' => $icon,
-            'banner' => $banner,
-            'picture' => $picture,
-            'name' => $request->name,
-            'slug' => Str::of($request->name)->slug('-'),
-            'description' => $request->description,
-            'order_id' => $request->order_id,
+            'icon'              => $icon,
+            'banner'            => $banner,
+            'picture'           => $picture,
+            'name'              => $request->name,
+            'slug'              => Str::of($request->name)->slug('-'),
+            'description'       => $request->description,
+            'order_id'          => $request->order_id,
 
-            'meta_title' => $request->meta_title,
-            'meta_description' => $request->meta_description,
-            'meta_keywords' => $request->meta_keywords,
+            'meta_title'        => $request->meta_title,
+            'meta_description'  => $request->meta_description,
+            'meta_keywords'     => $request->meta_keywords,
 
-            'status' => $request->status
+            'status'            => $request->status
+        ]);
+    }
+
+    public function brandStatus($id) {
+        $brand = Brand::findOrFail($id);
+        $brand->update([
+            'status' => $brand->status ^ 1
         ]);
     }
 

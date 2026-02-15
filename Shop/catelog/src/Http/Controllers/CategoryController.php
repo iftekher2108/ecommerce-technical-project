@@ -82,6 +82,11 @@ class CategoryController
         return to_route($this->categoryService->redirect)->with('success', 'Category Update Successfully');
     }
 
+    public function status($id) {
+        $this->categoryService->categoryStatus($id);
+        return to_route($this->categoryService->redirect)->with('success', 'Category Status Change Successfully');
+    }
+
     /**
      * Remove the specified resource from storage.
      */
