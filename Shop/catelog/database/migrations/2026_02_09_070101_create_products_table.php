@@ -32,8 +32,8 @@ return new class extends Migration
             $table->unsignedBigInteger('brand_id')->nullable();
             $table->foreign('brand_id')->references('id')->on('brands');
 
-            $table->unsignedBigInteger('product_attr_group_id');
-            $table->foreign('product_attr_group_id')->references('id')->on('brands')->onDelete('cascade');
+            $table->unsignedBigInteger('product_attr_group_id')->nullable();
+            // $table->foreign('product_attr_group_id')->references('id')->on('brands');
 
             $table->decimal('price', 18, 2)->default(0);
             $table->decimal('sale_price', 18, 2)->default(0);

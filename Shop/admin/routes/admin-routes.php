@@ -7,6 +7,7 @@ use Shop\Admin\Http\Controllers\RoleController;
 
 Route::prefix('admin')->middleware(['web', 'auth:admin'])->group(function () {
 
+    // user
     Route::controller(AdminController::class)->group(function () {
         Route::get('/dashboard', 'dashboard')->name('admin.dashboard');
 
@@ -38,5 +39,4 @@ Route::prefix('admin')->middleware(['web', 'auth:admin'])->group(function () {
         Route::put('/permission/{id}/update', 'update')->name('admin.permission.update')->middleware('permission:permission-update');
         Route::delete('/permission/{id}/delete', 'destroy')->name('admin.permission.delete')->middleware('permission:permission-delete');
     });
-    
 });

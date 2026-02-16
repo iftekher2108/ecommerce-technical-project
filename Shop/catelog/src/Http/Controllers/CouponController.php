@@ -3,7 +3,6 @@
 namespace Shop\Catelog\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Shop\Catelog\Models\Coupon;
 use Shop\Catelog\Services\CouponService;
 
 class CouponController

@@ -4,12 +4,13 @@ use Illuminate\Support\Facades\Route;
 use Shop\Auth\Http\Controllers\AuthController;
 
 
-
+// auth
 Route::prefix('auth')->middleware(['web','guest:admin'])->controller(AuthController::class)->group(function () {
     Route::get('/login','login_form')->name('auth.login.form');
     Route::post('/login','login')->name('auth.login');
 });
 
+// auth 
 Route::prefix('auth')->middleware(['web','auth:admin'])->controller(AuthController::class)->group(function () {
     Route::post('/logout','logout')->name('auth.logout');
 });

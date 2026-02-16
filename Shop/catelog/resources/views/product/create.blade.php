@@ -33,28 +33,28 @@
                 {{-- Basic --}}
                 <div class="row g-2 mt-2">
                     <div class="col-md-6">
-                        <x-admin::form.input name="name" required="true" title="Name" />
+                        <x-admin::form.input name="name" value="{{ old('name') }}" required="true" title="Name" />
                     </div>
 
 
                     <div class="col-md-6">
-                        <x-admin::form.input name="sku" required="true" title="SKU" />
+                        <x-admin::form.input name="sku" value="{{ old('sku') }}" required="true" title="SKU" />
                     </div>
                 </div>
 
                 {{-- Descriptions --}}
                 <div class="row g-2 mt-2">
                     <div class="col-md-12">
-                        <x-admin::form.textarea name="short_description" title="Short Description" />
+                        <x-admin::form.textarea name="short_description" value="{{ old('short_description') }}" title="Short Description" />
                     </div>
                 </div>
 
-                <x-admin::form.textarea name="description" title="Description" />
+                <x-admin::form.textarea name="description" value="{{ old('description') }}" title="Description" />
 
                 {{-- Brand & Attribute Group --}}
                 <div class="row g-2 mt-2">
                     <div class="col-md-6">
-                        <x-admin::form.select title="Brand" name="brand_id" choose_text="Choose One">
+                        <x-admin::form.select title="Brand" name="brand_id"  choose_text="Choose One">
                             @foreach ($brands as $item)
                                 <x-admin::form.select.item :value="$item->id" :label="$item->name" />
                             @endforeach
@@ -83,15 +83,15 @@
 
                 <div class="row g-2">
                     <div class="col-md-4">
-                        <x-admin::form.input name="price" type="number" title="Price" required="true" />
+                        <x-admin::form.input name="price" type="number" value="{{ old('price') }}" title="Price" required="true" />
                     </div>
 
                     <div class="col-md-4">
-                        <x-admin::form.input name="sale_price" type="number" title="Sale Price" />
+                        <x-admin::form.input name="sale_price" type="number" value="{{ old('sale_price') }}" title="Sale Price" />
                     </div>
 
                     <div class="col-md-4">
-                        <x-admin::form.input name="cost_price" type="number" title="Cost Price" />
+                        <x-admin::form.input name="cost_price" type="number" value="{{ old('cost_price') }}" title="Cost Price" />
                     </div>
                 </div>
 
@@ -107,7 +107,7 @@
                     </div>
 
                     <div class="col-md-6">
-                        <x-admin::form.input name="stock" type="number" title="Stock Quantity" />
+                        <x-admin::form.input name="stock" type="number" value="{{ old('stock') }}" title="Stock Quantity" />
                     </div>
                 </div>
 
@@ -116,7 +116,7 @@
 
                 <div class="row g-2">
                     <div class="col-md-4">
-                        <x-admin::form.input name="order_id" type="number" title="Sort Order" />
+                        <x-admin::form.input name="order_id" type="number" value="{{ old('order_id') }}" title="Sort Order" />
                     </div>
 
                     <div class="col-md-4">
@@ -140,11 +140,11 @@
 
                     <x-admin::form.checkbox id="sameAs" value="1" title="Same As" />
 
-                    <x-admin::form.input name="meta_title" title="Meta Title" />
+                    <x-admin::form.input name="meta_title" value="{{ old('meta_title') }}" title="Meta Title" />
 
-                    <x-admin::form.textarea name="meta_description" title="Meta Description" />
+                    <x-admin::form.textarea name="meta_description" value="{{ old('meta_description') }}" title="Meta Description" />
 
-                    <x-admin::form.input name="meta_keywords" title="Meta Keywords" />
+                    <x-admin::form.input name="meta_keywords" value="{{ old('meta_keywords') }}" title="Meta Keywords" />
                 </div>
 
                 <div class="d-flex justify-content-between mt-3">

@@ -3,12 +3,13 @@
 namespace Shop\Admin\Classes;
 
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class Helper
 {
     public static function fileUpload($dirPath, $filename, $file)
     {
-        $filename = $filename . '-' . date('d-M-Y') . '-' . time() . "." . $file->extension();
+        $filename = $filename . '-' . date('d-M-Y') . '-' . time().'-'. Str::ulid() . "." . $file->extension();
         $file->storeAs($dirPath, $filename, 'public');
         return $dirPath . '/' . $filename;
     }

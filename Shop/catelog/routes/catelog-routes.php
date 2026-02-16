@@ -21,7 +21,7 @@ Route::prefix('admin')->middleware(['web', 'auth:admin'])->group(function () {
 
 
     Route::controller(CategoryController::class)->group(function () {
-        // brand management
+        // category management
         Route::get('/category', 'index')->name('admin.category.index')->middleware('permission:category-index');
         Route::get('/category/create', 'create')->name('admin.category.create')->middleware('permission:category-create');
         Route::post('/category/store', 'store')->name('admin.category.store')->middleware('permission:category-store');
@@ -33,7 +33,7 @@ Route::prefix('admin')->middleware(['web', 'auth:admin'])->group(function () {
 
 
     Route::controller(ProductController::class)->group(function () {
-        // brand management
+        // product management
         Route::get('/product', 'index')->name('admin.product.index')->middleware('permission:product-index');
         Route::get('/product/create', 'create')->name('admin.product.create')->middleware('permission:product-create');
         Route::post('/product/store', 'store')->name('admin.product.store')->middleware('permission:product-store');
@@ -45,7 +45,7 @@ Route::prefix('admin')->middleware(['web', 'auth:admin'])->group(function () {
 
 
     Route::controller(CouponController::class)->group(function () {
-        // brand management
+        // coupon management
         Route::get('/coupon', 'index')->name('admin.coupon.index')->middleware('permission:coupon-index');
         Route::get('/coupon/create', 'create')->name('admin.coupon.create')->middleware('permission:coupon-create');
         Route::post('/coupon/store', 'store')->name('admin.coupon.store')->middleware('permission:coupon-store');

@@ -1,14 +1,19 @@
 @extends('admin::layouts.app')
 @section('title', 'Product Management')
 @section('content')
+    @if($errors->any())
+    @foreach ($errors->all() as $error )
+        <li>{{ $error }}</li>
+    @endforeach
+    @endif
     <div class="d-flex justify-content-between mb-3">
-        <form action="{{ route('admin.brand.index') }}" class="d-flex gap-2" method="GET">
+        <form action="{{ route('admin.product.index') }}" class="d-flex gap-2" method="GET">
             <x-admin::form.input name="search" :value="$search" />
             <x-admin::form.button type="submit" class="btn-primary mb-2">
                 Search
             </x-admin::form.button>
         </form>
-        @can('brand-create')
+        @can('product-create')
             <a href="{{ route('admin.product.create') }}" class="btn btn-primary mb-2"><i class="bi bi-plus-lg"></i> Create Product</a>
         @endcan
     </div>
@@ -18,10 +23,14 @@
             <thead>
                 <tr>
                     <th style="width: 10px">#</th>
-                    <th>icon</th>
                     <th>banner</th>
                     <th>Picture</th>
+                    <th>Sku</th>
                     <th>Name</th>
+                    <th>Stock</th>
+                    <th>Price</th>
+                    <th>Sale Price</th>
+                    <th>Cost Price</th>
                     <th>status</th>
                     <th>action</th>
                 </tr>
@@ -32,10 +41,6 @@
                     <tr class="align-middle">
                         <td>{{ $key + 1 }}</td>
                         <td>
-                            <img src="{{ asset('storage/' . $item->icon) }}" class="img-thumbnail" width="50"
-                                height="50" alt="icon">
-                        </td>
-                        <td>
                             <img src="{{ asset('storage/' . $item->banner) }}" class="img-thumbnail" width="50"
                                 height="50" alt="banner">
                         </td>
@@ -44,7 +49,22 @@
                                 height="50" alt="picture">
                         </td>
                         <td>
+                            {{ $item->sku }}
+                        </td>
+                        <td>
                             {{ $item->name }}
+                        </td>
+                        <td>
+                            {{ $item->stock }}
+                        </td>
+                        <td>
+                            {{ $item->price }}
+                        </td>
+                        <td>
+                            {{ $item->sale_price }}
+                        </td>
+                        <td>
+                            {{ $item->cost_price }}
                         </td>
                         <td>
                             <x-admin::table.badge :status="$item->status" />
@@ -66,13 +86,13 @@
                                     ],
                                     [
                                         'type' => 'delete',
-                                        'url' => route('admin.brand.delete', $item->id),
+                                        'url' => route('admin.product.delete', $item->id),
                                         'color' => 'btn-danger',
                                         'label' => '<i class="bi bi-trash"></i>',
                                     ],
                                 ];
                             @endphp
-                            <x-admin::action-btn title='user' :data="$data" />
+                            <x-admin::action-btn title='product' :data="$data" />
                         </td>
                     </tr>
                 @endforeach

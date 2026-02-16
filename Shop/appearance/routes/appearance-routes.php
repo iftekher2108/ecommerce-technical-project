@@ -1,11 +1,21 @@
 <?php
 
-// use Shop\Appearance\Http\Controllers\AppearanceController;
+use Illuminate\Support\Facades\Route;
+use Shop\Appearance\Http\Controllers\SliderController;
 
-// Route::get('/appearances', [AppearanceController::class, 'index'])->name('appearances.index');
-// Route::get('/appearances/create', [AppearanceController::class, 'create'])->name('appearances.create');
-// Route::post('/appearances', [AppearanceController::class, 'store'])->name('appearances.store');
-// Route::get('/appearances/{appearance}', [AppearanceController::class, 'show'])->name('appearances.show');
-// Route::get('/appearances/{appearance}/edit', [AppearanceController::class, 'edit'])->name('appearances.edit');
-// Route::put('/appearances/{appearance}', [AppearanceController::class, 'update'])->name('appearances.update');
-// Route::delete('/appearances/{appearance}', [AppearanceController::class, 'destroy'])->name('appearances.destroy');
+Route::prefix('admin')->middleware(['web', 'auth:admin'])->group(function () {
+
+    Route::controller(SliderController::class)->group(function () {
+        // brand management
+        Route::get('/slider', 'index')->name('admin.slider.index')->middleware('permission:slider-index');
+        Route::get('/slider/create', 'create')->name('admin.slider.create')->middleware('permission:slider-create');
+        Route::post('/slider/store', 'store')->name('admin.slider.store')->middleware('permission:slider-store');
+        Route::get('/slider/{id}/edit', 'edit')->name('admin.slider.edit')->middleware('permission:slider-edit');
+        Route::get('/slider/{id}/status', 'status')->name('admin.slider.status')->middleware('permission:slider-status');
+        Route::put('/slider/{id}/update', 'update')->name('admin.slider.update')->middleware('permission:slider-update');
+        Route::delete('/slider/{id}/delete', 'destroy')->name('admin.slider.delete')->middleware('permission:slider-delete');
+    });
+
+    
+
+});
