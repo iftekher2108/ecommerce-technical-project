@@ -1,0 +1,23 @@
+{
+	"name": "shop/sales",
+	"description": "",
+	"type": "library",
+	"version": "1.0",
+	"license": "proprietary",
+	"require": {},
+	"autoload": {
+		"psr-4": {
+			"Shop\\Sales\\": "src/",
+			"Shop\\Sales\\Database\\Factories\\": "database/factories/",
+			"Shop\\Sales\\Database\\Seeders\\": "database/seeders/"
+		}
+	},
+	"minimum-stability": "stable",
+	"extra": {
+		"laravel": {
+			"providers": [
+				"Shop\\Sales\\Providers\\SalesServiceProvider"
+			]
+		}
+	}
+}

@@ -2,64 +2,31 @@
 
 namespace Shop\Setting\Http\Controllers;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Shop\Setting\Models\Setting;
+use Shop\Setting\Services\SettingService;
 
-class SettingController
+class SettingController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    public function __construct(protected SettingService $settingService)
+    {
+    }
     public function index()
     {
-        //
+        $data = $this->settingService->getSetting();
+        return view('setting::setting.index', $data);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        //
+        // $request->validate([
+
+        // ]);
+
+        dd($request->all());
+
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Setting $setting)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Setting $setting)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Setting $setting)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Setting $setting)
-    {
-        //
-    }
 }

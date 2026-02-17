@@ -20,7 +20,7 @@ class AdminController extends Controller
     public function index(Request $request)
     {
         $data = $this->adminService->adminAll($request);
-        return view('admin::user.index', $data);
+        return view('admin::admin.index', $data);
     }
 
     /**
@@ -29,7 +29,7 @@ class AdminController extends Controller
     public function create()
     {
         $data = $this->adminService->adminCreate();
-        return view('admin::user.create',$data);
+        return view('admin::admin.create',$data);
     }
 
     /**
@@ -58,7 +58,7 @@ class AdminController extends Controller
     {
         $data = $this->adminService->adminById($id);
         $data['roles'] = $this->roleService->getRoles();
-        return view('admin::user.edit', $data);
+        return view('admin::admin.edit', $data);
     }
 
     /**

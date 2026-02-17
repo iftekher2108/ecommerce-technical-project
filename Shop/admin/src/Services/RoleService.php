@@ -10,6 +10,7 @@ class RoleService
     public function roleAll($request)
     {
         $query = Role::query();
+        $query->where('guard_name','admin');
         $search = $request->input('search');
         if ($search) {
             $query->where('name', 'like', "%$search%");
@@ -20,7 +21,7 @@ class RoleService
 
     public function getRoles()
     {
-        return Role::whereNot('name', 'Super Admin')->get(['id', 'name']);
+        return Role::whereNot('name', 'Super Admin')->where('guard_name','admin')->get(['id', 'name']);
     }
     public function roleStore($request)
     {

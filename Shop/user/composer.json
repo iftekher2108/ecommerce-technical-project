@@ -1,0 +1,23 @@
+{
+	"name": "shop/user",
+	"description": "",
+	"type": "library",
+	"version": "1.0",
+	"license": "proprietary",
+	"require": {},
+	"autoload": {
+		"psr-4": {
+			"Shop\\User\\": "src/",
+			"Shop\\User\\Database\\Factories\\": "database/factories/",
+			"Shop\\User\\Database\\Seeders\\": "database/seeders/"
+		}
+	},
+	"minimum-stability": "stable",
+	"extra": {
+		"laravel": {
+			"providers": [
+				"Shop\\User\\Providers\\UserServiceProvider"
+			]
+		}
+	}
+}

@@ -2,10 +2,11 @@
 
 namespace Shop\Catelog\Http\Controllers;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Shop\Catelog\Services\CouponService;
 
-class CouponController
+class CouponController extends Controller
 {
     public function __construct(protected CouponService $couponService)
     {

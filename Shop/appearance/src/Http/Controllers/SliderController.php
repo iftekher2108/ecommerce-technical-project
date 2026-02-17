@@ -2,17 +2,18 @@
 
 namespace Shop\Appearance\Http\Controllers;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Shop\Appearance\Models\Slider;
 
-class SliderController
+class SliderController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        return view('appearance::slider.index');
     }
 
     /**
@@ -20,7 +21,7 @@ class SliderController
      */
     public function create()
     {
-        //
+        return view('appearance::slider.create');
     }
 
     /**
@@ -44,7 +45,7 @@ class SliderController
      */
     public function edit(Slider $slider)
     {
-        //
+        return view('appearance::slider.edit');
     }
 
     /**

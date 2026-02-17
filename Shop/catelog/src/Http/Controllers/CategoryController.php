@@ -2,11 +2,11 @@
 
 namespace Shop\Catelog\Http\Controllers;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Shop\Catelog\Models\Category;
 use Shop\Catelog\Services\CategoryService;
 
-class CategoryController
+class CategoryController extends Controller
 {
     public function __construct(protected CategoryService $categoryService) {}
     public function index(Request $request)

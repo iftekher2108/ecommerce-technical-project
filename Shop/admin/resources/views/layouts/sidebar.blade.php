@@ -27,6 +27,28 @@
                 'permission' => 'dashboard-index',
             ],
             [
+                'title' => 'Sales',
+                'icon' => 'bi bi-bag-plus',
+                'children' => [
+                    [
+                        'title' => 'Orders',
+                        'icon' => null,
+                        'route' => 'admin.order.index',
+                        'url' => '',
+                        'active' => ['admin.order.*'],
+                        'permission' => 'order-index',
+                    ],
+                    // [
+                    //     'title' => 'Category',
+                    //     'icon' => null,
+                    //     'route' => 'admin.category.index',
+                    //     'url' => '',
+                    //     'active' => ['admin.category.*'],
+                    //     'permission' => 'category-index',
+                    // ],
+                ],
+            ],
+            [
                 'title' => 'Catalog',
                 'icon' => 'bi bi-box-seam',
                 'children' => [
@@ -109,6 +131,36 @@
                     [
                         'title' => 'Role',
                         'icon' => null,
+                        'route' => 'admin.user-role.index',
+                        'url' => '',
+                        'active' => ['admin.user-role.*'],
+                        'permission' => 'user-role-index',
+                    ],
+                    [
+                        'title' => 'Permission',
+                        'icon' => null,
+                        'route' => 'admin.user-permission.index',
+                        'url' => '',
+                        'active' => ['admin.user-permission.*'],
+                        'permission' => 'user-permission-index',
+                    ],
+                ],
+            ],
+            [
+                'title' => 'Admin Management',
+                'icon' => 'bi bi-person-bounding-box',
+                'children' => [
+                    [
+                        'title' => 'Admin',
+                        'icon' => null,
+                        'route' => 'admin.admin.index',
+                        'url' => '',
+                        'active' => ['admin.admin.*'],
+                        'permission' => 'admin-index',
+                    ],
+                    [
+                        'title' => 'Role',
+                        'icon' => null,
                         'route' => 'admin.role.index',
                         'url' => '',
                         'active' => ['admin.role.*'],
@@ -123,6 +175,13 @@
                         'permission' => 'permission-index',
                     ],
                 ],
+            ],
+            [
+                'title' => 'Setting',
+                'icon' => 'bi bi-gear-fill',
+                'route' => 'admin.setting.index',
+                'active' => ['admin.setting.index'],
+                'permission' => 'setting-index',
             ],
         ];
 

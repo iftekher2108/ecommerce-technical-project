@@ -8,7 +8,7 @@ use Spatie\Permission\Models\Role;
 
 class AdminService
 {
-    public $redirect = 'admin.user.index';
+    public $redirect = 'admin.admin.index';
 
     public function adminAll($request)
     {

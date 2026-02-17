@@ -10,6 +10,7 @@ class PermissionService
     public function permissionAll($request)
     {
         $query = Permission::query();
+        $query->where('guard_name','admin');
         $search = $request->input('search');
         if ($search) {
             $query->where('name', 'like', "%$search%");
@@ -49,7 +50,7 @@ class PermissionService
 
     public function permissions()
     {
-        $permissions = Permission::get(['id', 'name']);
+        $permissions = Permission::where('guard_name','admin')->get(['id', 'name']);
         return $permissions;
     }
 }

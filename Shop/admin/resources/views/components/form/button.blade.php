@@ -2,14 +2,13 @@
     'type' => 'button',
     'class' => '',
     'id' => null,
-    'onClick' => '',
+    'onClick' => null,
     'disabled' => false,
-    'multiple' => false,
 ])
 <button
     {{ $attributes->merge([
         'type' => $type,
-        'class' => "btn @if ($multiple) 'select2bs5' @endif " . $class,
+        'class' => "btn " . $class,
         'id' => $id,
         'onclick' => $onClick,
         'disabled' => $disabled,

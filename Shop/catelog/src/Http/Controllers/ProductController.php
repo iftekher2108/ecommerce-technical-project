@@ -2,12 +2,13 @@
 
 namespace Shop\Catelog\Http\Controllers;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Shop\Catelog\Services\BrandService;
 use Shop\Catelog\Services\CategoryService;
 use Shop\Catelog\Services\ProductService;
 
-class ProductController
+class ProductController extends Controller
 {
     public function __construct(protected ProductService $productService, protected BrandService $brandService, protected CategoryService $categoryService) {}
     public function index(Request $request)

@@ -7,17 +7,17 @@ use Shop\Admin\Http\Controllers\RoleController;
 
 Route::prefix('admin')->middleware(['web', 'auth:admin'])->group(function () {
 
-    // user
+    // admin
     Route::controller(AdminController::class)->group(function () {
         Route::get('/dashboard', 'dashboard')->name('admin.dashboard');
 
         // user management
-        Route::get('/user', 'index')->name('admin.user.index')->middleware('permission:user-index');
-        Route::get('/user/create', 'create')->name('admin.user.create')->middleware('permission:user-create');
-        Route::post('/user/store', 'store')->name('admin.user.store')->middleware('permission:user-store');
-        Route::get('/user/{id}/edit', 'edit')->name('admin.user.edit')->middleware('permission:user-edit');
-        Route::put('/user/{id}/update', 'update')->name('admin.user.update')->middleware('permission:user-update');
-        Route::delete('/user/{id}/delete', 'destroy')->name('admin.user.delete')->middleware('permission:user-delete');
+        Route::get('/admin', 'index')->name('admin.admin.index')->middleware('permission:admin-index');
+        Route::get('/admin/create', 'create')->name('admin.admin.create')->middleware('permission:admin-create');
+        Route::post('/admin/store', 'store')->name('admin.admin.store')->middleware('permission:admin-store');
+        Route::get('/admin/{id}/edit', 'edit')->name('admin.admin.edit')->middleware('permission:admin-edit');
+        Route::put('/admin/{id}/update', 'update')->name('admin.admin.update')->middleware('permission:admin-update');
+        Route::delete('/admin/{id}/delete', 'destroy')->name('admin.admin.delete')->middleware('permission:admin-delete');
     });
 
     // role management

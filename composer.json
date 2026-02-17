@@ -17,8 +17,10 @@
         "shop/appearance": "*",
         "shop/auth": "*",
         "shop/catelog": "*",
+        "shop/sales": "*",
         "shop/setting": "*",
         "shop/store": "*",
+        "shop/user": "*",
         "spatie/laravel-permission": "^6.24"
     },
     "require-dev": {
