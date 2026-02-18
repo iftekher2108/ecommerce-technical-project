@@ -2,7 +2,9 @@
 
 namespace Shop\Store\Providers;
 
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
+use Shop\Catelog\Models\Category;
 
 class StoreServiceProvider extends ServiceProvider
 {
@@ -12,5 +14,11 @@ class StoreServiceProvider extends ServiceProvider
 	
 	public function boot(): void
 	{
+		View::composer('store::*', function($view) {
+        	$categories = Category::where('status', 1)->orderBy('order_id', 'asc')->with('children')->get(['id', 'name', 'slug']);
+			$view->with([
+				'categories' => $categories
+			]);
+		});
 	}
 }

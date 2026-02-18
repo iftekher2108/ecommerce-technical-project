@@ -5,7 +5,7 @@ namespace Shop\Setting\Services;
 use Shop\Setting\Models\Setting;
 
 class SettingService {
-    public function getSetting() {
+    public static function getSetting() {
         $data = [
             'logo' => Setting::get('logo'),
             'icon' => Setting::get('icon'),

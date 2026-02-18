@@ -25,7 +25,7 @@ class AuthController extends Controller
     {
         $request->validate([
             'email' => ['required', 'email'],
-            'password' => ['required', 'string'],
+            'password' => ['required', 'string','min:8'],
         ]);
         $data = $this->authService->login($request);
         return $data;

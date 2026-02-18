@@ -5,11 +5,11 @@
         <!--begin::Brand Link-->
         <a href="/" class="brand-link">
             <!--begin::Brand Image-->
-            <img src="{{ asset('backend/assets/img/AdminLTELogo.png') }}" alt="AdminLTE Logo"
+            <img src="{{ $setting['logo'] ? asset('storage/' . $setting['logo']) : asset('backend/assets/img/AdminLTELogo.png') }}" alt="Logo"
                 class="brand-image opacity-75 shadow" />
             <!--end::Brand Image-->
             <!--begin::Brand Text-->
-            <span class="brand-text fw-light">{{ config('app.name') }}</span>
+            <span class="brand-text fw-light">{{ $setting['title'] }}</span>
             <!--end::Brand Text-->
         </a>
         <!--end::Brand Link-->

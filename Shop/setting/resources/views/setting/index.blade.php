@@ -33,11 +33,11 @@
                             </div>
 
                             <div class="col-md-6">
-                                <x-admin::form.input name='title' required='true' title="Title" />
+                                <x-admin::form.input name='title' value="{{ $setting['title'] }}" required='true' title="Title" />
                             </div>
 
                             <div class="col-md-12">
-                                <x-admin::form.textarea name='description' title="Description" />
+                                <x-admin::form.textarea name='description' value="{{ $setting['description'] }}" title="Description" />
                             </div>
 
                             <div class="col-md-12">

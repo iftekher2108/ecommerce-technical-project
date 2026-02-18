@@ -7,11 +7,13 @@ use Illuminate\Support\Facades\Gate;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\ServiceProvider;
 
+
 class AppServiceProvider extends ServiceProvider
 {
     /**
      * Register any application services.
      */
+
     public function register(): void
     {
         //
@@ -25,7 +27,8 @@ class AppServiceProvider extends ServiceProvider
         Model::automaticallyEagerLoadRelationships();
         Paginator::useBootstrapFive();
         Gate::before(function ($user, $ability) {
-        return $user->hasRole('Super Admin') ? true : null;
-    });
+            return $user->hasRole('Super Admin') ? true : null;
+        });
+
     }
 }

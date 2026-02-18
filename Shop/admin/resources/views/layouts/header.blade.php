@@ -42,6 +42,8 @@
     {{-- Select 2 --}}
     <link rel="stylesheet" href="{{ asset('backend/plugins/select2/dist/css/select2.css') }}">
 
+    @stack('style')
+
 </head>
 <!--end::Head-->
 <!--begin::Body-->
@@ -66,7 +68,7 @@
                 <ul class="navbar-nav ms-auto">
 
                     <!--begin::Messages Dropdown Menu-->
-                    <li class="nav-item dropdown">
+                    {{-- <li class="nav-item dropdown">
                         <a class="nav-link" data-bs-toggle="dropdown" href="#">
                             <i class="bi bi-chat-text"></i>
                             <span class="navbar-badge badge text-bg-danger">3</span>
@@ -142,7 +144,7 @@
                             <div class="dropdown-divider"></div>
                             <a href="#" class="dropdown-item dropdown-footer">See All Messages</a>
                         </div>
-                    </li>
+                    </li> --}}
                     <!--end::Messages Dropdown Menu-->
 
                     <!--begin::Fullscreen Toggle-->
@@ -168,7 +170,11 @@
                                 <p>
                                     {{ Auth::guard('admin')->user()->name }}
 
-                                    <small>Web Developer</small>
+                                    <small>
+                                        @foreach (Auth::guard('admin')->user()->roles as $role )
+                                          {{ $role->name }} @if(!$loop->last) | @endif  
+                                        @endforeach
+                                    </small>
                                     {{-- <small>Member since Nov. 2023</small> --}}
                                 </p>
                             </li>
