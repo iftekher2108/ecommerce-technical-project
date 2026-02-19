@@ -23,7 +23,7 @@ class Authenticate extends Middleware
             }
             // যদি সাধারণ user guard (web) চেক ফেল করে
             if (! Auth::check()) {
-                return url('/'); // Normal user login route
+                return route('home.login'); // Normal user login route
             }
         }
     }

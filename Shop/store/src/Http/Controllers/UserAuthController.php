@@ -47,4 +47,31 @@ class UserAuthController
         $data = $this->userAuthService->registerStore($request);
         return $data;
     }
+
+    public function emailVerify(Request $request)
+    {
+        return view('store::auth.email-verify');
+    }
+
+    public function emailVerifySubmit(Request $request)
+    {
+        $request->validate([
+            'email' => 'required|email',
+            'code' => 'required'
+        ]);
+
+        $data = $this->userAuthService->emailVerifySubmit($request);
+
+        return $data;
+    }
+
+    // public function emailResend(Request $request) {
+    //     $request->validate([
+    //         'email' => 'required|email',
+    //     ]);
+    //     $data = $this->userAuthService->
+    // }
+
+
+
 }

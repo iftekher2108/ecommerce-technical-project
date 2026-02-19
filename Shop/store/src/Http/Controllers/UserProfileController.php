@@ -3,12 +3,13 @@
 namespace Shop\Store\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Shop\Store\Services\UserProfileService;
 
 class UserProfileController
 {
-    /**
-     * Display a listing of the resource.
-     */
+    public function __construct(protected UserProfileService $userProfileService)
+    {
+    }
     public function userProfile()
     {
         return view('store::user.profile');
@@ -61,4 +62,10 @@ class UserProfileController
     {
         //
     }
+
+    public function logout(Request $request) {
+        $data = $this->userProfileService->logout($request);
+        return $data;
+    }
+
 }
