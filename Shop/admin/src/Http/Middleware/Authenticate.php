@@ -2,29 +2,36 @@
 
 namespace Shop\Admin\Http\Middleware;
 
-use Closure;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Auth\AuthenticationException;
 use Illuminate\Auth\Middleware\Authenticate as Middleware;
+
 
 
 class Authenticate extends Middleware
 {
-    /**
-     * Handle an incoming request.
-     */
-    protected function redirectTo(Request $request)
+
+    protected function unauthenticated($request, array $guards)
     {
-          // যদি request JSON না হয় (API না হয়)
-        if (! $request->expectsJson()) {
-            // যদি admin guard দিয়ে authenticated না হয়
-            if (!Auth::guard('admin')->check() ) {
-                return route('auth.login'); // <-- তোমার login route
-            }
-            // যদি সাধারণ user guard (web) চেক ফেল করে
-            if (! Auth::check()) {
-                return route('home.login'); // Normal user login route
-            }
+        if (in_array('admin', $guards)) {
+            throw new AuthenticationException(
+                'Unauthenticated.',
+                $guards,
+                route('auth.login')
+            );
         }
+
+        if (in_array('web', $guards)) {
+            throw new AuthenticationException(
+                'Unauthenticated.',
+                $guards,
+                route('home.login')
+            );
+        }
+
+        throw new AuthenticationException(
+            'Unauthenticated.',
+            $guards,
+            route('home.index')
+        );
     }
 }

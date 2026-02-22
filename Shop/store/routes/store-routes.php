@@ -15,7 +15,7 @@ Route::middleware(['web'])->group(function () {
         Route::get('/', 'index')->name('home.index');
     });
 
-    Route::middleware('guest')->controller(UserAuthController::class)->group(function () {
+    Route::middleware('guest:web')->controller(UserAuthController::class)->group(function () {
         Route::get('/login','login')->name('home.login');
         Route::post('/login/store','loginStore')->name('home.login.store');
 
@@ -29,9 +29,42 @@ Route::middleware(['web'])->group(function () {
     });
 
     
-    Route::middleware(['auth'])->controller(UserProfileController::class)->group(function() {
+    Route::middleware(['auth:web'])->controller(UserProfileController::class)->group(function() {
         Route::get('/user/profile','userProfile')->name('user.profile');
         Route::post('/user/logout','logout')->name('user.logout');
+        
+        // Profile Routes
+        Route::get('/user/profile/edit','editProfile')->name('profile.edit');
+        Route::post('/user/profile/update','updateProfile')->name('profile.update');
+        
+        // Wishlist Routes
+        Route::get('/user/wishlist','userWishlist')->name('profile.wishlist');
+        Route::post('/user/wishlist/add','addToWishlist')->name('wishlist.add');
+        Route::post('/user/wishlist/remove','removeFromWishlist')->name('wishlist.remove');
+        
+        // Cart Routes
+        Route::get('/user/cart','userCart')->name('profile.cart');
+        Route::post('/user/cart/add','addToCart')->name('cart.add');
+        Route::post('/user/cart/update','updateCart')->name('cart.update');
+        Route::post('/user/cart/remove','removeFromCart')->name('cart.remove');
+        
+        // Checkout Routes
+        Route::get('/user/checkout','userCheckout')->name('profile.checkout');
+        Route::post('/user/checkout/process','processCheckout')->name('checkout.process');
+        
+        // Orders Routes
+        Route::get('/user/orders','userOrders')->name('profile.orders');
+        Route::get('/user/orders/{id}','viewOrder')->name('order.view');
+        
+        // Address Routes
+        Route::get('/user/addresses','userAddresses')->name('profile.addresses');
+        Route::post('/user/address/add','addAddress')->name('address.add');
+        Route::post('/user/address/update','updateAddress')->name('address.update');
+        Route::post('/user/address/delete','deleteAddress')->name('address.delete');
+        
+        // Settings Routes
+        Route::get('/user/settings','userSettings')->name('profile.settings');
+        Route::post('/user/settings/password','updatePassword')->name('settings.password');
     });
 
 });

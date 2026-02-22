@@ -232,7 +232,7 @@
                     <div class="hero__categories">
                         <div class="hero__categories__all">
                             <i class="fa fa-bars"></i>
-                            <span>All departments</span>
+                            <span>All Categories</span>
                         </div>
                         <ul>
                             @foreach ($categories as $category)
@@ -246,11 +246,10 @@
                         <div class="hero__search__form">
                             <form action="#">
                                 <select name="" class="form-select" id="">
-                                    <option value="">Fresh Meat</option>
-                                    <option value="">Fastfood</option>
-                                    <option value="">Oatmeal</option>
-                                    <option value="">Fastfood</option>
-                                    <option value="">Oatmeal</option>
+                                    <option value="">All Categories</option>
+                                    @foreach ($categories as $category)
+                                        <option value="{{ $category->slug }}">{{ $category->name }}</option>
+                                    @endforeach
                                 </select>
                                 <input type="text" placeholder="What do yo u need?">
                                 <button type="submit" class="site-btn">SEARCH</button>
