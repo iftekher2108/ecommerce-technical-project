@@ -80,12 +80,15 @@ class SettingSeeder extends Seeder
 
         /*
     |--------------------------------------------------------------------------
-    | Shipping
+    | Shipping Settings
     |--------------------------------------------------------------------------
     */
         Setting::set('shipping.free_shipping_enabled', false);
         Setting::set('shipping.free_shipping_minimum', 2000);
         // Setting::set('shipping.flat_rate', 100);
+        Setting::set('shipping.default_delivery_days', 3);
+        Setting::set('shipping.cash_on_delivery_fee', null);
+        Setting::set('shipping.return_days_limit', 7);
 
         /*
     |--------------------------------------------------------------------------
@@ -114,6 +117,11 @@ class SettingSeeder extends Seeder
         Setting::set('site.maintenance_mode', false);
         Setting::set('site.maintenance_message', 'We are updating our store. Please come back later.');
 
+        /*
+    |--------------------------------------------------------------------------
+    | Order Settings
+    |--------------------------------------------------------------------------
+    */
         Setting::set('order.auto_confirm', false);
         // Setting::set('order.auto_cancel_minutes', 30);
         Setting::set('order.invoice_prefix', 'INV-');
@@ -121,26 +129,36 @@ class SettingSeeder extends Seeder
         Setting::set('order.allow_guest_checkout', true);
         Setting::set('order.order_note_enabled', true);
 
+        /*
+    |--------------------------------------------------------------------------
+    | Inventory Settings
+    |--------------------------------------------------------------------------
+    */
         Setting::set('inventory.low_stock_threshold', 5);
         Setting::set('inventory.out_of_stock_visibility', false);
 
 
+        /*
+    |--------------------------------------------------------------------------
+    | Customer Settings
+    |--------------------------------------------------------------------------
+    */
         Setting::set('customer.email_verification_required', false);
         // Setting::set('customer.phone_verification_required', false);
         Setting::set('customer.default_role', 'customer');
         Setting::set('customer.allow_profile_edit', true);
         Setting::set('customer.account_delete_enabled', false);
 
-        Setting::set('shipping.default_delivery_days', 3);
-        Setting::set('shipping.cash_on_delivery_fee', null);
-        Setting::set('shipping.return_days_limit', 7);
-
+        /*
+    |--------------------------------------------------------------------------
+    | Payment Settings
+    |--------------------------------------------------------------------------
+    */
         Setting::set('payment.bkash_enabled', false);
         Setting::set('payment.nagad_enabled', false);
         Setting::set('payment.rocket_enabled', false);
 
         // Setting::set('security.login_attempt_limit', 5);
-        Setting::set('product.review_enabled', false);
 
 
         Setting::set('notification.email_enabled', false);
@@ -152,7 +170,6 @@ class SettingSeeder extends Seeder
     | Invoice Settings
     |--------------------------------------------------------------------------
     */
-
         Setting::set('invoice.include_barcode', false);
         Setting::set('invoice.watermark_enabled', false);
 
@@ -162,18 +179,18 @@ class SettingSeeder extends Seeder
     | Theme Settings
     |--------------------------------------------------------------------------
     */
-        Setting::set('theme.primary_color', '#000000');
-        Setting::set('theme.secondary_color', '#ffffff');
+        Setting::set('theme.primary_color', '#dd2222');
+        // Setting::set('theme.secondary_color', '#ffffff');
 
-        Setting::set('theme.title_color', '#000');
-        Setting::set('theme.text_color', '#000');
-        Setting::set('theme.bg_color', '#fff');
+        Setting::set('theme.title_color', '#fbb710');
+        Setting::set('theme.text_color', '#222222');
+        Setting::set('theme.bg_color', '#f9f9f9');
 
-        Setting::set('theme.header_bg_color', '#000');
-        Setting::set('theme.header_text_color', '#fff');
+        Setting::set('theme.header_bg_color', '#f9f9f9');
+        Setting::set('theme.header_text_color', '#222222');
 
-        Setting::set('theme.footer_title_color', '#000');
-        Setting::set('theme.footer_text_color', '#fff');
+        Setting::set('theme.footer_title_color', '#fff');
+        Setting::set('theme.footer_text_color', '#222222');
         Setting::set('theme.footer_bg_color', '#fff');
 
 

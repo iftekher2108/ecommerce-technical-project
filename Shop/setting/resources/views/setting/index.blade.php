@@ -9,11 +9,23 @@
                     <div class="nav nav-tabs" id="nav-tab" role="tablist">
                         <button class="nav-link active" id="nav-general-tab" data-bs-toggle="tab"
                             data-bs-target="#nav-general" type="button" role="tab" aria-controls="nav-general"
-                            aria-selected="true">General Information</button>
-                        <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile"
-                            type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Profile</button>
+                            aria-selected="true">General</button>
+
                         <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact"
                             type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Contact</button>
+
+                        <button class="nav-link" id="nav-seo-tab" data-bs-toggle="tab" data-bs-target="#nav-seo"
+                            type="button" role="tab" aria-controls="nav-seo" aria-selected="false">Seo</button>
+
+                        <button class="nav-link" id="nav-ecommerce-tab" data-bs-toggle="tab" data-bs-target="#nav-ecommerce"
+                            type="button" role="tab" aria-controls="nav-ecommerce"
+                            aria-selected="false">Ecommerce</button>
+
+                        <button class="nav-link" id="nav-front-theme-tab" data-bs-toggle="tab" data-bs-target="#nav-front-theme"
+                            type="button" role="tab" aria-controls="nav-front-theme"
+                            aria-selected="false">Color Theme</button>
+
+
                     </div>
                 </nav>
                 <div class="tab-content mb-3 p-2" id="nav-tabContent">
@@ -24,27 +36,34 @@
 
                             <div class="col-md-6">
                                 <x-admin::form.picture-upload title="Logo"
-                                    preview="{{ asset('storage/' . $setting['logo']) }}" name="logo" />
+                                    preview="{{ asset('storage/' . $setting['site.logo']) }}" name="site_logo" />
                             </div>
 
                             <div class="col-md-6">
                                 <x-admin::form.picture-upload title="Icon"
-                                    preview="{{ asset('storage/' . $setting['icon']) }}" name="icon" />
-                            </div>
-
-                            <div class="col-md-6">
-                                <x-admin::form.input name='title' value="{{ $setting['title'] }}" required='true' title="Title" />
+                                    preview="{{ asset('storage/' . $setting['site.favicon']) }}" name="site_favicon" />
                             </div>
 
                             <div class="col-md-12">
-                                <x-admin::form.textarea name='description' value="{{ $setting['description'] }}" title="Description" />
+                                <x-admin::form.input name='site_title' value="{{ $setting['site.title'] }}" required='true'
+                                    title="Title" />
+                            </div>
+
+                            <div class="col-md-6">
+                                <x-admin::form.textarea name='site_description' value="{{ $setting['site.description'] }}"
+                                    title="Description" />
+                            </div>
+                            <div class="col-md-6">
+                                <x-admin::form.textarea name='site_footer_text' value="{{ $setting['site.footer_text'] }}"
+                                    title="Footer Text" />
                             </div>
 
                             <div class="col-md-12">
                                 <div class="card">
                                     <div class="card-body">
 
-                                        <div class="d-flex justify-content-end">
+                                        <div class="d-flex justify-content-between">
+                                            <h5>Social Link</h5>
                                             <x-admin::form.button class="btn-primary add-social-btn">
                                                 <i class="bi bi-plus-lg"></i>
                                                 Add New
@@ -52,7 +71,28 @@
                                         </div>
 
                                         <div class="social-container my-3">
-                                            <div class="social-item row g-2">
+                                            @foreach ($setting['site.social'] as $social)
+                                                <div class="social-item row g-2">
+                                                    <div class="col">
+                                                        <x-admin::form.input name="site_social[][icon]"
+                                                            value="{{ $social->icon }}" placeholder="Icon" />
+                                                    </div>
+                                                    <div class="col">
+                                                        <x-admin::form.input name='site_social[][title]'
+                                                            value="{{ $social->title }}" placeholder="title" />
+                                                    </div>
+                                                    <div class="col">
+                                                        <x-admin::form.input name='site_social[][link]'
+                                                            value="{{ $social->link }}" placeholder="link" />
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <x-admin::form.button class="btn-danger social-item-remove">
+                                                            <i class="bi bi-trash"></i>
+                                                        </x-admin::form.button>
+                                                    </div>
+                                                </div>
+                                            @endforeach
+                                            {{-- <div class="social-item row g-2">
                                                 <div class="col">
                                                     <x-admin::form.input name="social[][icon]" placeholder="Icon" />
                                                 </div>
@@ -67,7 +107,7 @@
                                                         <i class="bi bi-trash"></i>
                                                     </x-admin::form.button>
                                                 </div>
-                                            </div>
+                                            </div> --}}
 
                                         </div>
 
@@ -78,18 +118,23 @@
                         </div>
                     </div>
 
-                    <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab"
-                        tabindex="0">
-                        ...
-                    </div>
-
                     <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab"
                         tabindex="0">
                         ...
                     </div>
 
-                    <div class="tab-pane fade" id="nav-disabled" role="tabpanel" aria-labelledby="nav-disabled-tab"
+                    <div class="tab-pane fade" id="nav-seo" role="tabpanel" aria-labelledby="nav-seo-tab"
                         tabindex="0">
+                        ...
+                    </div>
+
+                    <div class="tab-pane fade" id="nav-ecommerce" role="tabpanel" aria-labelledby="nav-ecommerce-tab"
+                        tabindex="0">
+                        ...
+                    </div>
+
+                    <div class="tab-pane fade" id="nav-front-theme" role="tabpanel"
+                        aria-labelledby="nav-front-theme-tab" tabindex="0">
                         ...
                     </div>
 
@@ -120,13 +165,13 @@
             let html = `
             <div class="social-item row g-2">
                     <div class="col">
-                        <x-admin::form.input name="social[][icon]" placeholder="Icon" />
+                        <x-admin::form.input name="site_social[][icon]" placeholder="Icon" />
                     </div>
                     <div class="col">
-                        <x-admin::form.input name='social[][title]' placeholder="title" />
+                        <x-admin::form.input name='site_social[][title]' placeholder="title" />
                     </div>
                     <div class="col">
-                        <x-admin::form.input name='social[][link]' placeholder="link" />
+                        <x-admin::form.input name='site_social[][link]' placeholder="link" />
                     </div>
                     <div class="col-1">
                         <x-admin::form.button class="btn-danger social-item-remove">
@@ -134,7 +179,7 @@
                         </x-admin::form.button>
                     </div>
                 </div>`;
-            if($('.social-item').length < 6) {
+            if ($('.social-item').length < 6) {
                 $('.social-container').append(html);
             } else {
                 alert("you can't added more then 6!")

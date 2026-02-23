@@ -14,7 +14,7 @@ class AdminServiceProvider extends ServiceProvider
 	{
 		View::composer('*', function ($view) {
 			$data = SettingService::getSetting();
-			$view->with($data);
+			$view->with(['setting' => $data]);
 		});
 	}
 }

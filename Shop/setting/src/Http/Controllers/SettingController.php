@@ -15,7 +15,7 @@ class SettingController extends Controller
     public function index()
     {
         $data = $this->settingService->getSetting();
-        return view('setting::setting.index', $data);
+        return view('setting::setting.index', ['setting' =>$data]);
     }
 
 
