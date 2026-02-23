@@ -114,19 +114,19 @@ class SettingService
         $site_logo = $setting['site.logo'];
         if ($request->site_logo) {
             Helper::fileDelete($site_logo);
-            $site_logo = Helper::fileUpload('logo', 'logo', $request->site_logo);
+            $site_logo = Helper::fileUpload('setting/logo', 'logo', $request->site_logo);
         }
         Setting::set('site.logo', $site_logo);
 
         $site_favicon = $setting['site.favicon'];
         if ($request->site_favicon) {
             Helper::fileDelete($site_favicon);
-            $site_favicon = Helper::fileUpload('favicon', 'favicon', $request->site_favicon);
+            $site_favicon = Helper::fileUpload('setting/favicon', 'favicon', $request->site_favicon);
         }
         Setting::set('site.favicon', $site_favicon);
 
         Setting::set('site.title', $request->site_title);
-        
+
         // Social Setting model set 
         Setting::set('site.social', json_encode($request->site_social));
 
@@ -141,10 +141,10 @@ class SettingService
     | Contact Information
     |--------------------------------------------------------------------------
     */
-        Setting::set('contact.email', 'support@myshop.com');
-        Setting::set('contact.phone', '+880123456789');
-        Setting::set('contact.address', 'Dhaka, Bangladesh');
-        Setting::set('contact.address_1', 'Dhaka, Bangladesh');
+        Setting::set('contact.email', $request->contact_email);
+        Setting::set('contact.phone', $request->contact_phone);
+        Setting::set('contact.address', $request->contact_address);
+        Setting::set('contact.address_1', $request->contact_address_1);
 
         /*
     |--------------------------------------------------------------------------
@@ -154,7 +154,12 @@ class SettingService
         Setting::set('seo.meta_title', 'My Shop - Online Store');
         Setting::set('seo.meta_description', 'Best ecommerce platform in Bangladesh.');
         Setting::set('seo.meta_keywords', 'ecommerce, online shop, buy online');
-        Setting::set('seo.og_image', null);
+        $seo_og_image = $setting['seo.og_image'];
+        if ($request->seo_og_image) {
+            Helper::fileDelete($seo_og_image);
+            $seo_og_image = Helper::fileUpload('setting/og_image', 'og_image', $request->seo_og_image);
+        }
+        Setting::set('seo.og_image', $seo_og_image);
 
         /*
     |--------------------------------------------------------------------------
