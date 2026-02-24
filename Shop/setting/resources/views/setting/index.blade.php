@@ -312,11 +312,56 @@
 
                         <div class="row g-2">
 
-                            <div class="col-md-6">
+                            {{-- <div class="col-md-6">
                                 <x-admin::form.input name="order_invoice_prefix" title="Order invoice prefix"
                                     value="{{ $setting['order.invoice_prefix'] }}" placeholder="INV-" />
+                            </div> --}}
+
+                            <div class="col-md-6">
+                                <x-admin::form.input name="theme_primary_color" title="Primary Color"
+                                    value="{{ $setting['theme.primary_color'] }}" type='color' />
                             </div>
-                            
+
+                            <div class="col-md-6">
+                                <x-admin::form.input name="theme_title_color" title="Title Color"
+                                    value="{{ $setting['theme.title_color'] }}" type='color' />
+                            </div>
+
+                            <div class="col-md-6">
+                                <x-admin::form.input name="theme_text_color" title="Text Color"
+                                    value="{{ $setting['theme.text_color'] }}" type='color' />
+                            </div>
+
+                            <div class="col-md-6">
+                                <x-admin::form.input name="theme_bg_color" title="Background Color"
+                                    value="{{ $setting['theme.bg_color'] }}" type='color' />
+                            </div>
+
+                            <div class="col-md-6">
+                                <x-admin::form.input name="theme_header_bg_color" title="Header Background Color"
+                                    value="{{ $setting['theme.header_bg_color'] }}" type='color' />
+                            </div>
+
+                            <div class="col-md-6">
+                                <x-admin::form.input name="theme_header_text_color" title="Header Text Color"
+                                    value="{{ $setting['theme.header_text_color'] }}" type='color' />
+                            </div>
+
+                            <div class="col-md-6">
+                                <x-admin::form.input name="theme_footer_title_color" title="Footer Title Color"
+                                    value="{{ $setting['theme.footer_title_color'] }}" type='color' />
+                            </div>
+
+                            <div class="col-md-6">
+                                <x-admin::form.input name="theme_footer_text_color" title="Footer Title Color"
+                                    value="{{ $setting['theme.footer_text_color'] }}" type='color' />
+                            </div>
+
+                            <div class="col-md-6">
+                                <x-admin::form.input name="theme_footer_bg_color" title="Footer Background Color"
+                                    value="{{ $setting['theme.footer_bg_color'] }}" type='color' />
+                            </div>
+
                         </div>
 
                     </div>
