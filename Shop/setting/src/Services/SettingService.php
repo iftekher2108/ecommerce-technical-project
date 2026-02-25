@@ -7,6 +7,7 @@ use Shop\Setting\Models\Setting;
 
 class SettingService
 {
+    public $redirect = 'admin.setting.index';
     public static function getSetting()
     {
         $data = [
@@ -151,9 +152,9 @@ class SettingService
     | SEO Settings
     |--------------------------------------------------------------------------
     */
-        Setting::set('seo.meta_title', 'My Shop - Online Store');
-        Setting::set('seo.meta_description', 'Best ecommerce platform in Bangladesh.');
-        Setting::set('seo.meta_keywords', 'ecommerce, online shop, buy online');
+        Setting::set('seo.meta_title', $request->seo_meta_title);
+        Setting::set('seo.meta_description', $request->seo_meta_description);
+        Setting::set('seo.meta_keywords', $request->seo_meta_keywords);
         $seo_og_image = $setting['seo.og_image'];
         if ($request->seo_og_image) {
             Helper::fileDelete($seo_og_image);
@@ -166,8 +167,8 @@ class SettingService
     | E-commerce Core Settings
     |--------------------------------------------------------------------------
     */
-        Setting::set('ecommerce.currency', 'BDT');
-        Setting::set('ecommerce.currency_symbol', '৳');
+        Setting::set('ecommerce.currency', $request->ecommerce_currency);
+        Setting::set('ecommerce.currency_symbol', $request->ecommerce_currency_symbol);
         // Setting::set('ecommerce.tax_percentage', 5);
         // Setting::set('ecommerce.tax_included', false);
         Setting::set('ecommerce.min_order_amount', null);
@@ -177,21 +178,24 @@ class SettingService
     | Shipping Settings
     |--------------------------------------------------------------------------
     */
-        Setting::set('shipping.free_shipping_enabled', false);
-        Setting::set('shipping.free_shipping_minimum', 2000);
+
+        Setting::set('shipping.free_shipping_enabled', $request->shipping_free_shipping_enabled ?? 0);
+        Setting::set('shipping.free_shipping_minimum', $request->shipping_free_shipping_minimum);
+        Setting::set('shipping.default_delivery_days', $request->shipping_default_delivery_days);
+        Setting::set('shipping.cash_on_delivery_fee', $request->shipping_cash_on_delivery_fee);
+        Setting::set('shipping.return_days_limit', $request->shipping_return_days_limit);
+
         // Setting::set('shipping.flat_rate', 100);
-        Setting::set('shipping.default_delivery_days', 3);
-        Setting::set('shipping.cash_on_delivery_fee', null);
-        Setting::set('shipping.return_days_limit', 7);
+
 
         /*
     |--------------------------------------------------------------------------
     | Email Configuration
     |--------------------------------------------------------------------------
     */
-        Setting::set('email.from_name', 'My Shop');
-        Setting::set('email.from_email', 'no-reply@myshop.com');
-        Setting::set('email.order_notification', false);
+        // Setting::set('email.from_name', 'My Shop');
+        // Setting::set('email.from_email', 'no-reply@myshop.com');
+        // Setting::set('email.order_notification', false);
 
 
         //     /*
@@ -208,64 +212,66 @@ class SettingService
     | Maintenance Mode
     |--------------------------------------------------------------------------
     */
-        Setting::set('site.maintenance_mode', false);
-        Setting::set('site.maintenance_message', 'We are updating our store. Please come back later.');
+        Setting::set('ecommerce.currency', $request->ecommerce_currency);
+        Setting::set('ecommerce.currency_symbol', $request->ecommerce_currency_symbol);
 
         /*
     |--------------------------------------------------------------------------
     | Order Settings
     |--------------------------------------------------------------------------
     */
-        Setting::set('order.auto_confirm', false);
         // Setting::set('order.auto_cancel_minutes', 30);
-        Setting::set('order.invoice_prefix', 'INV-');
         // Setting::set('order.invoice_start_number', 1000);
         Setting::set('order.allow_guest_checkout', true);
-        Setting::set('order.order_note_enabled', true);
+
+        Setting::set('order.auto_confirm', $request->order_auto_confirm ?? 0);
+        Setting::set('order.invoice_prefix', $request->order_invoice_prefix);
+        Setting::set('order.order_note_enabled', $request->order_note_enabled ?? 0);
 
         /*
     |--------------------------------------------------------------------------
     | Inventory Settings
     |--------------------------------------------------------------------------
     */
-        Setting::set('inventory.low_stock_threshold', 5);
-        Setting::set('inventory.out_of_stock_visibility', false);
 
+        Setting::set('inventory.low_stock_threshold', $request->inventory_low_stock_threshold);
+        Setting::set('inventory.out_of_stock_visibility', $request->inventory_out_of_stock_visibility ?? 0);
 
         /*
     |--------------------------------------------------------------------------
     | Customer Settings
     |--------------------------------------------------------------------------
     */
-        Setting::set('customer.email_verification_required', false);
-        // Setting::set('customer.phone_verification_required', false);
-        Setting::set('customer.default_role', 'customer');
-        Setting::set('customer.allow_profile_edit', true);
-        Setting::set('customer.account_delete_enabled', false);
+        // Setting::set('customer.email_verification_required', false);
+        // // Setting::set('customer.phone_verification_required', false);
+        // Setting::set('customer.default_role', 'customer');
+        // Setting::set('customer.allow_profile_edit', true);
+        // Setting::set('customer.account_delete_enabled', false);
 
         /*
     |--------------------------------------------------------------------------
     | Payment Settings
     |--------------------------------------------------------------------------
     */
-        Setting::set('payment.bkash_enabled', false);
-        Setting::set('payment.nagad_enabled', false);
-        Setting::set('payment.rocket_enabled', false);
+        // Setting::set('payment.bkash_enabled', false);
+        // Setting::set('payment.nagad_enabled', false);
+        // Setting::set('payment.rocket_enabled', false);
 
         // Setting::set('security.login_attempt_limit', 5);
 
 
-        Setting::set('notification.email_enabled', false);
-        Setting::set('notification.sms_enabled', false);
-        Setting::set('notification.admin_order_alert', false);
+        // Setting::set('notification.email_enabled', false);
+        // Setting::set('notification.sms_enabled', false);
+        // Setting::set('notification.admin_order_alert', false);
 
         /*
     |--------------------------------------------------------------------------
     | Invoice Settings
     |--------------------------------------------------------------------------
     */
-        Setting::set('invoice.include_barcode', false);
-        Setting::set('invoice.watermark_enabled', false);
+
+        Setting::set('invoice.include_barcode', $request->invoice_include_barcode ?? 0);
+        Setting::set('invoice.watermark_enabled', $request->invoice_watermark_enabled ?? 0);
 
 
         /*
@@ -273,19 +279,17 @@ class SettingService
     | Theme Settings
     |--------------------------------------------------------------------------
     */
-        Setting::set('theme.primary_color', '#dd2222');
         // Setting::set('theme.secondary_color', '#ffffff');
+        Setting::set('theme.primary_color', $request->theme_primary_color);
+        Setting::set('theme.title_color', $request->theme_title_color);
+        Setting::set('theme.text_color', $request->theme_text_color);
+        Setting::set('theme.bg_color', $request->theme_bg_color);
+        Setting::set('theme.header_bg_color', $request->theme_header_bg_color);
+        Setting::set('theme.header_text_color', $request->theme_header_text_color);
+        Setting::set('theme.footer_title_color', $request->theme_footer_title_color);
+        Setting::set('theme.footer_text_color', $request->theme_footer_text_color);
+        Setting::set('theme.footer_bg_color', $request->theme_footer_bg_color);
 
-        Setting::set('theme.title_color', '#fbb710');
-        Setting::set('theme.text_color', '#222222');
-        Setting::set('theme.bg_color', '#f9f9f9');
-
-        Setting::set('theme.header_bg_color', '#f9f9f9');
-        Setting::set('theme.header_text_color', '#222222');
-
-        Setting::set('theme.footer_title_color', '#fff');
-        Setting::set('theme.footer_text_color', '#222222');
-        Setting::set('theme.footer_bg_color', '#fff');
     }
 
     public function getFrontSetting() {}

@@ -189,9 +189,9 @@ class SettingSeeder extends Seeder
         Setting::set('theme.header_bg_color', '#f9f9f9');
         Setting::set('theme.header_text_color', '#222222');
 
-        Setting::set('theme.footer_title_color', '#fff');
-        Setting::set('theme.footer_text_color', '#222222');
-        Setting::set('theme.footer_bg_color', '#fff');
+        Setting::set('theme.footer_title_color', '#ffffff');
+        Setting::set('theme.footer_text_color', '#ffffff');
+        Setting::set('theme.footer_bg_color', '#222222');
 
 
         // Setting::set('theme.dark_mode_enabled', true);

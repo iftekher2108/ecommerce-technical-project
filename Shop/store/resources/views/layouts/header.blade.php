@@ -45,9 +45,9 @@
             --header-bg-color: #f9f9f9;
             --header-text-color: #222222;
 
-            --footer-title-color: #fff;
+            --footer-title-color: #ffffff;
             --footer-bg-color: #222222;
-            --footer-text-color: #fff;
+            --footer-text-color: #ffffff;
         }
     </style>
 

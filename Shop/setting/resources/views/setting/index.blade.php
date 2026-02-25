@@ -96,23 +96,7 @@
                                                     </div>
                                                 </div>
                                             @endforeach
-                                            {{-- <div class="social-item row g-2">
-                                                <div class="col">
-                                                    <x-admin::form.input name="social[][icon]" placeholder="Icon" />
-                                                </div>
-                                                <div class="col">
-                                                    <x-admin::form.input name='social[][title]' placeholder="title" />
-                                                </div>
-                                                <div class="col">
-                                                    <x-admin::form.input name='social[][link]' placeholder="link" />
-                                                </div>
-                                                <div class="col-1">
-                                                    <x-admin::form.button class="btn-danger social-item-remove">
-                                                        <i class="bi bi-trash"></i>
-                                                    </x-admin::form.button>
-                                                </div>
-                                            </div> --}}
-
+                                      
                                         </div>
 
                                     </div>
@@ -233,7 +217,7 @@
                         <div class="row g-2">
 
                             <div class="col-md-6">
-                                <x-admin::form.select title="Order auto confirm" name="order.auto_confirm">
+                                <x-admin::form.select title="Order auto confirm" name="order_auto_confirm">
                                     <x-admin::form.select.item value="1" :selected="$setting['order.auto_confirm'] == 1" label="Yes" />
                                     <x-admin::form.select.item value="0" :selected="$setting['order.auto_confirm'] == 0" label="No" />
                                 </x-admin::form.select>
@@ -285,7 +269,7 @@
                         <div class="row g-2">
 
                             <div class="col-md-6">
-                                <x-admin::form.input name="inventory.low_stock_threshold" title="Low stock threshold"
+                                <x-admin::form.input name="inventory_low_stock_threshold" title="Low stock threshold"
                                     value="{{ $setting['inventory.low_stock_threshold'] }}" type='number'
                                     placeholder="0" />
                             </div>
