@@ -7,8 +7,8 @@
     <div class="row">
         <div class="col-lg-12">
             <div class="card border-0 shadow-sm rounded-3">
-                <div class="card-header bg-danger text-white rounded-top-3">
-                    <h5 class="mb-0"><i class="fa fa-history me-2"></i>Order History</h5>
+                <div class="card-header bg-primary text-white rounded-top-3">
+                    <h5 class="mb-0"><i class="fa fa-history me-2"></i> Order History</h5>
                 </div>
                 <div class="card-body p-4">
                     <div class="alert alert-info" role="alert">

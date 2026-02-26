@@ -7,11 +7,11 @@
     <div class="row">
         <div class="col-lg-12">
             <div class="d-flex justify-content-between align-items-center mb-4">
-                <h3 style="color: #dd2222; font-weight: 600;">
-                    <i class="fa fa-map-marker me-2"></i>Saved Addresses
+                <h3 style="color: var(--primary-color); font-weight: 600;">
+                    <i class="fa fa-map-marker mr-2"></i> Saved Addresses
                 </h3>
-                <button class="btn btn-danger btn-sm rounded-pill" data-bs-toggle="modal" data-bs-target="#addAddressModal">
-                    <i class="fa fa-plus me-2"></i>Add New Address
+                <button class="btn btn-primary btn-sm rounded-pill" data-toggle="modal" data-target="#addAddressModal">
+                    <i class="fa fa-plus mr-2"></i> Add New Address
                 </button>
             </div>
 
@@ -20,8 +20,8 @@
                     <div class="card border-0 shadow-sm rounded-3">
                         <div class="card-body p-4">
                             <p class="text-muted small mb-3">No addresses saved yet.</p>
-                            <button class="btn btn-danger btn-sm rounded-pill" data-bs-toggle="modal" data-bs-target="#addAddressModal">
-                                <i class="fa fa-plus me-2"></i>Add Address
+                            <button class="btn btn-primary rounded-pill" data-toggle="modal" data-target="#addAddressModal">
+                                <i class="fa fa-plus mr-2"></i> Add Address
                             </button>
                         </div>
                     </div>
@@ -32,14 +32,16 @@
 </div>
 
 <!-- Add Address Modal -->
-<div class="modal fade" id="addAddressModal" tabindex="-1" aria-labelledby="addAddressModalLabel" aria-hidden="true">
+<div class="modal fade" id="addAddressModal" tabindex="-1" role="dialog" aria-labelledby="addAddressModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content border-0">
-            <div class="modal-header bg-danger text-white rounded-top-3 border-0">
+            <div class="modal-header bg-primary text-white rounded-top border-0">
                 <h5 class="modal-title" id="addAddressModalLabel">
-                    <i class="fa fa-plus me-2"></i>Add New Address
+                    <i class="fa fa-plus mr-2"></i> Add New Address
                 </h5>
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
             <div class="modal-body p-4">
                 <form action="{{ route('address.add') }}" method="POST">
@@ -70,13 +72,14 @@
                         <input type="text" class="form-control" id="country" name="country" required>
                     </div>
 
-                    <div class="d-flex gap-2">
-                        <button type="submit" class="btn btn-danger rounded-pill">
-                            <i class="fa fa-save me-2"></i>Save Address
-                        </button>
-                        <button type="button" class="btn btn-outline-danger rounded-pill" data-bs-dismiss="modal">
+                    <div class="d-flex justify-content-between" style="gap: .5rem;">
+                        <button type="button" class="btn btn-outline-primary rounded-pill" data-dismiss="modal">
                             Cancel
                         </button>
+                        <button type="submit" class="btn btn-primary rounded-pill">
+                            <i class="fa fa-save mr-2"></i> Save Address
+                        </button>
+                        
                     </div>
                 </form>
             </div>

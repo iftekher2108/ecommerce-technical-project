@@ -7,8 +7,8 @@
     <div class="row">
         <div class="col-lg-8 mx-auto">
             <div class="card border-0 shadow-sm rounded-3">
-                <div class="card-header bg-danger text-white rounded-top-3">
-                    <h5 class="mb-0"><i class="fa fa-user me-2"></i>Edit Profile</h5>
+                <div class="card-header bg-primary text-white rounded-top-3">
+                    <h5 class="mb-0"><i class="fa fa-user me-2"></i> Edit Profile</h5>
                 </div>
                 <div class="card-body p-4">
                     <form action="{{ route('profile.update') }}" method="POST">
@@ -41,11 +41,11 @@
                             @enderror
                         </div>
 
-                        <div class="d-flex gap-2">
-                            <button type="submit" class="btn btn-danger rounded-pill">
-                                <i class="fa fa-save me-2"></i>Save Changes
+                        <div class="d-flex" style="gap: 8px;">
+                            <button type="submit" class="btn btn-primary rounded-pill">
+                                <i class="fa fa-save me-2"></i> Save Changes
                             </button>
-                            <a href="{{ route('user.profile') }}" class="btn btn-outline-danger rounded-pill">
+                            <a href="{{ route('user.profile') }}" class="btn btn-outline-primary rounded-pill">
                                 Cancel
                             </a>
                         </div>

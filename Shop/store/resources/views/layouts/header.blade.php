@@ -36,7 +36,8 @@
 
     <style>
         :root {
-            --primary-color: #dd2222;
+            --primary-color: {{ $setting['theme.primary_color'] }};
+            /* --primary-color: #dd2222; */
             --title-color: #fbb710;
             --p-color: #222222;
             --text-color: #555555;

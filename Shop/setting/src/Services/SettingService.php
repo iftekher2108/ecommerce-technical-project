@@ -289,7 +289,6 @@ class SettingService
         Setting::set('theme.footer_title_color', $request->theme_footer_title_color);
         Setting::set('theme.footer_text_color', $request->theme_footer_text_color);
         Setting::set('theme.footer_bg_color', $request->theme_footer_bg_color);
-
     }
 
     public function getFrontSetting() {}

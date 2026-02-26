@@ -75,18 +75,18 @@
                                         </div>
 
                                         <div class="social-container my-3">
-                                            @foreach ($setting['site.social'] as $social)
+                                            @foreach ($setting['site.social'] as $index => $social)
                                                 <div class="social-item row g-2">
                                                     <div class="col">
-                                                        <x-admin::form.input name="site_social[][icon]"
+                                                        <x-admin::form.input name="site_social[{{ $index }}][icon]"
                                                             value="{{ $social->icon }}" placeholder="Icon" />
                                                     </div>
                                                     <div class="col">
-                                                        <x-admin::form.input name='site_social[][title]'
+                                                        <x-admin::form.input name='site_social[{{ $index }}][title]'
                                                             value="{{ $social->title }}" placeholder="title" />
                                                     </div>
                                                     <div class="col">
-                                                        <x-admin::form.input name='site_social[][link]'
+                                                        <x-admin::form.input name='site_social[{{ $index }}][link]'
                                                             value="{{ $social->link }}" placeholder="link" />
                                                     </div>
                                                     <div class="col-1">
@@ -374,16 +374,17 @@
 @push('script')
     <script>
         $('.add-social-btn').click(function() {
+            let index = $('.social-item').length;
             let html = `
             <div class="social-item row g-2">
                     <div class="col">
-                        <x-admin::form.input name="site_social[][icon]" placeholder="Icon" />
+                        <x-admin::form.input name="site_social[${index}][icon]" placeholder="Icon" />
                     </div>
                     <div class="col">
-                        <x-admin::form.input name='site_social[][title]' placeholder="title" />
+                        <x-admin::form.input name='site_social[${index}][title]' placeholder="title" />
                     </div>
                     <div class="col">
-                        <x-admin::form.input name='site_social[][link]' placeholder="link" />
+                        <x-admin::form.input name='site_social[${index}][link]' placeholder="link" />
                     </div>
                     <div class="col-1">
                         <x-admin::form.button class="btn-danger social-item-remove">
@@ -391,7 +392,9 @@
                         </x-admin::form.button>
                     </div>
                 </div>`;
-            if ($('.social-item').length < 6) {
+            
+            // html = html.replace(/\[\]/g, `[${index}]`);
+            if (index < 6) {
                 $('.social-container').append(html);
             } else {
                 alert("you can't added more then 6!")
