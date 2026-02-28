@@ -6,6 +6,7 @@
     <section class="hero">
         <div class="container">
             <div class="hero-slider">
+
                 <div class="hero__item set-bg" data-setbg="{{ asset('frontend/img/hero/banner.jpg') }}">
                     <div class="hero__text">
                         <span>FRUIT FRESH</span>
@@ -14,6 +15,7 @@
                         <a href="#" class="primary-btn">SHOP NOW</a>
                     </div>
                 </div>
+
                 <div class="hero__item set-bg" data-setbg="{{ asset('frontend/img/hero/banner.jpg') }}">
                     <div class="hero__text">
                         <span>FRUIT FRESH</span>
@@ -22,6 +24,7 @@
                         <a href="#" class="primary-btn">SHOP NOW</a>
                     </div>
                 </div>
+
             </div>
         </div>
     </section>
@@ -33,31 +36,15 @@
         <div class="container">
             <div class="row">
                 <div class="categories__slider owl-carousel">
-                    <div class="col-lg-3">
-                        <div class="categories__item set-bg" data-setbg="img/categories/cat-1.jpg">
-                            <h5><a href="#">Fresh Fruit</a></h5>
+
+                    @foreach ($categories as $category)
+                        <div class="col-lg-3">
+                            <div class="categories__item set-bg" data-setbg="{{ asset('storage/' . $category->icon) }}">
+                                <h5><a href="#">{{ $category->name }}</a></h5>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-lg-3">
-                        <div class="categories__item set-bg" data-setbg="img/categories/cat-2.jpg">
-                            <h5><a href="#">Dried Fruit</a></h5>
-                        </div>
-                    </div>
-                    <div class="col-lg-3">
-                        <div class="categories__item set-bg" data-setbg="img/categories/cat-3.jpg">
-                            <h5><a href="#">Vegetables</a></h5>
-                        </div>
-                    </div>
-                    <div class="col-lg-3">
-                        <div class="categories__item set-bg" data-setbg="img/categories/cat-4.jpg">
-                            <h5><a href="#">drink fruits</a></h5>
-                        </div>
-                    </div>
-                    <div class="col-lg-3">
-                        <div class="categories__item set-bg" data-setbg="img/categories/cat-5.jpg">
-                            <h5><a href="#">drink fruits</a></h5>
-                        </div>
-                    </div>
+                    @endforeach
+
                 </div>
             </div>
         </div>
@@ -72,7 +59,7 @@
                     <div class="section-title">
                         <h2>Featured Product</h2>
                     </div>
-                    <div class="featured__controls">
+                    {{-- <div class="featured__controls">
                         <ul>
                             <li class="active" data-filter="*">All</li>
                             <li data-filter=".oranges">Oranges</li>
@@ -80,7 +67,7 @@
                             <li data-filter=".vegetables">Vegetables</li>
                             <li data-filter=".fastfood">Fastfood</li>
                         </ul>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
             <div class="row featured__filter">
@@ -497,7 +484,13 @@
 @push('script')
     <script>
         $(document).ready(function() {
-            $('.hero-slider').owlCarousel({});
+            $('.hero-slider').slick({
+                dots: true,
+                infinite: true,
+                speed: 300,
+                slidesToShow: 1,
+                adaptiveHeight: true
+            });
         });
     </script>
 @endpush

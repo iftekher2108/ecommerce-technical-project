@@ -11,9 +11,22 @@ class SliderController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('appearance::slider.index');
+        $query = Slider::query();
+        $search = $request->query('search');
+        if ($search) {
+            $query->where('title', 'like', "%{$search}%");
+        }
+
+        $sliders = $query->orderBy('order_id', 'asc')
+            ->paginate(10)
+            ->withQueryString();
+
+        return view('appearance::slider.index', [
+            'sliders' => $sliders,
+            'search' => $search,
+        ]);
     }
 
     /**

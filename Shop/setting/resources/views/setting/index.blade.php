@@ -67,7 +67,10 @@
                                     <div class="card-body">
 
                                         <div class="d-flex justify-content-between">
-                                            <h5>Social Link</h5>
+                                            <div class="d-flex gap-2">
+                                                <h5>Social Link</h5>
+                                                <small>Font Awesome 4</small>
+                                            </div>
                                             <x-admin::form.button class="btn-primary add-social-btn">
                                                 <i class="bi bi-plus-lg"></i>
                                                 Add New

@@ -15,7 +15,7 @@ class StoreServiceProvider extends ServiceProvider
 	public function boot(): void
 	{
 		View::composer('store::*', function($view) {
-        	$categories = Category::where('status', 1)->orderBy('order_id', 'asc')->with('children')->get(['id', 'name', 'slug']);
+        	$categories = Category::where('status', 1)->orderBy('order_id', 'asc')->with('children')->get();
 			$view->with([
 				'categories' => $categories
 			]);

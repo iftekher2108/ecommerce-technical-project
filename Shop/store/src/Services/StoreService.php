@@ -12,8 +12,8 @@ class StoreService
     public function index()
     {
         $sliders = Slider::where('status', 1)->orderBy('order_id', 'asc')->get();
-        $categories = Category::where('status', 1)->orderBy('order_id', 'asc')->with('children')->get(['id', 'name', 'slug']);
-        $brands = Brand::where('status', 1)->orderBy('order_id')->get(['id', 'name', 'slug']);
+        $categories = Category::where('status', 1)->orderBy('order_id', 'asc')->with('children')->get();
+        $brands = Brand::where('status', 1)->orderBy('order_id')->get();
         $featuredProducts = Product::where('status', 1)->orderBy('order_id')->where('is_featured', 1)->get();
         $discountProducts = Product::where('status',1)->orderBy('order_id')->whereNotNull('sale_price')->get();
 

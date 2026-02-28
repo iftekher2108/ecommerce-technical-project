@@ -38,17 +38,17 @@
         :root {
             --primary-color: {{ $setting['theme.primary_color'] }};
             /* --primary-color: #dd2222; */
-            --title-color: #fbb710;
-            --p-color: #222222;
+            --title-color: {{ $setting['theme.title_color'] }};
+            --p-color: {{ $setting['theme.text_color'] }};
             --text-color: #555555;
-            --bg-color: #f9f9f9;
+            --bg-color: {{ $setting['theme.bg_color'] }};
 
-            --header-bg-color: #f9f9f9;
-            --header-text-color: #222222;
+            --header-bg-color: {{ $setting['theme.header_bg_color'] }};
+            --header-text-color: {{ $setting['theme.header_text_color'] }};
 
-            --footer-title-color: #ffffff;
-            --footer-bg-color: #222222;
-            --footer-text-color: #ffffff;
+            --footer-title-color: {{ $setting['theme.footer_title_color'] }};
+            --footer-bg-color: {{ $setting['theme.footer_bg_color'] }};
+            --footer-text-color: {{ $setting['theme.footer_text_color'] }};
         }
     </style>
 
@@ -60,6 +60,8 @@
     <link rel="stylesheet" href="{{ asset('frontend/css/jquery-ui.min.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ asset('frontend/css/owl.carousel.min.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ asset('frontend/css/slicknav.min.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('frontend/plugin/slick/slick.css') }}">
+    <link rel="stylesheet" href="{{ asset('frontend/plugin/slick/slick-theme.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/css/style.css') }}" type="text/css">
 
     @stack('style')
@@ -117,10 +119,12 @@
         </nav>
         <div id="mobile-menu-wrap"></div>
         <div class="header__top__right__social">
-            <a href="#"><i class="fa fa-facebook"></i></a>
-            <a href="#"><i class="fa fa-twitter"></i></a>
+            @foreach ($setting['site.social'] as $social)
+                <a href="{{ $social->link }}"><i class="{{ $social->icon }}"></i></a>
+            @endforeach
+            {{-- <a href="#"><i class="fa fa-twitter"></i></a>
             <a href="#"><i class="fa fa-linkedin"></i></a>
-            <a href="#"><i class="fa fa-pinterest-p"></i></a>
+            <a href="#"><i class="fa fa-pinterest-p"></i></a> --}}
         </div>
         <div class="humberger__menu__contact">
             <ul>
@@ -147,10 +151,13 @@
                     <div class="col-lg-6 col-md-6">
                         <div class="header__top__right">
                             <div class="header__top__right__social">
-                                <a href="#"><i class="fa fa-facebook"></i></a>
+                                @foreach ($setting['site.social'] as $social)
+                                    <a href="{{ $social->link }}"><i class="{{ $social->icon }}"></i></a>
+                                @endforeach
+                                {{-- <a href="#"><i class="fa fa-facebook"></i></a>
                                 <a href="#"><i class="fa fa-twitter"></i></a>
                                 <a href="#"><i class="fa fa-linkedin"></i></a>
-                                <a href="#"><i class="fa fa-pinterest-p"></i></a>
+                                <a href="#"><i class="fa fa-pinterest-p"></i></a> --}}
                             </div>
                             {{-- <div class="header__top__right__language">
                                 <img src="img/language.png" alt="">
@@ -165,16 +172,16 @@
                                 <div class="d-flex" style="gap:4px; align-items:center;">
                                     <i class="fa fa-user"></i>
                                     @if (Auth::user())
-                                     <a href="{{ route('user.profile') }}">Profile</a>|
-                                     <form action="{{ route('user.logout') }}" method="post">
-                                        @csrf
-                                        <button class="p-0 border-0">Login Out</button>
-                                     </form>
-                                        @else
-                                     <a href="{{ route('home.login') }}"> Login</a> |
-                                    <a href="{{ route('home.register') }}">Register</a>   
-                                    @endif 
-                                    
+                                        <a href="{{ route('user.profile') }}">Profile</a>|
+                                        <form action="{{ route('user.logout') }}" method="post">
+                                            @csrf
+                                            <button class="p-0 border-0">Login Out</button>
+                                        </form>
+                                    @else
+                                        <a href="{{ route('home.login') }}"> Login</a> |
+                                        <a href="{{ route('home.register') }}">Register</a>
+                                    @endif
+
                                 </div>
                             </div>
                         </div>
