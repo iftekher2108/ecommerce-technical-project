@@ -13,6 +13,8 @@ Route::middleware(['web'])->group(function () {
 
     Route::controller(StoreController::class)->group(function () {
         Route::get('/', 'index')->name('home.index');
+        Route::get('/shop','shop')->name('home.shop');
+
     });
 
     Route::middleware('guest:web')->controller(UserAuthController::class)->group(function () {

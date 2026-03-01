@@ -88,7 +88,7 @@
             <div class="header__cart__price">item: <span>$150.00</span></div>
         </div> --}}
         <div class="humberger__menu__widget">
-            <div class="header__top__right__language">
+            {{-- <div class="header__top__right__language">
                 <img src="img/language.png" alt="">
                 <div>English</div>
                 <span class="arrow_carrot-down"></span>
@@ -96,15 +96,15 @@
                     <li><a href="#">Spanis</a></li>
                     <li><a href="#">English</a></li>
                 </ul>
-            </div>
+            </div> --}}
             <div class="header__top__right__auth">
                 <a href="{{ route('home.login') }}"><i class="fa fa-user"></i> Login</a>
             </div>
         </div>
         <nav class="humberger__menu__nav mobile-menu">
             <ul>
-                <li class="active"><a href="/">Home</a></li>
-                <li><a href="./shop-grid.php">Shop</a></li>
+                <li class="@if(Request::routeIs('home.index')) active @endif"><a href="{{ route('home.shop') }}">Home</a></li>
+                <li class="@if(Request::routeIs('home.shop')) active @endif"><a href="{{ route('home.shop') }}">Shop</a></li>
                 <li><a href="#">Pages</a>
                     <ul class="header__menu__dropdown">
                         <li><a href="./shop-details.php">Shop Details</a></li>
@@ -136,14 +136,14 @@
     <!-- Humberger End -->
 
     <!-- Header Section Begin -->
-    <header class="header">
+    <header class="header" style="background: var(--header-bg-color);">
         <div class="header__top">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-6 col-md-6">
                         <div class="header__top__left">
                             <ul>
-                                <li><i class="fa fa-envelope"></i> hello.com</li>
+                                <li><i style="color: var(--header-text-color);" class="fa fa-envelope"></i> hello.com</li>
                                 {{-- <li>Free Shipping for all Order of $99</li> --}}
                             </ul>
                         </div>
@@ -152,7 +152,7 @@
                         <div class="header__top__right">
                             <div class="header__top__right__social">
                                 @foreach ($setting['site.social'] as $social)
-                                    <a href="{{ $social->link }}"><i class="{{ $social->icon }}"></i></a>
+                                    <a href="{{ $social->link }}"><i style="color: var(--header-text-color);" class="{{ $social->icon }}"></i></a>
                                 @endforeach
                                 {{-- <a href="#"><i class="fa fa-facebook"></i></a>
                                 <a href="#"><i class="fa fa-twitter"></i></a>
@@ -170,7 +170,7 @@
                             </div> --}}
                             <div class="header__top__right__auth">
                                 <div class="d-flex" style="gap:4px; align-items:center;">
-                                    <i class="fa fa-user"></i>
+                                    <i class="fa fa-user" style="color: var(--header-text-color);"></i>
                                     @if (Auth::user())
                                         <a href="{{ route('user.profile') }}">Profile</a>|
                                         <form action="{{ route('user.logout') }}" method="post">
@@ -189,7 +189,7 @@
                 </div>
             </div>
         </div>
-        <div class="container">
+        <div class="container" style="background: var(--header-bg-color);">
             <div class="row">
                 <div class="col-lg-3">
                     <div class="header__logo">
@@ -199,8 +199,8 @@
                 <div class="col-lg-6">
                     <nav class="header__menu">
                         <ul>
-                            <li class="active"><a href="/">Home</a></li>
-                            <li><a href="./shop-grid.php">Shop</a></li>
+                            <li class="@if(Request::routeIs('home.index')) active @endif"><a href="{{ route('home.index') }}">Home</a></li>
+                            <li class="@if(Request::routeIs('home.shop')) active @endif"><a href="{{ route('home.shop') }}">Shop</a></li>
                             <li><a href="#">Pages</a>
                                 <ul class="header__menu__dropdown">
                                     <li><a href="./shop-details.php">Shop Details</a></li>
@@ -217,8 +217,8 @@
                 <div class="col-lg-3">
                     <div class="header__cart">
                         <ul>
-                            {{-- <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li> --}}
-                            {{-- <li><a href="#"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li> --}}
+                            <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>
+                            <li><a href="#"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
                         </ul>
                         {{-- <div class="header__cart__price">item: <span>$150.00</span></div> --}}
                     </div>
@@ -233,7 +233,7 @@
 
 
 
-    <section class="hero hero-normal">
+    <section class="hero hero-normal" style="background: var(--header-bg-color);">
         <div class="container">
             <div class="row">
                 <div class="col-lg-3">

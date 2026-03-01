@@ -7,7 +7,7 @@
           <!--end::To the end-->
           <!--begin::Copyright-->
 
-          {!! $setting['site.footer_text'] !!}
+          {!! str_replace('{year}', now()->year, $setting['site.footer_text']) !!}
           {{-- <strong>
               Copyright &copy; {{ date('Y') }}
               <a href="#" class="text-decoration-none"></a>.

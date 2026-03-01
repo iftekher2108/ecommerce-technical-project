@@ -245,7 +245,7 @@ ol {
 -----------------------*/
 
 .header__top {
-	background: #f5f5f5;
+	background: var(--header-bg-color);
 }
 
 .header__top__left {
@@ -254,7 +254,7 @@ ol {
 
 .header__top__left ul li {
 	font-size: 14px;
-	color: var(--p-color);
+	color: var(--header-text-color);
 	display: inline-block;
 	margin-right: 45px;
 	position: relative;
@@ -394,7 +394,7 @@ ol {
 .header__top__right__auth a {
 	display: block;
 	font-size: 14px;
-	color: var(--p-color);
+	color: var(--header-text-color);
 }
 
 .header__top__right__auth a i {
@@ -473,7 +473,7 @@ ol {
 
 .header__menu ul li a {
 	font-size: 14px;
-	color: #252525;
+	color: var(--header-text-color);
 	text-transform: uppercase;
 	font-weight: 700;
 	letter-spacing: 2px;
@@ -512,7 +512,7 @@ ol {
 
 .header__cart ul li a i {
 	font-size: 18px;
-	color: var(--p-color);
+	color: var(--header-text-color);
 }
 
 .header__cart ul li a span {
@@ -538,7 +538,7 @@ ol {
 }
 
 .header__cart .header__cart__price span {
-	color: #252525;
+	color: var(--header-text-color);
 	font-weight: 700;
 }
 
@@ -710,14 +710,14 @@ ol {
 }
 
 .hero__search__phone__text h5 {
-	color: var(--p-color);
+	color: var(--header-text-color);
 	font-weight: 700;
 	margin-bottom: 5px;
 }
 
 .hero__search__phone__text span {
 	font-size: 14px;
-	color: #6f6f6f;
+	color: var(--header-text-color);
 }
 
 .hero__item {
@@ -1124,13 +1124,13 @@ ol {
 	top: 13px;
 	height: 1px;
 	width: 5px;
-	background: #dd2222;
+	background: var(--primary-color);
 	content: "";
 }
 
 .price-range-wrap .range-slider .price-input input {
 	font-size: 16px;
-	color: #dd2222;
+	color: var(--primary-color);
 	font-weight: 700;
 	max-width: 20%;
 	border: none;
@@ -1160,12 +1160,12 @@ ol {
 }
 
 .price-range-wrap .price-range .ui-slider-range {
-	background: #dd2222;
+	background: var(--primary-color);
 	border-radius: 0;
 }
 
 .price-range-wrap .price-range .ui-slider-range.ui-corner-all.ui-widget-header:last-child {
-	background: #dd2222;
+	background: var(--primary-color);
 }
 
 .sidebar__item__color {
@@ -1283,7 +1283,7 @@ ol {
 .product__discount__item__pic .product__discount__percent {
 	height: 45px;
 	width: 45px;
-	background: #dd2222;
+	background: var(--primary-color);
 	border-radius: 50%;
 	font-size: 14px;
 	color: #ffffff;

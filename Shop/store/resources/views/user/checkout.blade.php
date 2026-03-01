@@ -67,20 +67,20 @@
                 <div class="card-body p-4">
                     <div class="d-flex justify-content-between mb-2">
                         <span>Subtotal:</span>
-                        <span>$0.00</span>
+                        <span>0.00 {{ $setting['ecommerce.currency_symbol'] }}</span>
                     </div>
                     <div class="d-flex justify-content-between mb-2">
                         <span>Shipping:</span>
-                        <span>$0.00</span>
+                        <span>0.00 {{ $setting['ecommerce.currency_symbol'] }}</span>
                     </div>
                     <div class="d-flex justify-content-between mb-2">
                         <span>Tax:</span>
-                        <span>$0.00</span>
+                        <span>0.00 {{ $setting['ecommerce.currency_symbol'] }}</span>
                     </div>
                     <hr>
                     <div class="d-flex justify-content-between" style="font-weight: 600; color: var(--primary-color);">
                         <span>Total:</span>
-                        <span>$0.00</span>
+                        <span>0.00 {{ $setting['ecommerce.currency_symbol'] }}</span>
                     </div>
                 </div>
             </div>

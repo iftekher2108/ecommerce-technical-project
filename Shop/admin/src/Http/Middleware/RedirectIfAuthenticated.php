@@ -21,7 +21,7 @@ class RedirectIfAuthenticated
                 return redirect(route("admin.dashboard"));
             }
             if ($guard == "web" && Auth::guard($guard)->check()) {
-                return redirect(route('home.login'));
+                return redirect(route('user.profile'));
             }
             // if (Auth::guard($guard)->check()) {
             //     return redirect(route('home'));
