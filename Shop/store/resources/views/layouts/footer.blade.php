@@ -60,7 +60,9 @@
                                {!! str_replace('{year}', now()->year, $setting['site.footer_text']) !!} | <a href="">Innovative Soft</a>
                            </p>
                        </div>
-                       <div class="footer__copyright__payment"><img src="img/payment-item.png" alt=""></div>
+                       <div class="footer__copyright__payment">
+                           <img src="img/payment-item.png" alt="">
+                       </div>
                    </div>
                </div>
            </div>

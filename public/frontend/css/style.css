@@ -669,7 +669,7 @@ ol {
 }
 
 .hero__search__form form input {
-	width: 70%;
+	width: 90%;
 	border: none;
 	height: 48px;
 	font-size: 16px;
@@ -725,6 +725,14 @@ ol {
 	display: flex;
 	align-items: center;
 	padding-left: 75px;
+}
+
+.hero__text {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	justify-content: center;
+	align-items: start;
 }
 
 .hero__text span {

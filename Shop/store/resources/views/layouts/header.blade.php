@@ -31,6 +31,8 @@
     <meta name="twitter:description" content="@yield('meta_description', 'Default website description here.')">
     <meta name="twitter:image" content="@yield('meta_image', asset('images/default.jpg'))">
 
+    <link rel="shortcut icon" href="{{ asset('storage/'. $setting['site.favicon']) }}" type="image/x-icon">
+
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
 
@@ -78,7 +80,9 @@
     <div class="humberger__menu__overlay"></div>
     <div class="humberger__menu__wrapper">
         <div class="humberger__menu__logo">
-            <a href="/"><img src="img/logo.png" alt=""></a>
+            <a href="{{ route('home.index') }}">
+                <img src="{{ asset('storage/' . $setting['site.logo']) }}" alt="{{ $setting['site.logo'] }}">
+            </a>
         </div>
         {{-- <div class="humberger__menu__cart">
             <ul>
@@ -105,7 +109,8 @@
             <ul>
                 <li class="@if(Request::routeIs('home.index')) active @endif"><a href="{{ route('home.shop') }}">Home</a></li>
                 <li class="@if(Request::routeIs('home.shop')) active @endif"><a href="{{ route('home.shop') }}">Shop</a></li>
-                <li><a href="#">Pages</a>
+                <li>
+                    <a href="#">Pages</a>
                     <ul class="header__menu__dropdown">
                         <li><a href="./shop-details.php">Shop Details</a></li>
                         <li><a href="./shoping-cart.php">Shoping Cart</a></li>
@@ -128,7 +133,7 @@
         </div>
         <div class="humberger__menu__contact">
             <ul>
-                <li><i class="fa fa-envelope"></i> hello@colorlib.com</li>
+                <li><i class="fa fa-envelope"></i> {{ $setting['contact.email'] }}</li>
                 {{-- <li>Free Shipping for all Order of $99</li> --}}
             </ul>
         </div>
@@ -143,7 +148,7 @@
                     <div class="col-lg-6 col-md-6">
                         <div class="header__top__left">
                             <ul>
-                                <li><i style="color: var(--header-text-color);" class="fa fa-envelope"></i> hello.com</li>
+                                <li><i style="color: var(--header-text-color);" class="fa fa-envelope"></i> {{ $setting['contact.email'] }}</li>
                                 {{-- <li>Free Shipping for all Order of $99</li> --}}
                             </ul>
                         </div>
@@ -193,7 +198,7 @@
             <div class="row">
                 <div class="col-lg-3">
                     <div class="header__logo">
-                        <a href="/"><img src="img/logo.png" alt=""></a>
+                        <a href="{{ route('home.index') }}"><img src="{{ asset('storage/' . $setting['site.logo']) }}" alt="{{ $setting['site.title'] }}"></a>
                     </div>
                 </div>
                 <div class="col-lg-6">
@@ -253,22 +258,22 @@
                     <div class="hero__search">
                         <div class="hero__search__form">
                             <form action="#">
-                                <select name="" class="form-select" id="">
+                                {{-- <select name="" class="form-select" id="">
                                     <option value="">All Categories</option>
                                     @foreach ($categories as $category)
                                         <option value="{{ $category->slug }}">{{ $category->name }}</option>
                                     @endforeach
-                                </select>
+                                </select> --}}
                                 <input type="text" placeholder="What do yo u need?">
                                 <button type="submit" class="site-btn">SEARCH</button>
                             </form>
                         </div>
-                        <div class="hero__search__phone">
+                        <div class="hero__search__phone d-md-block d-none">
                             <div class="hero__search__phone__icon">
                                 <i class="fa fa-phone"></i>
                             </div>
                             <div class="hero__search__phone__text">
-                                <h5>+65 11.188.888</h5>
+                                <h5>{{ $setting['contact.phone'] }}</h5>
                                 <span>support 24/7 time</span>
                             </div>
                         </div>

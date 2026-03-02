@@ -5,28 +5,15 @@ namespace Shop\Appearance\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Shop\Appearance\Models\Slider;
+use Shop\Appearance\Services\SliderService;
 
 class SliderController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    public function __construct(protected SliderService $sliderService) {}
     public function index(Request $request)
     {
-        $query = Slider::query();
-        $search = $request->query('search');
-        if ($search) {
-            $query->where('title', 'like', "%{$search}%");
-        }
-
-        $sliders = $query->orderBy('order_id', 'asc')
-            ->paginate(10)
-            ->withQueryString();
-
-        return view('appearance::slider.index', [
-            'sliders' => $sliders,
-            'search' => $search,
-        ]);
+        $data = $this->sliderService->index($request);
+        return view('appearance::slider.index', $data);
     }
 
     /**
@@ -42,38 +29,59 @@ class SliderController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'order_id' => 'nullable|integer',
+            'picture' => 'required|image',
+            'title' => 'nullable|string|max:255',
+            'sub_title' => 'nullable|string|max:255',
+            'action' => 'nullable|string|max:255',
+            'status' => 'required|boolean',
+        ]);
+        $this->sliderService->sliderStore($request);
+        return redirect()->route($this->sliderService->redirect)->with('success', 'Slider create successfully');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Slider $slider)
-    {
-        //
-    }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Slider $slider)
+    public function edit($id)
     {
-        return view('appearance::slider.edit');
+        $data = $this->sliderService->sliderById($id);
+        return view('appearance::slider.edit',['slider' => $data]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Slider $slider)
+    public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'order_id' => 'nullable|integer',
+            'picture' => 'nullable|image',
+            'title' => 'nullable|string|max:255',
+            'sub_title' => 'nullable|string|max:255',
+            'action' => 'nullable|string|max:255',
+            'status' => 'required|boolean',
+        ]);
+        $this->sliderService->sliderUpdate($request, $id);
+        return redirect()->route($this->sliderService->redirect)->with('success', 'Slider update successfully');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Slider $slider)
+    public function destroy($id)
     {
-        //
+        $this->sliderService->sliderdelete($id);
+        return redirect()->route($this->sliderService->redirect)->with('success', 'Slider delete successfully');
+    }
+
+    /**
+     * Toggle status flag
+     */
+    public function status($id)
+    {
+        return redirect()->route($this->sliderService->redirect)->with('success', 'Slider status update successfully');
     }
 }
