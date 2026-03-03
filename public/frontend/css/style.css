@@ -403,6 +403,7 @@ ol {
 
 .header__logo {
 	padding: 15px 0;
+	width: clamp(80px, 10vw, 100px);
 }
 
 .header__logo a {
@@ -721,18 +722,21 @@ ol {
 }
 
 .hero__item {
-	height: 431px;
+	height: 550px;
 	display: flex;
 	align-items: center;
-	padding-left: 75px;
+	padding-left: 0px;
 }
 
 .hero__text {
 	display: flex;
 	flex-direction: column;
 	height: 100%;
+	width: 100%;
+	padding-left: 75px;
 	justify-content: center;
 	align-items: start;
+	background: rgba(0, 0, 0, 0.5);
 }
 
 .hero__text span {
@@ -745,14 +749,15 @@ ol {
 
 .hero__text h2 {
 	font-size: 46px;
-	color: #252525;
+	color: #ebebeb;
 	line-height: 52px;
 	font-weight: 700;
 	margin: 10px 0;
 }
 
 .hero__text p {
-	margin-bottom: 35px;
+	margin-bottom: 10px;
+	color: #dbdbdb;
 }
 
 /*---------------------
@@ -3416,7 +3421,7 @@ ol {
 		display: none;
 	}
 	.header__cart {
-		text-align: center;
+		text-align: end;
 		padding: 10px 0 24px;
 	}
 	.over_hid {

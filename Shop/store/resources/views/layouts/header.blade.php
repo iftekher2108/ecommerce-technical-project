@@ -8,30 +8,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>@yield('title')</title>
+    <title>@yield('title', $setting['seo.meta_title'])</title>
 
     {{-- Default SEO Meta --}}
 
-    <meta name="description" content="@yield('meta_description', 'Default website description here. Write 150-160 characters summary about your website.')">
-    <meta name="keywords" content="@yield('meta_keywords', 'default keyword 1, default keyword 2, service name')">
+    <meta name="description" content="@yield('meta_description', $setting['seo.meta_description'])">
+    <meta name="keywords" content="@yield('meta_keywords', $setting['seo.meta_keywords'])">
 
     <meta name="author" content="Your Company Name">
     <meta name="robots" content="index, follow">
 
     {{-- Open Graph --}}
-    <meta property="og:title" content="@yield('meta_title', 'Your Website Name')">
-    <meta property="og:description" content="@yield('meta_description', 'Default website description here.')">
-    <meta property="og:image" content="@yield('meta_image', asset('images/default.jpg'))">
+    <meta property="og:title" content="@yield('meta_title', $setting['seo.meta_title'])">
+    <meta property="og:description" content="@yield('meta_description', $setting['seo.meta_description'])">
+    <meta property="og:image" content="@yield('meta_image', asset('storage/' . $setting['seo.og_image']))">
     <meta property="og:url" content="{{ url()->current() }}">
     <meta property="og:type" content="website">
 
     {{-- Twitter Card --}}
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="@yield('meta_title', 'Your Website Name')">
-    <meta name="twitter:description" content="@yield('meta_description', 'Default website description here.')">
-    <meta name="twitter:image" content="@yield('meta_image', asset('images/default.jpg'))">
+    <meta name="twitter:title" content="@yield('meta_title', $setting['seo.meta_title'])">
+    <meta name="twitter:description" content="@yield('meta_description', $setting['seo.meta_description'])">
+    <meta name="twitter:image" content="@yield('meta_image', asset('storage/' . $setting['seo.og_image']))">
 
-    <link rel="shortcut icon" href="{{ asset('storage/'. $setting['site.favicon']) }}" type="image/x-icon">
+    <link rel="shortcut icon" href="{{ asset('storage/' . $setting['site.favicon']) }}" type="image/x-icon">
 
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
@@ -107,8 +107,10 @@
         </div>
         <nav class="humberger__menu__nav mobile-menu">
             <ul>
-                <li class="@if(Request::routeIs('home.index')) active @endif"><a href="{{ route('home.shop') }}">Home</a></li>
-                <li class="@if(Request::routeIs('home.shop')) active @endif"><a href="{{ route('home.shop') }}">Shop</a></li>
+                <li class="@if (Request::routeIs('home.index')) active @endif"><a href="{{ route('home.shop') }}">Home</a>
+                </li>
+                <li class="@if (Request::routeIs('home.shop')) active @endif"><a href="{{ route('home.shop') }}">Shop</a>
+                </li>
                 <li>
                     <a href="#">Pages</a>
                     <ul class="header__menu__dropdown">
@@ -148,7 +150,8 @@
                     <div class="col-lg-6 col-md-6">
                         <div class="header__top__left">
                             <ul>
-                                <li><i style="color: var(--header-text-color);" class="fa fa-envelope"></i> {{ $setting['contact.email'] }}</li>
+                                <li><i style="color: var(--header-text-color);" class="fa fa-envelope"></i>
+                                    {{ $setting['contact.email'] }}</li>
                                 {{-- <li>Free Shipping for all Order of $99</li> --}}
                             </ul>
                         </div>
@@ -157,7 +160,8 @@
                         <div class="header__top__right">
                             <div class="header__top__right__social">
                                 @foreach ($setting['site.social'] as $social)
-                                    <a href="{{ $social->link }}"><i style="color: var(--header-text-color);" class="{{ $social->icon }}"></i></a>
+                                    <a href="{{ $social->link }}"><i style="color: var(--header-text-color);"
+                                            class="{{ $social->icon }}"></i></a>
                                 @endforeach
                                 {{-- <a href="#"><i class="fa fa-facebook"></i></a>
                                 <a href="#"><i class="fa fa-twitter"></i></a>
@@ -198,14 +202,18 @@
             <div class="row">
                 <div class="col-lg-3">
                     <div class="header__logo">
-                        <a href="{{ route('home.index') }}"><img src="{{ asset('storage/' . $setting['site.logo']) }}" alt="{{ $setting['site.title'] }}"></a>
+                        <a href="{{ route('home.index') }}"><img
+                                src="{{ asset('storage/' . $setting['site.logo']) }}"
+                                alt="{{ $setting['site.title'] }}"></a>
                     </div>
                 </div>
                 <div class="col-lg-6">
                     <nav class="header__menu">
                         <ul>
-                            <li class="@if(Request::routeIs('home.index')) active @endif"><a href="{{ route('home.index') }}">Home</a></li>
-                            <li class="@if(Request::routeIs('home.shop')) active @endif"><a href="{{ route('home.shop') }}">Shop</a></li>
+                            <li class="@if (Request::routeIs('home.index')) active @endif"><a
+                                    href="{{ route('home.index') }}">Home</a></li>
+                            <li class="@if (Request::routeIs('home.shop')) active @endif"><a
+                                    href="{{ route('home.shop') }}">Shop</a></li>
                             <li><a href="#">Pages</a>
                                 <ul class="header__menu__dropdown">
                                     <li><a href="./shop-details.php">Shop Details</a></li>
@@ -222,8 +230,20 @@
                 <div class="col-lg-3">
                     <div class="header__cart">
                         <ul>
-                            <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>
-                            <li><a href="#"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
+                            <li>
+                                <a href="#"><i class="fa fa-heart"></i>
+                                    @auth
+                                        <span>1</span>
+                                    @endauth
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#"><i class="fa fa-shopping-bag"></i>
+                                    @auth
+                                        <span>3</span>
+                                    @endauth
+                                </a>
+                            </li>
                         </ul>
                         {{-- <div class="header__cart__price">item: <span>$150.00</span></div> --}}
                     </div>

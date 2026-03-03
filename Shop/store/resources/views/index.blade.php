@@ -4,18 +4,25 @@
     <!-- Hero Section Begin -->
 
     <section class="hero">
-        <div class="container">
+        <div class="container mt-2">
             <div class="hero-slider">
 
-                <div class="hero__item set-bg" data-setbg="{{ asset('frontend/img/hero/banner.jpg') }}">
-                    <div class="hero__text">
-                        <span>FRUIT FRESH</span>
-                        <h2>Vegetable <br />100% Organic</h2>
-                        <p>Free Pickup and Delivery Available</p>
-                        <a href="{{ route('home.shop') }}" class="primary-btn">SHOP NOW</a>
+                @foreach ($sliders as $slider)
+                    <div class="hero__item set-bg" data-setbg="{{ asset('storage/' . $slider->picture) }}">
+                        <div class="hero__text">
+                            {{-- <span>FRUIT FRESH</span> --}}
+                            @if ($slider->title)
+                                <h2>{!! $slider->title !!}</h2>
+                            @endif
+                            @if ($slider->sub_title)
+                                <p>{!! $slider->sub_title !!}</p>
+                            @endif
+                            <a href="{{ route('home.shop') }}" class="primary-btn">SHOP NOW</a>
+                        </div>
                     </div>
-                </div>
+                @endforeach
 
+                {{-- 
                 <div class="hero__item set-bg" data-setbg="{{ asset('frontend/img/hero/banner.jpg') }}">
                     <div class="hero__text">
                         <span>FRUIT FRESH</span>
@@ -23,7 +30,7 @@
                         <p>Free Pickup and Delivery Available</p>
                         <a href="{{ route('home.shop') }}" class="primary-btn">SHOP NOW</a>
                     </div>
-                </div>
+                </div> --}}
 
             </div>
         </div>
@@ -71,21 +78,31 @@
                 </div>
             </div>
             <div class="row featured__filter">
-                <div class="col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat">
-                    <div class="featured__item">
-                        <div class="featured__item__pic set-bg" data-setbg="img/featured/feature-1.jpg">
-                            <ul class="featured__item__pic__hover">
-                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                            </ul>
-                        </div>
-                        <div class="featured__item__text">
-                            <h6><a href="#">Crab Pool Security</a></h6>
-                            <h5>$30.00</h5>
+                @foreach ($products as $product)
+                    <div class="col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat">
+                        <div class="featured__item">
+                            <div class="featured__item__pic set-bg"
+                                data-setbg="{{ asset('storage/' . $product->picture) }}">
+                                <ul class="featured__item__pic__hover">
+                                    <li><a href="#"><i class="fa fa-heart"></i></a></li>
+                                    {{-- <li><a href="#"><i class="fa fa-retweet"></i></a></li> --}}
+                                    <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+                                </ul>
+                            </div>
+                            <div class="featured__item__text">
+                                @if ($product->stock <= 0)
+                                    <span class="badge badge-danger">Out of Stock</span>
+                                @else
+                                    <h6><a href="#">{{ $product->name }}</a></h6>
+                                    <h5><del>{{ $product->price }}</del> {{ $product->sale_price }} {{ $setting['ecommerce.currency_symbol'] }}</h5>
+                                @endif
+
+                            </div>
                         </div>
                     </div>
-                </div>
+                @endforeach
+
+
                 <div class="col-lg-3 col-md-4 col-sm-6 mix vegetables fastfood">
                     <div class="featured__item">
                         <div class="featured__item__pic set-bg" data-setbg="img/featured/feature-2.jpg">
