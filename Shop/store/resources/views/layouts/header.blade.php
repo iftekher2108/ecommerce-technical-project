@@ -42,7 +42,7 @@
             /* --primary-color: #dd2222; */
             --title-color: {{ $setting['theme.title_color'] }};
             --p-color: {{ $setting['theme.text_color'] }};
-            --text-color: #555555;
+            --text-color: #f1f1f1;
             --bg-color: {{ $setting['theme.bg_color'] }};
 
             --header-bg-color: {{ $setting['theme.header_bg_color'] }};

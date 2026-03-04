@@ -780,12 +780,12 @@ ol {
 
 .categories__item h5 a {
 	font-size: 18px;
-	color: var(--p-color);
+	color: var(--text-color);
 	font-weight: 700;
 	text-transform: uppercase;
 	letter-spacing: 2px;
 	padding: 12px 0 10px;
-	background: #ffffff;
+	background: var(--primary-color);
 	display: block;
 }
 
