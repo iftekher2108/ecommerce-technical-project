@@ -78,54 +78,6 @@ class UserProfileController
         return redirect()->back()->with('success', 'Removed from wishlist');
     }
 
-    /**
-     * Show user shopping cart
-     */
-    public function userCart()
-    {
-        return view('store::user.cart');
-    }
-
-    /**
-     * Add to cart
-     */
-    public function addToCart(Request $request)
-    {
-        $validated = $request->validate([
-            'product_id' => 'required|integer',
-            'quantity' => 'required|integer|min:1',
-        ]);
-
-        // Add to cart logic
-        return redirect()->back()->with('success', 'Added to cart');
-    }
-
-    /**
-     * Update cart item
-     */
-    public function updateCart(Request $request)
-    {
-        $validated = $request->validate([
-            'product_id' => 'required|integer',
-            'quantity' => 'required|integer|min:1',
-        ]);
-
-        // Update cart logic
-        return redirect()->back()->with('success', 'Cart updated');
-    }
-
-    /**
-     * Remove from cart
-     */
-    public function removeFromCart(Request $request)
-    {
-        $validated = $request->validate([
-            'product_id' => 'required|integer',
-        ]);
-
-        // Remove from cart logic
-        return redirect()->back()->with('success', 'Removed from cart');
-    }
 
     /**
      * Show checkout page

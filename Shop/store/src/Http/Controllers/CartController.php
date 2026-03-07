@@ -2,64 +2,41 @@
 
 namespace Shop\Store\Http\Controllers;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Shop\Store\Models\Cart;
+use Shop\Store\Services\CartService;
 
-class CartController
+class CartController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    public function __construct(protected CartService $cartService) {}
+    public function addToCart($productId)
     {
-        //
+        $this->cartService->addToCart($productId);
+        return back()->with('success', 'Product added to cart');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function userCart()
     {
-        //
+        $data = $this->cartService->userCart();
+        return view('store::user.cart', ['carts' => $data]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+    public function updateCart(Request $request, $id)
     {
-        //
+        $request->validate([
+            'product_id' => 'required|integer',
+            'quantity' => 'required|integer|min:1',
+        ]);
+        $this->cartService->updateCart($request, $id);
+        return redirect()->back()->with('success', 'Cart updated');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Cart $cart)
+    public function removeFromCart(Request $request, $id)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Cart $cart)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Cart $cart)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Cart $cart)
-    {
-        //
+        $request->validate([
+            'product_id' => 'required|integer',
+        ]);
+        $this->cartService->removeCart($id);
+        return redirect()->back()->with('success', 'Removed from cart');
     }
 }

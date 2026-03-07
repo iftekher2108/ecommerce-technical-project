@@ -2,17 +2,21 @@
 
 namespace Shop\Store\Http\Controllers;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Shop\Store\Models\WishList;
 
-class WishListController
+class WishListController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    public function addToWishlist($productId)
     {
-        //
+        WishList::firstOrCreate([
+            'user_id' => Auth::id(),
+            'product_id' => $productId
+        ]);
+
+        return back()->with('success', 'Added to wishlist');
     }
 
     /**

@@ -19,7 +19,6 @@
             <thead>
                 <tr>
                     <th style="width: 10px">#</th>
-                    <th>Order</th>
                     <th>Picture</th>
                     <th>Title</th>
                     <th>Sub Title</th>
@@ -30,9 +29,8 @@
             </thead>
             <tbody>
 
-                @foreach ($sliders as $key => $item)
+                @foreach ($sliders as $item)
                     <tr class="align-middle">
-                        <td>{{ $key + 1 }}</td>
                         <td>{{ $item->order_id }}</td>
                         <td>
                             <img src="{{ asset('storage/' . $item->picture) }}" class="img-thumbnail" width="50"

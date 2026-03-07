@@ -6,6 +6,8 @@ namespace Shop\User\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Shop\Store\Models\Cart;
+use Shop\Store\Models\WishList;
 use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
@@ -41,5 +43,15 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    public function carts()
+    {
+        return $this->hasMany(Cart::class);
+    }
+
+    public function wishlists()
+    {
+        return $this->hasMany(WishList::class);
     }
 }

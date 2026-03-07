@@ -111,7 +111,7 @@
                 </li>
                 <li class="@if (Request::routeIs('home.shop')) active @endif"><a href="{{ route('home.shop') }}">Shop</a>
                 </li>
-                <li>
+                {{-- <li>
                     <a href="#">Pages</a>
                     <ul class="header__menu__dropdown">
                         <li><a href="./shop-details.php">Shop Details</a></li>
@@ -119,7 +119,7 @@
                         <li><a href="./checkout.php">Check Out</a></li>
                         <li><a href="./blog-details.php">Blog Details</a></li>
                     </ul>
-                </li>
+                </li> --}}
                 <li><a href="./blog.php">Blog</a></li>
                 <li><a href="./contact.php">Contact</a></li>
             </ul>
@@ -214,14 +214,14 @@
                                     href="{{ route('home.index') }}">Home</a></li>
                             <li class="@if (Request::routeIs('home.shop')) active @endif"><a
                                     href="{{ route('home.shop') }}">Shop</a></li>
-                            <li><a href="#">Pages</a>
+                            {{-- <li><a href="#">Pages</a>
                                 <ul class="header__menu__dropdown">
                                     <li><a href="./shop-details.php">Shop Details</a></li>
                                     <li><a href="./shoping-cart.php">Shoping Cart</a></li>
                                     <li><a href="./checkout.php">Check Out</a></li>
                                     <li><a href="./blog-details.php">Blog Details</a></li>
                                 </ul>
-                            </li>
+                            </li> --}}
                             <li><a href="./blog.php">Blog</a></li>
                             <li><a href="./contact.php">Contact</a></li>
                         </ul>
@@ -231,14 +231,14 @@
                     <div class="header__cart">
                         <ul>
                             <li>
-                                <a href="#"><i class="fa fa-heart"></i>
+                                <a href="{{ route('profile.wishlist') }}"><i class="fa fa-heart"></i>
                                     @auth
                                         <span>1</span>
                                     @endauth
                                 </a>
                             </li>
                             <li>
-                                <a href="#"><i class="fa fa-shopping-bag"></i>
+                                <a href="{{ route('profile.cart') }}"><i class="fa fa-shopping-bag"></i>
                                     @auth
                                         <span>3</span>
                                     @endauth
