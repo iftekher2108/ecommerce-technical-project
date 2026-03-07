@@ -16,6 +16,7 @@ class StoreService
         $brands = Brand::where('status', 1)->orderBy('order_id')->get();
         $featuredProducts = Product::where('status', 1)->orderBy('order_id')->where('is_featured', 1)->get();
         $discountProducts = Product::where('status',1)->orderBy('order_id')->whereNotNull('sale_price')->get();
+        $latestProducts = Product::where('status',1)->latest()->take(8)->get();
         $products = Product::where('status',1)->orderBy('order_id')->get();
         return [
             'sliders' => $sliders,
@@ -23,7 +24,8 @@ class StoreService
             'brands' => $brands,
             'featuredProducts' => $featuredProducts,
             'discountProducts' => $discountProducts,
-            'products' => $products
+            'products' => $products,
+            'latestProducts' => $latestProducts
         ];
     }
 }

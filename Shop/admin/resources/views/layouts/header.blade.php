@@ -3,6 +3,8 @@
 <!--begin::Head-->
 
 <head>
+        <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <!--begin::Accessibility Meta Tags-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
@@ -41,6 +43,22 @@
 
     {{-- Select 2 --}}
     <link rel="stylesheet" href="{{ asset('backend/plugins/select2/dist/css/select2.css') }}">
+
+    {{-- <link rel="stylesheet" href="{{ asset('backend/plugins/') }}"> --}}
+    <style>
+        .tox-tinymce {
+            border-radius: 3px !important;
+            -webkit-border-radius: 3px !important;
+            -moz-border-radius: 3px !important;
+            -ms-border-radius: 3px !important;
+            -o-border-radius: 3px !important;
+        }
+
+        a[href="https://www.tiny.cloud/tinymce-self-hosted-premium-features/?utm_campaign=self_hosted_upgrade_promo&utm_source=tiny&utm_medium=referral"],
+        a[href="https://www.tiny.cloud/powered-by-tiny?utm_campaign=poweredby&utm_source=tiny&utm_medium=referral&utm_content=v7"] {
+            display: none !important;
+        }
+    </style>
 
     @stack('style')
 
@@ -171,8 +189,10 @@
                                     {{ Auth::guard('admin')->user()->name }}
 
                                     <small>
-                                        @foreach (Auth::guard('admin')->user()->roles as $role )
-                                          {{ $role->name }} @if(!$loop->last) | @endif  
+                                        @foreach (Auth::guard('admin')->user()->roles as $role)
+                                            {{ $role->name }} @if (!$loop->last)
+                                                |
+                                            @endif
                                         @endforeach
                                     </small>
                                     {{-- <small>Member since Nov. 2023</small> --}}

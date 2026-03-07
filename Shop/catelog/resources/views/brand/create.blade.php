@@ -10,15 +10,15 @@
 
                 <div class="row g-2">
                     <div class="col-md-4">
-                        <x-admin::form.picture-upload title="Icon" name="icon" />
+                        <x-admin::form.picture-upload title="Icon" name="icon" help="Upload a square Image (150x150px)" />
                     </div>
 
                     <div class="col-md-4">
-                        <x-admin::form.picture-upload title="Banner" name="banner" />
+                        <x-admin::form.picture-upload title="Banner" name="banner" help="Image diamension: 1280x720px" />
                     </div>
 
                     <div class="col-md-4">
-                        <x-admin::form.picture-upload title="Picture" name="picture" />
+                        <x-admin::form.picture-upload title="Picture" name="picture" help="Image diamension: 500x500px" />
                     </div>
 
                 </div>

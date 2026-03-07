@@ -45,7 +45,7 @@
                         <x-admin::form.textarea name="short_description" value="{{ old('short_description') }}"
                             title="Short Description" />
 
-                        <x-admin::form.textarea name="description" value="{{ old('description') }}" title="Description" />
+                        <x-admin::form.textarea name="description" class="tinymce" value="{{ old('description') }}" title="Description" />
 
                         {{-- Brand & Attribute Group --}}
                         <div class="row g-2 mt-2">
@@ -85,11 +85,11 @@
                         {{-- Images --}}
                         <div class="row g-2">
                             <div class="col-md-6">
-                                <x-admin::form.picture-upload title="Picture" name="picture" />
+                                <x-admin::form.picture-upload title="Picture" name="picture" help='Image diamension: 500x500px' />
                             </div>
 
                             <div class="col-md-6">
-                                <x-admin::form.picture-upload title="Banner" name="banner" />
+                                <x-admin::form.picture-upload title="Banner" name="banner" help='Image diamension: 1280x720px' />
                             </div>
 
                         </div>
@@ -98,7 +98,7 @@
                             <div class="col-md-12">
                                 {{-- multiple images (json) --}}
                                 <x-admin::form.picture-upload title="Gallery Images" name="images[]"
-                                    help="You can select multiple images" multiple="true" />
+                                    help="You can select multiple images (diamension: 500x500px)" multiple="true" />
                             </div>
                         </div>
 

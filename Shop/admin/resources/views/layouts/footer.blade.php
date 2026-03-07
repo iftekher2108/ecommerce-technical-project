@@ -30,6 +30,9 @@
       <script src="{{ asset('backend/js/adminlte.min.js') }}"></script>
       <!--end::Required Plugin(AdminLTE)--><!--begin::OverlayScrollbars Configure-->
 
+      <script src="{{ asset('backend/plugins/tinymce/tinymce.min.js') }}"></script>
+
+
       {{-- Select 2 --}}
       <script src="{{ asset('backend/plugins/select2/dist/js/select2.js') }}"></script>
       <script>

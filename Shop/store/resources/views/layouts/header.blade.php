@@ -181,11 +181,11 @@
                                 <div class="d-flex" style="gap:4px; align-items:center;">
                                     <i class="fa fa-user" style="color: var(--header-text-color);"></i>
                                     @if (Auth::user())
-                                        <a href="{{ route('user.profile') }}">Profile</a>|
-                                        <form action="{{ route('user.logout') }}" method="post">
+                                        <a href="{{ route('user.profile') }}">Profile</a>
+                                        {{-- | <form action="{{ route('user.logout') }}" method="post">
                                             @csrf
                                             <button class="p-0 border-0">Login Out</button>
-                                        </form>
+                                        </form> --}}
                                     @else
                                         <a href="{{ route('home.login') }}"> Login</a> |
                                         <a href="{{ route('home.register') }}">Register</a>

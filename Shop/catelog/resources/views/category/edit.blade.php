@@ -11,17 +11,17 @@
                 <div class="row g-2">
                     <div class="col-md-4">
                         <x-admin::form.picture-upload title="Icon" preview="{{ asset('storage/' . $category->icon) }}"
-                            name="icon" />
+                            name="icon" help="Upload a square Image (150x150px)" />
                     </div>
 
                     <div class="col-md-4">
                         <x-admin::form.picture-upload title="Banner" preview="{{ asset('storage/' . $category->banner) }}"
-                            name="banner" />
+                            name="banner" help="Image diamension: 1280x720px" />
                     </div>
 
                     <div class="col-md-4">
                         <x-admin::form.picture-upload title="Picture" preview="{{ asset('storage/' . $category->picture) }}"
-                            name="picture" />
+                            name="picture" help="Image diamension: 500x500px" />
                     </div>
 
                 </div>

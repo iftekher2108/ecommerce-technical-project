@@ -11,7 +11,7 @@
 
                 <div class="row g-2">
                     <div class="col-md-4">
-                        <x-admin::form.picture-upload title="Picture" name="picture" />
+                        <x-admin::form.picture-upload title="Picture" name="picture" help="Image dimension: 1140x550px" />
                     </div>
                 </div>
 

@@ -14,12 +14,12 @@
                 <div class="row g-2">
                     <div class="col-md-6">
                         <x-admin::form.picture-upload title="Picture" preview="{{ asset('storage/' . $product->picture) }}"
-                            name="picture" />
+                            name="picture" help='Image diamension: 500x500px' />
                     </div>
 
                     <div class="col-md-6">
                         <x-admin::form.picture-upload title="Banner" preview="{{ asset('storage/' . $product->banner) }}"
-                            name="banner" />
+                            name="banner" help='Image diamension: 1280x720px' />
                     </div>
 
                 </div>
@@ -30,7 +30,7 @@
                         <x-admin::form.picture-upload title="Gallery Images" :preview="$product->images
                             ? collect($product->images)->map(fn($img) => asset('storage/' . $img))->toArray()
                             : []" name="images[]"
-                            help="You can select multiple images" multiple="true" />
+                            help="You can select multiple images (diamension: 500x500px)" multiple="true" />
                     </div>
                 </div>
 
@@ -54,7 +54,7 @@
                     </div>
                 </div>
 
-                <x-admin::form.textarea name="description" value="{{ $product->description }}" title="Description" />
+                <x-admin::form.textarea name="description" class="tinymce" value="{{ $product->description }}" title="Description" />
 
                 {{-- Brand & Attribute Group --}}
                 <div class="row g-2 mt-2">

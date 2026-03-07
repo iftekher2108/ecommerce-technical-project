@@ -37,9 +37,9 @@
             </thead>
             <tbody>
 
-                @foreach ($products as $key => $item)
+                @foreach ($products as $item)
                     <tr class="align-middle">
-                        <td>{{ $key + 1 }}</td>
+                        <td>{{ $item->order_id }}</td>
                         <td>
                             <img src="{{ asset('storage/' . $item->banner) }}" class="img-thumbnail" width="50"
                                 height="50" alt="banner">

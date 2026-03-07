@@ -116,9 +116,9 @@
                             <i data-lte-icon="expand" class="bi bi-plus-lg"></i>
                             <i data-lte-icon="collapse" class="bi bi-dash-lg"></i>
                         </button>
-                        <button type="button" class="btn btn-tool" data-lte-toggle="card-remove">
+                        {{-- <button type="button" class="btn btn-tool" data-lte-toggle="card-remove">
                             <i class="bi bi-x-lg"></i>
-                        </button>
+                        </button> --}}
                     </div>
                 </div>
                 <!-- /.card-header -->
@@ -218,10 +218,7 @@
                 </div>
                 <!-- /.card-body -->
                 <div class="card-footer clearfix">
-                    <a href="javascript:void(0)" class="btn btn-sm btn-primary float-start">
-                        Place New Order
-                    </a>
-                    <a href="javascript:void(0)" class="btn btn-sm btn-secondary float-end">
+                    <a href="javascript:void(0)" class="btn btn-sm btn-primary float-end">
                         View All Orders
                     </a>
                 </div>

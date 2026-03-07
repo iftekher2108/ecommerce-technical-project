@@ -41,7 +41,9 @@ Route::prefix('admin')->middleware(['web', 'auth:admin'])->group(function () {
         Route::get('/product/{id}/status', 'status')->name('admin.product.status')->middleware('permission:product-status');
         Route::put('/product/{id}/update', 'update')->name('admin.product.update')->middleware('permission:product-update');
         Route::delete('/product/{id}/delete', 'destroy')->name('admin.product.delete')->middleware('permission:product-delete');
-    });
+
+        Route::post('/editor-upload','editorUpload')->name('editor.upload');
+        });
 
 
     Route::controller(CouponController::class)->group(function () {

@@ -17,7 +17,7 @@ class ProductService
         if ($search) {
             $query->where('name', 'like', "%$search%")->orWhere('sku', 'like', "%$search%");
         }
-        $products = $query->paginate(15);
+        $products = $query->orderBy('order_id', 'asc')->paginate(15);
         return ['products' => $products, 'search' => $search];
     }
 
@@ -146,7 +146,8 @@ class ProductService
         ]);
     }
 
-    public function productDelete($id) {
+    public function productDelete($id)
+    {
         $product = Product::findOrFail($id);
         Helper::fileDelete($product->picture);
         Helper::fileDelete($product->banner);
@@ -154,5 +155,12 @@ class ProductService
             Helper::fileDelete($image);
         }
         $product->delete();
+    }
+
+    public function editorUpload($request)
+    {
+        $fileName = time().'.'.$request->file('file')->extension();;
+        $path = $request->file('file')->storeAs('upload', $fileName, 'public');
+        return ['location' => "/storage/$path"];
     }
 }

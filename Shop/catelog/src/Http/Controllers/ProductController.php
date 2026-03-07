@@ -146,4 +146,10 @@ class ProductController extends Controller
         $this->productService->productDelete($id);
         return to_route($this->productService->redirect)->with('success', 'Product Delete Successfully');
     }
+
+    public function editorUpload(Request $request) {
+        $data = $this->productService->editorUpload($request);
+        return response()->json($data);
+    }
+
 }
