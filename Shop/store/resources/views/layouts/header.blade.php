@@ -233,14 +233,14 @@
                             <li>
                                 <a href="{{ route('profile.wishlist') }}"><i class="fa fa-heart"></i>
                                     @auth
-                                        <span>1</span>
+                                        <span>{{ $wishlistCount }}</span>
                                     @endauth
                                 </a>
                             </li>
                             <li>
                                 <a href="{{ route('profile.cart') }}"><i class="fa fa-shopping-bag"></i>
                                     @auth
-                                        <span>3</span>
+                                        <span>{{ $cartCount }}</span>
                                     @endauth
                                 </a>
                             </li>
