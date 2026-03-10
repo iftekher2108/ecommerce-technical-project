@@ -4,7 +4,6 @@ namespace Shop\Appearance\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Shop\Appearance\Models\Slider;
 use Shop\Appearance\Services\SliderService;
 
 class SliderController extends Controller
@@ -82,6 +81,7 @@ class SliderController extends Controller
      */
     public function status($id)
     {
+        $this->sliderService->sliderStatus($id);
         return redirect()->route($this->sliderService->redirect)->with('success', 'Slider status update successfully');
     }
 }

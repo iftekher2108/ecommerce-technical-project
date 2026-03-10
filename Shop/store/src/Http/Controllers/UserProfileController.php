@@ -2,11 +2,12 @@
 
 namespace Shop\Store\Http\Controllers;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Shop\Store\Services\UserProfileService;
 
-class UserProfileController
+class UserProfileController extends Controller
 {
     public function __construct(protected UserProfileService $userProfileService) {}
     public function userProfile()
@@ -42,40 +43,6 @@ class UserProfileController
 
         Auth::user()->update($validated);
         return redirect()->route('user.profile')->with('success', 'Profile updated successfully');
-    }
-
-    /**
-     * Show user wishlist
-     */
-    public function userWishlist()
-    {
-        return view('store::user.wishlist');
-    }
-
-    /**
-     * Add to wishlist
-     */
-    public function addToWishlist(Request $request)
-    {
-        $validated = $request->validate([
-            'product_id' => 'required|integer',
-        ]);
-
-        // Add to wishlist logic
-        return redirect()->back()->with('success', 'Added to wishlist');
-    }
-
-    /**
-     * Remove from wishlist
-     */
-    public function removeFromWishlist(Request $request)
-    {
-        $validated = $request->validate([
-            'product_id' => 'required|integer',
-        ]);
-
-        // Remove from wishlist logic
-        return redirect()->back()->with('success', 'Removed from wishlist');
     }
 
 

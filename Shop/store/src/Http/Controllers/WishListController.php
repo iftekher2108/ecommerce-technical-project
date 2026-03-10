@@ -3,67 +3,26 @@
 namespace Shop\Store\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Shop\Store\Models\WishList;
+use Shop\Store\Services\WishListService;
 
 class WishListController extends Controller
 {
+    public function __construct(protected WishListService $wishListService) {}
     public function addToWishlist($productId)
     {
-        WishList::firstOrCreate([
-            'user_id' => Auth::id(),
-            'product_id' => $productId
-        ]);
-
+        $this->wishListService->addToWishList($productId);
         return back()->with('success', 'Added to wishlist');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function userWishList()
     {
-        //
+        $wishLists = $this->wishListService->userWishList();
+        return view('store::user.wishlist', ['wishLists' => $wishLists]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+    public function removeWishList($productId)
     {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(WishList $wishList)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(WishList $wishList)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, WishList $wishList)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(WishList $wishList)
-    {
-        //
+        $this->wishListService->removeWishList($productId);
+        return back()->with('success', 'Removed from wishlist');
     }
 }

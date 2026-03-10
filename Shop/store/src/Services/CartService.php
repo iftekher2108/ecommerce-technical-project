@@ -7,6 +7,7 @@ use Shop\Store\Models\Cart;
 
 class CartService
 {
+    public $redirect = 'profile.cart';
 
     public function addToCart($productId)
     {

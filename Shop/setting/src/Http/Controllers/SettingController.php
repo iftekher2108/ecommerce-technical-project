@@ -4,7 +4,6 @@ namespace Shop\Setting\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Shop\Setting\Models\Setting;
 use Shop\Setting\Services\SettingService;
 
 class SettingController extends Controller

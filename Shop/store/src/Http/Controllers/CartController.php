@@ -39,4 +39,5 @@ class CartController extends Controller
         $this->cartService->removeCart($id);
         return redirect()->back()->with('success', 'Removed from cart');
     }
+    
 }

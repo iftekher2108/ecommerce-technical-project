@@ -2,10 +2,11 @@
 
 namespace Shop\Store\Http\Controllers;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Shop\Store\Services\UserAuthService;
 
-class UserAuthController
+class UserAuthController extends Controller
 {
     public function __construct(protected UserAuthService $userAuthService) {}
     public function login()
