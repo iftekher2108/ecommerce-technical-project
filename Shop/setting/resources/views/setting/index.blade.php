@@ -340,7 +340,7 @@
                             </div>
 
                             <div class="col-md-6">
-                                <x-admin::form.input name="theme_footer_text_color" title="Footer Title Color"
+                                <x-admin::form.input name="theme_footer_text_color" title="Footer Text Color"
                                     value="{{ $setting['theme.footer_text_color'] }}" type='color' />
                             </div>
 
