@@ -84,7 +84,7 @@
                             <div class="featured__item__pic set-bg"
                                 data-setbg="{{ asset('storage/' . $product->picture) }}">
                                 <ul class="featured__item__pic__hover">
-                                    <li><a href="#"><i class="fa fa-heart"></i></a></li>
+                                    <li><a href="{{ route('home.product',$product->slug) }}"><i class="fa fa-heart"></i></a></li>
                                     {{-- <li><a href="#"><i class="fa fa-retweet"></i></a></li> --}}
                                     @if (!$product->stock <= 0)
                                         <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
@@ -95,7 +95,7 @@
                                 @if ($product->stock <= 0)
                                     <span class="badge badge-danger p-2">Out of Stock</span>
                                 @else
-                                    <h6><a href="#">{{ $product->name }}</a></h6>
+                                    <h6><a href="{{ route('home.product', $product->slug) }}">{{ $product->name }}</a></h6>
                                     <h5><del>{{ $product->price }}</del> {{ $product->sale_price }}
                                         {{ $setting['ecommerce.currency_symbol'] }}</h5>
                                 @endif
@@ -137,7 +137,7 @@
                             <div class="featured__item__pic set-bg"
                                 data-setbg="{{ asset('storage/' . $product->picture) }}">
                                 <ul class="featured__item__pic__hover">
-                                    <li><a href="#"><i class="fa fa-heart"></i></a></li>
+                                    <li><a href="{{ route('home.product',$product->slug) }}"><i class="fa fa-heart"></i></a></li>
                                     {{-- <li><a href="#"><i class="fa fa-retweet"></i></a></li> --}}
                                     @if (!$product->stock <= 0)
                                         <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
@@ -148,7 +148,7 @@
                                 @if ($product->stock <= 0)
                                     <span class="badge badge-danger p-2">Out of Stock</span>
                                 @else
-                                    <h6><a href="#">{{ $product->name }}</a></h6>
+                                    <h6><a href="{{ route('home.product',$product->slug) }}">{{ $product->name }}</a></h6>
                                     <h5><del>{{ $product->price }}</del> {{ $product->sale_price }}
                                         {{ $setting['ecommerce.currency_symbol'] }}</h5>
                                 @endif

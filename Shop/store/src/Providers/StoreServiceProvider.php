@@ -21,8 +21,8 @@ class StoreServiceProvider extends ServiceProvider
         	$categories = Category::where('status', 1)->orderBy('order_id', 'asc')->with('children')->get();
 			$view->with([
 				'categories' => $categories,
-				'wishlistCount', $wishlistCount,
-				'cartCount', $cartCount,
+				'wishlistCount' => $wishlistCount,
+				'cartCount' => $cartCount,
 			]);
 		});
 	}

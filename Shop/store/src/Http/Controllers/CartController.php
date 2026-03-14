@@ -9,9 +9,14 @@ use Shop\Store\Services\CartService;
 class CartController extends Controller
 {
     public function __construct(protected CartService $cartService) {}
-    public function addToCart($productId)
+
+    public function addToCart(Request $request)
     {
-        $this->cartService->addToCart($productId);
+        $request->validate([
+            'product_id' => 'required|integer|exists:products,id',
+        ]);
+
+        $this->cartService->addToCart($request);
         return back()->with('success', 'Product added to cart');
     }
 
@@ -21,22 +26,22 @@ class CartController extends Controller
         return view('store::user.cart', ['carts' => $data]);
     }
 
-    public function updateCart(Request $request, $id)
+    public function updateCart(Request $request)
     {
         $request->validate([
             'product_id' => 'required|integer',
-            'quantity' => 'required|integer|min:1',
+            'quantity' => 'required|integer|min:1'
         ]);
-        $this->cartService->updateCart($request, $id);
+        $this->cartService->updateCart($request);
         return redirect()->back()->with('success', 'Cart updated');
     }
 
-    public function removeFromCart(Request $request, $id)
+    public function removeFromCart(Request $request)
     {
         $request->validate([
             'product_id' => 'required|integer',
         ]);
-        $this->cartService->removeCart($id);
+        $this->cartService->removeCart($request);
         return redirect()->back()->with('success', 'Removed from cart');
     }
     

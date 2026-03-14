@@ -15,6 +15,7 @@ Route::middleware(['web'])->group(function () {
     Route::controller(StoreController::class)->group(function () {
         Route::get('/', 'index')->name('home.index');
         Route::get('/shop', 'shop')->name('home.shop');
+        Route::get('/product/{slug}','productDetail')->name('home.product');
     });
 
     Route::middleware('guest:web')->controller(UserAuthController::class)->group(function () {
@@ -67,8 +68,8 @@ Route::middleware(['web'])->group(function () {
         // Cart Routes
         Route::get('/user/cart', 'userCart')->name('profile.cart');
         Route::post('/user/cart/add', 'addToCart')->name('cart.add');
-        Route::post('/user/cart/update', 'updateCart')->name('cart.update');
-        Route::post('/user/cart/remove', 'removeFromCart')->name('cart.remove');
+        Route::put('/user/cart/update', 'updateCart')->name('cart.update');
+        Route::delete('/user/cart/remove', 'removeFromCart')->name('cart.remove');
     });
 
     

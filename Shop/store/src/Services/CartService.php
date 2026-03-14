@@ -9,19 +9,20 @@ class CartService
 {
     public $redirect = 'profile.cart';
 
-    public function addToCart($productId)
+    public function addToCart($request)
     {
         $userId = Auth::id();
         $cart = Cart::where('user_id', $userId)
-            ->where('product_id', $productId)
+            ->where('product_id', $request->product_id)
             ->first();
         if ($cart) {
-            $cart->increment('quantity');
+            $qty = $request->quantity ?? 1;
+            $cart->increment('quantity', $qty);
         } else {
             Cart::create([
                 'user_id' => $userId,
-                'product_id' => $productId,
-                'quantity' => 1
+                'product_id' => $request->product_id,
+                'quantity' => $request->quantity ?? 1
             ]);
         }
     }
@@ -34,9 +35,9 @@ class CartService
         return $carts;
     }
 
-    public function updateCart($request, $id)
+    public function updateCart($request)
     {
-        $cart = Cart::where('id', $id)
+        $cart = Cart::where('product_id', $request->product_id)
             ->where('user_id', Auth::id())
             ->firstOrFail();
 
@@ -45,9 +46,9 @@ class CartService
         ]);
     }
 
-    public function removeCart($id)
+    public function removeCart($request)
     {
-        $cart = Cart::where('id', $id)
+        $cart = Cart::where('product_id', $request->product_id)
             ->where('user_id', Auth::id())
             ->firstOrFail();
         $cart->delete();

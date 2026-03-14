@@ -19,4 +19,10 @@ class StoreController extends Controller
     public function shop(Request $request) {
         return view('store::shop.index');
     }
+
+    public function productDetail($slug) {
+        $product = $this->storeService->productDetail($slug);
+        return view('store::product.detail',['product' => $product]);
+    }
+
 }

@@ -28,4 +28,10 @@ class StoreService
             'latestProducts' => $latestProducts
         ];
     }
+
+    public function productDetail($slug) {
+        $product = Product::where('slug',$slug)->with(['categories','brand'])->first();
+        return $product;
+    }
+
 }
