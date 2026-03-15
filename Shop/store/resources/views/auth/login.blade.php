@@ -72,12 +72,13 @@
                         @enderror
                     </div>
 
-                    {{-- <div class="form-group d-flex justify-content-between align-items-center">
-                    <div>
+                    <div class="form-group d-flex justify-content-between align-items-center">
+                    {{-- <div>
                         <input type="checkbox" name="remember" id="remember"> <label for="remember">Remember me</label> 
-                    </div>
-                    <a href="#">Forgot Password?</a>
-                </div> --}}
+                    </div> --}}
+                    {{-- <a href="#">Forgot Password?</a> --}}
+                    <a href="{{ route('home.register') }}">Create New Account</a>
+                </div>
 
                     <button type="submit" class="btn btn-login btn-block text-white">
                         Login
