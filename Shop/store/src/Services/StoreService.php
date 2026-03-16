@@ -47,4 +47,9 @@ class StoreService
     }
 
 
+    public function contact() {
+        
+    }
+
+
 }

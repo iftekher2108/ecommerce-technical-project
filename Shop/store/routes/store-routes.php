@@ -16,6 +16,10 @@ Route::middleware(['web'])->group(function () {
         Route::get('/', 'index')->name('home.index');
         Route::get('/shop', 'shop')->name('home.shop');
         Route::get('/product/{slug}','productDetail')->name('home.product');
+
+
+        Route::get('/contact-us','contact')->name('home.contact');
+
     });
 
     Route::middleware('guest:web')->controller(UserAuthController::class)->group(function () {

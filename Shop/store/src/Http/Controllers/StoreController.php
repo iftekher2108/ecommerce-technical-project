@@ -26,4 +26,10 @@ class StoreController extends Controller
         return view('store::product.detail',['product' => $product]);
     }
 
+
+    public function contact() {
+        return view('store::contact');
+    }
+
+
 }
