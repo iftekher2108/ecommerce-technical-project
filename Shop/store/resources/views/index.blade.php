@@ -58,7 +58,7 @@
     </section>
     <!-- Categories Section End -->
 
-        <!-- Product Section Begin -->
+    <!-- Product Section Begin -->
     <section class="featured spad">
         <div class="container">
             <div class="row">
@@ -84,18 +84,26 @@
                             <div class="featured__item__pic set-bg"
                                 data-setbg="{{ asset('storage/' . $product->picture) }}">
                                 <ul class="featured__item__pic__hover">
-                                    <li><a href="{{ route('home.product',$product->slug) }}"><i class="fa fa-heart"></i></a></li>
+                                    <li><a href="{{ route('home.product', $product->slug) }}"><i class="fa fa-heart"></i></a>
+                                    </li>
                                     {{-- <li><a href="#"><i class="fa fa-retweet"></i></a></li> --}}
                                     @if (!$product->stock <= 0)
-                                        <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+                                        <li><form action="{{ route('cart.add') }}" method="POST">
+                                            @csrf
+                                            <input type="hidden" name="product_id" value="{{ $product->id }}">
+                                            {{-- <button type="submit"></button> --}}
+                                            <button type="submit" ><i class="fa fa-shopping-cart"></i></button>
+                                        </form></li>
+                                        
                                     @endif
                                 </ul>
                             </div>
                             <div class="featured__item__text">
+                                <h6><a href="{{ route('home.product', $product->slug) }}">{{ $product->name }}</a></h6>
                                 @if ($product->stock <= 0)
                                     <span class="badge badge-danger p-2">Out of Stock</span>
                                 @else
-                                    <h6><a href="{{ route('home.product', $product->slug) }}">{{ $product->name }}</a></h6>
+                                    
                                     <h5><del>{{ $product->price }}</del> {{ $product->sale_price }}
                                         {{ $setting['ecommerce.currency_symbol'] }}</h5>
                                 @endif
@@ -137,7 +145,8 @@
                             <div class="featured__item__pic set-bg"
                                 data-setbg="{{ asset('storage/' . $product->picture) }}">
                                 <ul class="featured__item__pic__hover">
-                                    <li><a href="{{ route('home.product',$product->slug) }}"><i class="fa fa-heart"></i></a></li>
+                                    <li><a href="{{ route('home.product', $product->slug) }}"><i
+                                                class="fa fa-heart"></i></a></li>
                                     {{-- <li><a href="#"><i class="fa fa-retweet"></i></a></li> --}}
                                     @if (!$product->stock <= 0)
                                         <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
@@ -145,10 +154,10 @@
                                 </ul>
                             </div>
                             <div class="featured__item__text">
+                                <h6><a href="{{ route('home.product', $product->slug) }}">{{ $product->name }}</a></h6>
                                 @if ($product->stock <= 0)
                                     <span class="badge badge-danger p-2">Out of Stock</span>
                                 @else
-                                    <h6><a href="{{ route('home.product',$product->slug) }}">{{ $product->name }}</a></h6>
                                     <h5><del>{{ $product->price }}</del> {{ $product->sale_price }}
                                         {{ $setting['ecommerce.currency_symbol'] }}</h5>
                                 @endif

@@ -34,4 +34,17 @@ class StoreService
         return $product;
     }
 
+
+    public function shop($request) {
+        $categories = Category::where('status', 1)->orderBy('order_id', 'asc')->get();
+        $brands = Brand::where('status', 1)->orderBy('order_id')->get();
+        $products = Product::where('status',1)->orderBy('order_id')->paginate(12);
+        return [
+            'categories' => $categories,
+            'brands' => $brands,
+            'products' => $products
+        ];
+    }
+
+
 }

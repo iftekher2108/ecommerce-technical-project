@@ -3,12 +3,15 @@
 @section('title', $product->meta_title ?: $product->name)
 @section('meta_description', $product->meta_description ?: $setting['seo.meta_description'])
 @section('meta_keywords', $product->meta_keywords ?: $setting['seo.meta_keywords'])
-@section('meta_image', $product->picture ? asset('storage/' . $product->picture) : asset('storage/' . $setting['seo.og_image']))
+@section('meta_image', $product->picture ? asset('storage/' . $product->picture) : asset('storage/' .
+    $setting['seo.og_image']))
 
 @section('content')
     @php
-        $mainImage = $product->picture ?: ($product->images[0] ?? null);
-        $galleryImages = collect($product->images ?? [])->filter()->all();
+        $mainImage = $product->picture ?: $product->images[0] ?? null;
+        $galleryImages = collect($product->images ?? [])
+            ->filter()
+            ->all();
         $breadcrumbBg = $product->banner ? asset('storage/' . $product->banner) : asset('frontend/img/breadcrumb.jpg');
     @endphp
 
@@ -62,31 +65,42 @@
                             {{-- <span>({{ $product->stock ?? 0 }} reviews)</span> --}}
                         </div>
                         <div class="product__details__price">
-                            @if ($product->sale_price && $product->sale_price < $product->price)
-                            <del>{{ number_format($product->price, 2) }}{{ $setting['ecommerce.currency_symbol'] }}</del>
-                                {{ number_format($product->sale_price, 2) }}{{ $setting['ecommerce.currency_symbol'] }}
+                            @if ($product->stock <= 0)
+                                <span class="badge badge-danger p-2">Out of Stock</span>
                             @else
-                                {{ number_format($product->price, 2) }}{{ $setting['ecommerce.currency_symbol'] }}
+                                @if ($product->sale_price && $product->sale_price < $product->price)
+                                    <del>{{ number_format($product->price, 2) }}{{ $setting['ecommerce.currency_symbol'] }}</del>
+                                    {{ number_format($product->sale_price, 2) }}{{ $setting['ecommerce.currency_symbol'] }}
+                                @else
+                                    {{ number_format($product->price, 2) }}{{ $setting['ecommerce.currency_symbol'] }}
+                                @endif
                             @endif
+
                         </div>
-                        <p>{!! nl2br(e($product->short_description ?? $product->description ?? 'No description available.')) !!}</p>
+                        <p>{!! nl2br(e($product->short_description ?? ($product->description ?? 'No description available.'))) !!}</p>
 
-                        <form action="{{ route('cart.add') }}" method="POST" class="d-flex align-items-start flex-column flex-sm-row gap-2">
+                        <form action="{{ route('cart.add') }}" method="POST"
+                            class="d-flex align-items-start flex-column flex-sm-row gap-2">
                             @csrf
-                            <div class="pro-qty">
-                                <input type="text" name="quantity" value="1">
-                            </div>
 
-                            <input type="hidden" name="product_id" value="{{ $product->id }}">
+                            @if (!$product->stock <= 0)
+                                <div class="pro-qty">
+                                    <input type="text" name="quantity" value="1">
+                                </div>
+
+                                <input type="hidden" name="product_id" value="{{ $product->id }}">
+                            @endif
 
                             @auth
-                                <button type="submit" class="primary-btn">Add to cart</button>
+                                @if (!$product->stock <= 0)
+                                    <button type="submit" class="primary-btn">Add to cart</button>
+                                @endif
                             @else
                                 <a href="{{ route('home.login') }}" class="primary-btn">Login to buy</a>
                             @endauth
 
                             <a href="{{ route('profile.wishlist') }}" class="heart-icon">
-                                <i class="fa fa-heart"></i>
+                                <i class="fa fa-heart"></i> Wishlist
                             </a>
                         </form>
 
@@ -94,7 +108,9 @@
                             <li><b>SKU</b> {{ $product->sku }}</li>
                             <li><b>Brand</b> {{ $product->brand?->name ?? 'N/A' }}</li>
                             <li><b>Categories</b> {{ $product->categories->pluck('name')->join(', ') }}</li>
-                            <li><b>Stock</b> {!! $product->in_stock ? '<span class="text-success">In stock</span>' : '<span class="text-danger">Out of stock</span>' !!}</li>
+                            <li><b>Stock</b> {!! $product->stock <= 0
+                                ? '<span class="text-danger">Out of stock</span>'
+                                : '<span class="text-success">In stock</span>' !!}</li>
                         </ul>
                     </div>
                 </div>

@@ -894,17 +894,17 @@ ol {
 	margin-right: 0;
 }
 
-.featured__item__pic__hover li:hover a {
+.featured__item__pic__hover li:hover :is(a,button) {
 	background: var(--primary-color);
 	border-color: var(--primary-color);
 }
 
-.featured__item__pic__hover li:hover a i {
+.featured__item__pic__hover li:hover :is(a,button) i {
 	color: #ffffff;
 	transform: rotate(360deg);
 }
 
-.featured__item__pic__hover li a {
+.featured__item__pic__hover li :is(a,button) {
 	font-size: 16px;
 	color: var(--p-color);
 	height: 40px;
@@ -922,7 +922,7 @@ ol {
 	transition: all, 0.5s;
 }
 
-.featured__item__pic__hover li a i {
+.featured__item__pic__hover li :is(a,button) i {
 	position: relative;
 	transform: rotate(0);
 	-webkit-transition: all, 0.3s;

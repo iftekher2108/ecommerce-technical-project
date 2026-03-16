@@ -17,7 +17,8 @@ class StoreController extends Controller
     }
 
     public function shop(Request $request) {
-        return view('store::shop.index');
+        $data = $this->storeService->shop($request);
+        return view('store::shop.index', $data);
     }
 
     public function productDetail($slug) {
