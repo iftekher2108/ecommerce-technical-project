@@ -33,9 +33,11 @@
                                 <h4>Categories</h4>
                                 <ul>
                                     @foreach ($categories as $key => $category)
-                                    <li>
-                                        <label for="category-{{ $key +1 }}"><input type="checkbox" name="category[]" value="{{ $category->name }}" class="mr-2" id="category-{{ $key +1 }}">{{ $category->name }}</label>
-                                    </li>
+                                        <li>
+                                            <label for="category-{{ $key + 1 }}"><input type="checkbox"
+                                                    name="category[]" value="{{ $category->name }}" class="mr-2"
+                                                    id="category-{{ $key + 1 }}">{{ $category->name }}</label>
+                                        </li>
                                     @endforeach
 
                                 </ul>
@@ -214,7 +216,7 @@
                                     <div class="product__discount__item">
                                         <div class="product__discount__item__pic set-bg"
                                             data-setbg="img/product/discount/pd-1.jpg">
-                                            <div class="product__discount__percent">-20%</div>
+                                            {{-- <div class="product__discount__percent">-20%</div> --}}
                                             <ul class="product__item__pic__hover">
                                                 <li><a href="#"><i class="fa fa-heart"></i></a></li>
                                                 <li><a href="#"><i class="fa fa-retweet"></i></a></li>
@@ -234,7 +236,7 @@
                                     <div class="product__discount__item">
                                         <div class="product__discount__item__pic set-bg"
                                             data-setbg="img/product/discount/pd-6.jpg">
-                                            <div class="product__discount__percent">-20%</div>
+                                            {{-- <div class="product__discount__percent">-20%</div> --}}
                                             <ul class="product__item__pic__hover">
                                                 <li><a href="#"><i class="fa fa-heart"></i></a></li>
                                                 <li><a href="#"><i class="fa fa-retweet"></i></a></li>
@@ -260,22 +262,36 @@
                                 <div class="filter__sort">
                                     <span>Sort By</span>
                                     <select>
-                                        <option value="0">Default</option>
-                                        <option value="0">Default</option>
+                                        <option value="asc">Asc</option>
+                                        <option value="desc">Desc</option>
+                                    </select>
+                                    <span class="ms-3">Per Page</span>
+                                    <select>
+                                        <option value="12">12</option>
+                                        <option value="24">24</option>
+                                        <option value="36">36</option>
+                                        <option value="48">48</option>
+                                        <option value="60">60</option>
+                                        <option value="72">72</option>
                                     </select>
                                 </div>
+
                             </div>
+
+                            <div class="col-lg-4 col-md-3">
+                                <div class="filter__option">
+                                    {{-- <span class="icon_grid-2x2"></span>
+                                    <span class="icon_ul"></span> --}}
+
+                                </div>
+                            </div>
+
                             <div class="col-lg-4 col-md-4">
                                 <div class="filter__found">
                                     <h6><span>16</span> Products found</h6>
                                 </div>
                             </div>
-                            <div class="col-lg-4 col-md-3">
-                                <div class="filter__option">
-                                    <span class="icon_grid-2x2"></span>
-                                    <span class="icon_ul"></span>
-                                </div>
-                            </div>
+                            
                         </div>
                     </div>
 
