@@ -4,7 +4,7 @@
 @section('meta_description', $product->meta_description ?: $setting['seo.meta_description'])
 @section('meta_keywords', $product->meta_keywords ?: $setting['seo.meta_keywords'])
 @section('meta_image', $product->picture ? asset('storage/' . $product->picture) : asset('storage/' .
-    $setting['seo.og_image']))
+$setting['seo.og_image']))
 
 @section('content')
     @php
@@ -93,13 +93,13 @@
 
                             @auth
                                 @if (!$product->stock <= 0)
-                                    <button type="submit" class="primary-btn">Add to cart</button>
+                                    <button type="submit" class="btn primary-btn">Add to cart</button>
                                 @endif
                             @else
-                                <a href="{{ route('home.login') }}" class="primary-btn">Login to buy</a>
+                                <a href="{{ route('home.login') }}" class="btn primary-btn">Login to buy</a>
                             @endauth
 
-                            <a href="{{ route('profile.wishlist') }}" class="heart-icon">
+                            <a href="{{ route('profile.wishlist') }}" class="ms-2 heart-icon">
                                 <i class="fa fa-heart"></i> Wishlist
                             </a>
                         </form>

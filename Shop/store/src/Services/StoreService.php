@@ -38,11 +38,23 @@ class StoreService
     public function shop($request) {
         $categories = Category::where('status', 1)->orderBy('order_id', 'asc')->get();
         $brands = Brand::where('status', 1)->orderBy('order_id')->get();
-        $products = Product::where('status',1)->orderBy('order_id')->paginate(12);
+        $query = Product::query();
+        // if($request->filled('')) {
+
+        // }
+
+        $products = $query->where('status',1)->orderBy('order_id')->paginate(12);
+
+        $maxPrice = Product::where('status',1)->max('price');
         return [
+
+            
+
+
             'categories' => $categories,
             'brands' => $brands,
-            'products' => $products
+            'products' => $products,
+            'maxPrice' => $maxPrice
         ];
     }
 

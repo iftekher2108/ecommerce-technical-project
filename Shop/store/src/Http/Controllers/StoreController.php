@@ -31,5 +31,14 @@ class StoreController extends Controller
         return view('store::contact');
     }
 
+    public function contact_submit(Request $request) {
+        return 'contact submit';
+    }
+
+
+    public function order_search() {
+        return view('store::order-track.order-search');
+    } 
+
 
 }

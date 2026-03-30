@@ -19,6 +19,12 @@ Route::middleware(['web'])->group(function () {
 
 
         Route::get('/contact-us','contact')->name('home.contact');
+        Route::post('contact/submit','contact_submit')->name('home.contact.submit');
+
+
+        Route::get('/order/search','order_search')->name('home.order.search');
+        
+
 
     });
 

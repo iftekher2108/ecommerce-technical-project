@@ -121,7 +121,13 @@
                     </ul>
                 </li> --}}
                 {{-- <li><a href="./blog.php">Blog</a></li> --}}
-                <li class="@if (Request::routeIs('home.contact')) active @endif"><a href="{{ route('home.contact') }}">Contact</a></li>
+                <li class="@if (Request::routeIs('home.contact')) active @endif"><a
+                        href="{{ route('home.contact') }}">Contact</a></li>
+                @auth
+                    <li class="@if (Request::routeIs('home.order.search')) active @endif"><a
+                            href="{{ route('home.order.search') }}">Order Track</a></li>
+                @endauth
+
             </ul>
         </nav>
         <div id="mobile-menu-wrap"></div>
@@ -223,7 +229,14 @@
                                 </ul>
                             </li> --}}
                             {{-- <li><a href="./blog.php">Blog</a></li> --}}
-                            <li class="@if (Request::routeIs('home.contact')) active @endif"><a href="{{ route('home.contact') }}">Contact</a></li>
+                            <li class="@if (Request::routeIs('home.contact')) active @endif"><a
+                                    href="{{ route('home.contact') }}">Contact</a></li>
+
+                            @auth
+                                <li class="@if (Request::routeIs('home.order.search')) active @endif"><a
+                                        href="{{ route('home.order.search') }}">Order Track</a></li>
+                            @endauth
+
                         </ul>
                     </nav>
                 </div>

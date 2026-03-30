@@ -16,6 +16,7 @@
         "shop/admin": "^1.0",
         "shop/appearance": "*",
         "shop/auth": "*",
+        "shop/blog": "*",
         "shop/catelog": "*",
         "shop/sales": "*",
         "shop/setting": "*",

@@ -17,7 +17,7 @@
                             @if ($slider->sub_title)
                                 <p>{!! $slider->sub_title !!}</p>
                             @endif
-                            <a href="{{ route('home.shop') }}" class="primary-btn">SHOP NOW</a>
+                            <a href="{{ route('home.shop') }}" class="btn primary-btn">SHOP NOW</a>
                         </div>
                     </div>
                 @endforeach

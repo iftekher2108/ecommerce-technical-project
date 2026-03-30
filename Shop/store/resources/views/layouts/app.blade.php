@@ -1,18 +1,26 @@
 @include('store::layouts.header')
 <div class="px-3 ">
-{{-- Success Message --}}
-@if (session('success'))
-    <div class="alert alert-success rounded-3 my-2">
-        {{ session('success') }}
-    </div>
-@endif
+    {{-- Success Message --}}
+    @if (session('success'))
+        <div class="alert alert-success rounded-3 my-2">
+            {{ session('success') }}
+        </div>
+    @endif
 
-{{-- Error Message --}}
-@if (session('error'))
-    <div class="alert alert-danger rounded-3 my-2">
-        {{ session('error') }}
-    </div>
-@endif
+    @if ($errors->any())
+        @foreach ($errors->all() as $error)
+            <div class="alert alert-danger rounded-3 my-2">
+                {{ $error }}
+            </div>
+        @endforeach
+    @endif
+
+    {{-- Error Message --}}
+    @if (session('error'))
+        <div class="alert alert-danger rounded-3 my-2">
+            {{ session('error') }}
+        </div>
+    @endif
 </div>
 
 @yield('content')

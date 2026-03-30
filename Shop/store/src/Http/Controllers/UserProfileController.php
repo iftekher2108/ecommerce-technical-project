@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Shop\Store\Services\UserProfileService;
+use Shop\User\Models\UserAddress;
 
 class UserProfileController extends Controller
 {
@@ -89,7 +90,12 @@ class UserProfileController extends Controller
      */
     public function userAddresses()
     {
-        return view('store::user.addresses');
+        $billingAddress = UserAddress::where('type','billing')->get();
+        $shippingAddress = UserAddress::where('type','shipping')->get();
+        return view('store::user.addresses',[
+            'billingAddress' => $billingAddress,
+            'shippingAddress' => $shippingAddress,
+        ]);
     }
 
     /**
@@ -97,33 +103,40 @@ class UserProfileController extends Controller
      */
     public function addAddress(Request $request)
     {
-        $validated = $request->validate([
-            'address' => 'required|string',
+        $request->validate([
+            'type' => 'required',
+            'full_name' => 'required',
+            'phone' => 'required',
+            'address_line1' => 'required|string',
+            'address_line2' => 'nullable|string',
             'city' => 'required|string',
             'state' => 'required|string',
-            'zip_code' => 'required|string',
+            'postal_code' => 'required|string',
             'country' => 'required|string',
         ]);
 
-        // Add address logic
+        $this->userProfileService->createAddress($request);
         return redirect()->back()->with('success', 'Address added successfully');
     }
 
     /**
      * Update address
      */
-    public function updateAddress(Request $request)
+    public function updateAddress(Request $request, $id)
     {
-        $validated = $request->validate([
-            'address_id' => 'required|integer',
-            'address' => 'required|string',
+        $request->validate([
+            'type' => 'required',
+            'full_name' => 'required',
+            'phone' => 'required',
+            'address_line1' => 'required|string',
+            'address_line2' => 'nullable|string',
             'city' => 'required|string',
             'state' => 'required|string',
-            'zip_code' => 'required|string',
+            'postal_code' => 'required|string',
             'country' => 'required|string',
         ]);
 
-        // Update address logic
+        $this->userProfileService->updateAddress($request, $id);
         return redirect()->back()->with('success', 'Address updated successfully');
     }
 
