@@ -39,17 +39,15 @@ class StoreService
         $categories = Category::where('status', 1)->orderBy('order_id', 'asc')->get();
         $brands = Brand::where('status', 1)->orderBy('order_id')->get();
         $query = Product::query();
-        // if($request->filled('')) {
-
-        // }
+        if($request->filled('category')) {
+            $query->whereIn('category', $request->category);
+        }
 
         $products = $query->where('status',1)->orderBy('order_id')->paginate(12);
-
+        $discountProducts = Product::where('status',1)->orderBy('order_id')->whereNotNull('sale_price')->paginate(12);
         $maxPrice = Product::where('status',1)->max('price');
         return [
-
-            
-
+            'discountProducts' => $discountProducts,
 
             'categories' => $categories,
             'brands' => $brands,
