@@ -84,17 +84,23 @@
                             <div class="featured__item__pic set-bg"
                                 data-setbg="{{ asset('storage/' . $product->picture) }}">
                                 <ul class="featured__item__pic__hover">
-                                    <li><a href="{{ route('home.product', $product->slug) }}"><i class="fa fa-heart"></i></a>
+                                    <li>
+                                        <form action="{{ route('wishlist.add') }}" method="POST">
+                                            @csrf
+                                            <input type="hidden" name="product_id" value="{{ $product->id }}">
+                                            <button type="submit"><i class="fa fa-heart"></i></button>
+                                        </form>
                                     </li>
                                     {{-- <li><a href="#"><i class="fa fa-retweet"></i></a></li> --}}
                                     @if (!$product->stock <= 0)
-                                        <li><form action="{{ route('cart.add') }}" method="POST">
-                                            @csrf
-                                            <input type="hidden" name="product_id" value="{{ $product->id }}">
-                                            {{-- <button type="submit"></button> --}}
-                                            <button type="submit" ><i class="fa fa-shopping-cart"></i></button>
-                                        </form></li>
-                                        
+                                        <li>
+                                            <form action="{{ route('cart.add') }}" method="POST">
+                                                @csrf
+                                                <input type="hidden" name="product_id" value="{{ $product->id }}">
+                                                {{-- <button type="submit"></button> --}}
+                                                <button type="submit"><i class="fa fa-shopping-cart"></i></button>
+                                            </form>
+                                        </li>
                                     @endif
                                 </ul>
                             </div>
@@ -103,7 +109,6 @@
                                 @if ($product->stock <= 0)
                                     <span class="badge badge-danger p-2">Out of Stock</span>
                                 @else
-                                    
                                     <h5><del>{{ $product->price }}</del> {{ $product->sale_price }}
                                         {{ $setting['ecommerce.currency_symbol'] }}</h5>
                                 @endif

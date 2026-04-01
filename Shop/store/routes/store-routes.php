@@ -5,6 +5,7 @@ use Shop\Store\Http\Controllers\CartController;
 use Shop\Store\Http\Controllers\StoreController;
 use Shop\Store\Http\Controllers\UserAuthController;
 use Shop\Store\Http\Controllers\UserProfileController;
+use Shop\Store\Http\Controllers\WishListController;
 
 // Route::get('/', function () {
 //     return view('welcome');
@@ -15,17 +16,14 @@ Route::middleware(['web'])->group(function () {
     Route::controller(StoreController::class)->group(function () {
         Route::get('/', 'index')->name('home.index');
         Route::get('/shop', 'shop')->name('home.shop');
-        Route::get('/product/{slug}','productDetail')->name('home.product');
+        Route::get('/product/{slug}', 'productDetail')->name('home.product');
 
 
-        Route::get('/contact-us','contact')->name('home.contact');
-        Route::post('contact/submit','contact_submit')->name('home.contact.submit');
+        Route::get('/contact-us', 'contact')->name('home.contact');
+        Route::post('contact/submit', 'contact_submit')->name('home.contact.submit');
 
 
-        Route::get('/order/search','order_search')->name('home.order.search');
-        
-
-
+        Route::get('/order/search', 'order_search')->name('home.order.search');
     });
 
     Route::middleware('guest:web')->controller(UserAuthController::class)->group(function () {
@@ -49,10 +47,6 @@ Route::middleware(['web'])->group(function () {
         Route::get('/user/profile/edit', 'editProfile')->name('profile.edit');
         Route::post('/user/profile/update', 'updateProfile')->name('profile.update');
 
-        // Wishlist Routes
-        Route::get('/user/wishlist', 'userWishlist')->name('profile.wishlist');
-        Route::post('/user/wishlist/add', 'addToWishlist')->name('wishlist.add');
-        Route::post('/user/wishlist/remove', 'removeFromWishlist')->name('wishlist.remove');
 
 
         // Checkout Routes
@@ -74,6 +68,19 @@ Route::middleware(['web'])->group(function () {
         Route::post('/user/settings/password', 'updatePassword')->name('settings.password');
     });
 
+
+    Route::middleware(['auth:web'])->controller(WishListController::class)->group(function () {
+
+        // Wishlist Routes
+        Route::get('/user/wishlist', 'userWishlist')->name('profile.wishlist');
+        Route::post('/user/wishlist/add', 'addToWishlist')->name('wishlist.add');
+        Route::delete('/user/wishlist/remove', 'removeWishList')->name('wishlist.remove');
+
+    });
+
+
+
+
     Route::middleware(['auth:web'])->controller(CartController::class)->group(function () {
         // Cart Routes
         Route::get('/user/cart', 'userCart')->name('profile.cart');
@@ -81,6 +88,4 @@ Route::middleware(['web'])->group(function () {
         Route::put('/user/cart/update', 'updateCart')->name('cart.update');
         Route::delete('/user/cart/remove', 'removeFromCart')->name('cart.remove');
     });
-
-    
 });

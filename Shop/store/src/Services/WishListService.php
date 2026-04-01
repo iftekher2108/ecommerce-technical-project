@@ -2,6 +2,7 @@
 
 namespace Shop\Store\Services;
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Shop\Store\Models\WishList;
 

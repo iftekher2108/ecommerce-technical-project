@@ -24,8 +24,8 @@
                                     <div class="d-flex justify-content-between">
                                         <h4 class="text-primary">{{ $address->full_name }}</h4>
                                         <div class="d-flex" style="gap: 3px;">
-                                            <a href="" class="btn btn-info"></a>
-                                            <a href="" class="btn btn-danger"></a>
+                                            <a href="" class="btn btn-info">Edit</a>
+                                            <a href="" class="btn btn-danger">Delete</a>
                                         </div>
                                     </div>
 
@@ -42,8 +42,8 @@
                                     <div class="d-flex justify-content-between">
                                         <h4 class="text-primary">{{ $address->full_name }}</h4>
                                         <div class="d-flex" style="gap: 3px;">
-                                            <a href="" class="btn btn-sm btn-info"></a>
-                                            <a href="" class="btn btn-sm btn-danger"></a>
+                                            <a href="" class="btn btn-info">Edit</a>
+                                            <a href="" class="btn btn-danger">Delete</a>
                                         </div>
                                     </div>
 
