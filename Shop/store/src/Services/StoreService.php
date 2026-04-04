@@ -15,9 +15,9 @@ class StoreService
         $categories = Category::where('status', 1)->orderBy('order_id', 'asc')->with('children')->get();
         $brands = Brand::where('status', 1)->orderBy('order_id')->get();
         $featuredProducts = Product::where('status', 1)->orderBy('order_id')->where('is_featured', 1)->paginate(12);
-        $discountProducts = Product::where('status',1)->orderBy('order_id')->whereNotNull('sale_price')->paginate(12);
-        $latestProducts = Product::where('status',1)->latest()->take(8)->paginate(12);
-        $products = Product::where('status',1)->orderBy('order_id')->paginate(12);
+        $discountProducts = Product::where('status', 1)->orderBy('order_id')->whereNotNull('sale_price')->paginate(12);
+        $latestProducts = Product::where('status', 1)->latest()->take(8)->paginate(12);
+        $products = Product::where('status', 1)->orderBy('order_id')->paginate(12);
         return [
             'sliders' => $sliders,
             'categories' => $categories,
@@ -29,23 +29,27 @@ class StoreService
         ];
     }
 
-    public function productDetail($slug) {
-        $product = Product::where('slug',$slug)->with(['categories','brand'])->first();
+    public function productDetail($slug)
+    {
+        $product = Product::where('slug', $slug)->with(['categories', 'brand'])->first();
         return $product;
     }
 
 
-    public function shop($request) {
+    public function shop($request)
+    {
         $categories = Category::where('status', 1)->orderBy('order_id', 'asc')->get();
         $brands = Brand::where('status', 1)->orderBy('order_id')->get();
         $query = Product::query();
-        if($request->filled('category')) {
-            $query->whereIn('category', $request->category);
+        if ($request->filled('category')) {
+            $query->whereHas('categories', function ($q) use ($request) {
+                $q->whereIn('categories.id', $request->category);
+            });
         }
 
-        $products = $query->where('status',1)->orderBy('order_id')->paginate(12);
-        $discountProducts = Product::where('status',1)->orderBy('order_id')->whereNotNull('sale_price')->paginate(12);
-        $maxPrice = Product::where('status',1)->max('price');
+        $products = $query->where('status', 1)->orderBy('order_id')->paginate(12);
+        $discountProducts = Product::where('status', 1)->orderBy('order_id')->whereNotNull('sale_price')->paginate(12);
+        $maxPrice = Product::where('status', 1)->max('price');
         return [
             'discountProducts' => $discountProducts,
 
@@ -57,9 +61,5 @@ class StoreService
     }
 
 
-    public function contact() {
-        
-    }
-
-
+    public function contact() {}
 }

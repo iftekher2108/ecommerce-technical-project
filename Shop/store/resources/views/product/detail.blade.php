@@ -4,7 +4,7 @@
 @section('meta_description', $product->meta_description ?: $setting['seo.meta_description'])
 @section('meta_keywords', $product->meta_keywords ?: $setting['seo.meta_keywords'])
 @section('meta_image', $product->picture ? asset('storage/' . $product->picture) : asset('storage/' .
-$setting['seo.og_image']))
+    $setting['seo.og_image']))
 
 @section('content')
     @php
@@ -98,11 +98,17 @@ $setting['seo.og_image']))
                             @else
                                 <a href="{{ route('home.login') }}" class="btn primary-btn">Login to buy</a>
                             @endauth
-
-                            <a href="{{ route('profile.wishlist') }}" class="ms-2 heart-icon">
-                                <i class="fa fa-heart"></i> Wishlist
-                            </a>
                         </form>
+
+                        <form action="{{ route('wishlist.add') }}" method="post">
+                            @csrf
+                            <input type="hidden" name="product_id" value="{{ $product->id }}">
+                            <button type="submit" class="ms-2 btn heart-icon">
+                                <i class="fa fa-heart"></i> Wishlist
+                            </button>
+                        </form>
+
+
 
                         <ul>
                             <li><b>SKU</b> {{ $product->sku }}</li>
