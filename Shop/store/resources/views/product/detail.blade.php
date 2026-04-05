@@ -85,7 +85,7 @@
 
                             @if (!$product->stock <= 0)
                                 <div class="pro-qty">
-                                    <input type="text" name="quantity" value="1">
+                                    <input type="text" name="quantity" min="1" max="10" value="1">
                                 </div>
 
                                 <input type="hidden" name="product_id" value="{{ $product->id }}">
