@@ -27,23 +27,23 @@
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label>Your Name</label>
-                        <input type="text" name="name" class="form-control" placeholder="Enter your name" required>
+                        <input type="text" name="name" value="{{ old('name') }}" class="form-control" placeholder="Enter your name" required>
                     </div>
 
                     <div class="form-group col-md-6">
                         <label>Email Address</label>
-                        <input type="email" name="email" class="form-control" placeholder="Enter your email" required>
+                        <input type="email" name="email" value="{{ old('email') }}" class="form-control" placeholder="Enter your email" required>
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label>Subject</label>
-                    <input type="text" name="subject" class="form-control" placeholder="Enter subject">
+                    <input type="text" name="subject" class="form-control" value="{{ old('subject') }}" placeholder="Enter subject" required>
                 </div>
 
                 <div class="form-group">
                     <label>Message</label>
-                    <textarea name="message" rows="5" class="form-control" placeholder="Write your message..." required></textarea>
+                    <textarea name="message" rows="5" class="form-control" placeholder="Write your message..." required>{{ old('message') }}</textarea>
                 </div>
 
                 <button type="submit" class="btn btn-primary btn-block">

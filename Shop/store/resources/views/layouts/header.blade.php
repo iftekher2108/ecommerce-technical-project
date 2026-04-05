@@ -109,6 +109,9 @@
             <ul>
                 <li class="@if (Request::routeIs('home.index')) active @endif"><a href="{{ route('home.shop') }}">Home</a>
                 </li>
+                <li class="@if (Request::routeIs('home.about')) active @endif"><a
+                        href="{{ route('home.about') }}">About</a>
+                </li>
                 <li class="@if (Request::routeIs('home.shop')) active @endif"><a href="{{ route('home.shop') }}">Shop</a>
                 </li>
                 {{-- <li>
@@ -218,6 +221,9 @@
                         <ul>
                             <li class="@if (Request::routeIs('home.index')) active @endif"><a
                                     href="{{ route('home.index') }}">Home</a></li>
+                            <li class="@if (Request::routeIs('home.about')) active @endif"><a
+                                    href="{{ route('home.about') }}">About</a></li>
+
                             <li class="@if (Request::routeIs('home.shop')) active @endif"><a
                                     href="{{ route('home.shop') }}">Shop</a></li>
                             {{-- <li><a href="#">Pages</a>

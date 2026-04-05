@@ -60,6 +60,8 @@ class StoreService
         ];
     }
 
+    public function about() {}
 
     public function contact() {}
+
 }
