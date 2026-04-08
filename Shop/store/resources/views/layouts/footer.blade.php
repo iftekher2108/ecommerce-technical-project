@@ -20,7 +20,7 @@
                        <ul>
                            <li><a href="#">About Us</a></li>
                            {{-- <li><a href="#">Secure Shopping</a></li> --}}
-                           <li><a href="#">Delivery infomation</a></li>
+                           <li><a href="#">Delivery information</a></li>
                            <li><a href="#">Privacy Policy</a></li>
                            {{-- <li><a href="#">Our Sitemap</a></li> --}}
                        </ul>
