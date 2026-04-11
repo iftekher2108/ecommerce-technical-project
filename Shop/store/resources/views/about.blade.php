@@ -13,7 +13,7 @@
             <p>Our mission is to offer a seamless shopping experience, exceptional customer service, and a wide range of products that meet the needs of our diverse customer base. We are committed to sustainability, quality, and innovation.</p>
             
             <h2>Our Values</h2>
-            <ul>
+            <ul class="ml-4">
                 <li><strong>Customer-Centric:</strong> Your satisfaction is our top priority.</li>
                 <li><strong>Quality:</strong> We source only the best products.</li>
                 <li><strong>Innovation:</strong> We embrace new technologies to improve your experience.</li>

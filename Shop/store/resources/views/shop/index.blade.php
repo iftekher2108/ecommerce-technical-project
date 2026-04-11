@@ -225,7 +225,7 @@
                                                 </ul>
                                             </div>
                                             <div class="product__discount__item__text">
-                                                <span>{{ $product->name }}</span>
+                                                <h6><a href="{{ route('home.product', $product->slug) }}">{{ $product->name }}</a></h6>
                                                 {{-- <h5><a href="#">Raisin’n’nuts</a></h5> --}}
                                                 <div class="product__item__price">$30.00 <span>$36.00</span></div>
                                             </div>

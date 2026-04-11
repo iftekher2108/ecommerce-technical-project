@@ -9,7 +9,8 @@
 
                 @foreach ($sliders as $slider)
                     <div class="hero__item set-bg" data-setbg="{{ asset('storage/' . $slider->picture) }}">
-                        <div class="hero__text">
+                        <div class="her
+                        o__text">
                             {{-- <span>FRUIT FRESH</span> --}}
                             @if ($slider->title)
                                 <h2>{!! $slider->title !!}</h2>
